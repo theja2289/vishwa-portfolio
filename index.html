@@ -284,8 +284,9 @@ body.deck .tracker{bottom:max(68px,calc(env(safe-area-inset-bottom,0px) + 56px))
 .clip figcaption{padding:10px 12px 12px;font-size:13px;color:var(--muted);line-height:1.4}
 .clip figcaption b{display:block;color:var(--text);font-weight:600}
 .clip .grp{font:600 10px var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--teal);padding:8px 12px 0}
-dialog#lb,dialog#tracedlg{border:0;padding:0;background:transparent;max-width:min(96vw,1400px)}
-dialog#tracedlg::backdrop{background:rgba(5,8,10,.88)}
+dialog#lb,dialog#tracedlg,dialog#posterdlg{border:0;padding:0;background:transparent;max-width:min(96vw,1400px)}
+dialog#tracedlg::backdrop,dialog#posterdlg::backdrop{background:rgba(5,8,10,.88)}
+.posterwrap{width:min(96vw,1400px);max-height:78vh;overflow:auto;background:#0A0D10;cursor:zoom-in;overscroll-behavior:contain}.posterwrap img{display:block;width:100%;height:auto}.posterwrap.zoomed{cursor:grab}.posterwrap.zoomed img{width:240%;max-width:none}.posterwrap.zoomed.drag{cursor:grabbing}@media (max-width:700px){.posterwrap.zoomed img{width:320%}}
 dialog#lb::backdrop{background:rgba(5,8,10,.88)}
 #lb .lbin{background:var(--panel);border-radius:12px;overflow:hidden;border:1px solid var(--stroke2)}
 #lb img{display:block;max-width:min(96vw,1400px);max-height:78vh;width:auto;height:auto}
@@ -549,7 +550,7 @@ body.simple .deckbar{display:none}
           <div class="stats"><div class="stat"><b>Zero</b><span>retyping at stations</span></div><div class="stat"><b>1st author</b><span>Technology Summit 2025</span></div></div>
           <div class="roi"><b>ROI</b><span>Quality escapes ran 2 to 3 a quarter at about $50k each. The marking station costs under $20k and pays back in under two months (business case, Technology Summit 2025).</span></div>
           <div class="tech"><span>laser marking</span><span>QR / DPM</span><span>MES integration</span></div>
-          <div class="acts"><button class="btn small" type="button" id="traceBig">Watch it larger</button></div>
+          <div class="acts"><button class="btn small" type="button" id="traceBig">Watch it larger</button><button class="btn small" type="button" id="posterBtn">See the poster</button></div>
         </div>
       </article>
 
@@ -710,6 +711,7 @@ body.simple .deckbar{display:none}
   </div>
 </section>
 
+<dialog id="posterdlg" aria-label="Technology Summit 2025 poster"><div class="lbin"><div class="posterwrap" id="posterwrap"><img id="posterimg" src="assets/traceability-poster-thumb.jpg" data-full="assets/traceability-poster.jpg" alt="Poster: Enhanced Traceability, Fab to Assembly. Integrating laser scribing, tablet-based MES updates and automated tracking. Introduction, objective, methodology, results, analysis, conclusion." loading="lazy"></div><div class="lbbar"><span>Enhanced Traceability: Fab to Assembly. Technology Summit 2025, first author. Click the poster to zoom and drag to pan.</span><a class="btn small" href="assets/Enhanced_Traceability_Poster_TechSummit2025.pdf" target="_blank" rel="noopener">Open the PDF ↗</a><button class="btn small" type="button" id="posterdlgclose">Close</button></div></div></dialog>
 <dialog id="tracedlg" aria-label="Follow one wafer"><div class="lbin"><canvas class="tracecanvas" id="tracebigcanvas" style="display:block;width:min(96vw,1100px);aspect-ratio:16/10"></canvas><div class="lbbar"><span>Follow one wafer: laser mark, scan at every station, singulate with the mark on every piece, pick by a verified ID. Every step lands in the record.</span><button class="btn small" type="button" id="tracedlgclose">Close</button></div></div></dialog>
 <dialog id="lb" aria-label="Clip viewer"><div class="lbin"><img id="lbimg" src="" alt=""><div class="lbbar"><span id="lbcap"></span><button class="btn small" type="button" id="lbclose">Close</button></div></div></dialog>
 
@@ -813,7 +815,7 @@ body.simple .deckbar{display:none}
       <div class="sitem"><img src="assets/engine-tree-editor.gif" alt="" loading="lazy"><div><b>Gelly Engine</b><p>The software brain behind our robot cells. One engine, configured for each machine instead of rewritten for it.</p><small>Result: a new kind of cell in about three months instead of three years.</small></div></div>
       <div class="sitem"><img src="assets/engine-home.gif" alt="" loading="lazy"><div><b>Micro-assembly under vision</b><p>Robots that pick parts you can barely see and place them within a thousandth of a millimetre, with cameras checking every move.</p><small>Result: three times the throughput at the station, ±1 µm held across the fleet.</small></div></div>
       <div class="sitem"><img src="assets/ml-annotate.gif" alt="" loading="lazy"><div><b>GellyML</b><p>Replaced an expensive licensed camera product with our own vision software and models, proven side by side with production before switching.</p><small>Result: licence fees gone, more defects caught.</small></div></div>
-      <div class="sitem noimg"><div><b>Enhanced Traceability</b><p>Every part carries an ID from the first step and is scanned at every station, so we can prove exactly what happened to it.</p><small>Result: quality problems traced in minutes, not days.</small></div></div>
+      <div class="sitem noimg"><div><b>Enhanced Traceability</b><p>Every part carries an ID from the first step and is scanned at every station, so we can prove exactly what happened to it. <a href="assets/Enhanced_Traceability_Poster_TechSummit2025.pdf" target="_blank" rel="noopener">Technology Summit 2025 poster (PDF) ↗</a></p><small>Result: quality problems traced in minutes, not days.</small></div></div>
       <div class="sitem"><img src="assets/motionvitals-poster.jpg" alt="" loading="lazy"><div><b>MotionVitals</b><p>A phone app that measures how a person moves, using AI that runs on the phone itself. Nothing goes to the cloud.</p><small>Result: first place, ExecuTorch × Qualcomm 2026.</small></div></div>
       <div class="sitem noimg"><div><b>Intrinsic AI for Industry Challenge</b><p>Taught a robot arm to plug in fibre-optic connectors by feel, with a team of five across the world.</p><small>Result: 36th of 1,600 teams, the top 2.3%.</small></div></div>
       <div class="sitem"><img src="assets/flasher-turntable.gif" alt="" loading="lazy"><div><b>Door Safety Flasher</b><p>A thin disk on each side of a door that warns the person on the other side before it opens. Designed in CAD, concept stage.</p><small>Result: a door hit avoided for the price of two gadgets.</small></div></div>
@@ -2478,6 +2480,15 @@ window.makeGellyScene = function (canvasId, reduceMotion) {
   var traceScenes=[]; document.querySelectorAll("#c-trace .tracecanvas").forEach(function(c){ traceScenes.push(makeTraceScene(c)); });
   var tdlg=$("tracedlg"), tbig=null;
   $("traceBig").addEventListener("click",function(){ tdlg.showModal?tdlg.showModal():tdlg.setAttribute("open",""); if(!tbig){ tbig=makeTraceScene($("tracebigcanvas")); } else tbig.restart(); });
+  (function(){ var d=$("posterdlg"), w=$("posterwrap"), im=$("posterimg"), b=$("posterBtn"); if(!d||!b)return; var drag=null, moved=false;
+    function open(){ if(im.getAttribute("data-full")){ im.src=im.getAttribute("data-full"); im.removeAttribute("data-full"); } w.classList.remove("zoomed"); d.showModal?d.showModal():d.setAttribute("open",""); }
+    function close(){ d.close?d.close():d.removeAttribute("open"); }
+    b.addEventListener("click",open); $("posterdlgclose").addEventListener("click",close); d.addEventListener("click",function(e){ if(e.target===d) close(); });
+    w.addEventListener("click",function(e){ if(moved){ moved=false; return; } var r=w.getBoundingClientRect(), fx=(e.clientX-r.left+w.scrollLeft)/w.scrollWidth, fy=(e.clientY-r.top+w.scrollTop)/w.scrollHeight; w.classList.toggle("zoomed"); if(w.classList.contains("zoomed")){ w.scrollLeft=fx*w.scrollWidth-r.width/2; w.scrollTop=fy*w.scrollHeight-r.height/2; } });
+    w.addEventListener("pointerdown",function(e){ if(!w.classList.contains("zoomed"))return; drag={x:e.clientX,y:e.clientY,l:w.scrollLeft,t:w.scrollTop}; moved=false; w.classList.add("drag"); });
+    w.addEventListener("pointermove",function(e){ if(!drag)return; var dx=e.clientX-drag.x, dy=e.clientY-drag.y; if(Math.abs(dx)+Math.abs(dy)>4) moved=true; w.scrollLeft=drag.l-dx; w.scrollTop=drag.t-dy; });
+    ["pointerup","pointercancel","pointerleave"].forEach(function(n){ w.addEventListener(n,function(){ drag=null; w.classList.remove("drag"); }); });
+  })();
   $("tracedlgclose").addEventListener("click",function(){ tdlg.close?tdlg.close():tdlg.removeAttribute("open"); if(tbig)tbig.stop(); });
   tdlg.addEventListener("click",function(e){ if(e.target===tdlg){ tdlg.close(); if(tbig)tbig.stop(); } });
 
