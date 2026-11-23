@@ -304,6 +304,21 @@ footer{padding:34px 0 56px;font-size:13px;color:var(--faint)}
 .tip{font-size:13px;color:var(--muted);margin-top:14px;text-align:center}
 @media (max-width:700px){.sheet{padding:24px 18px}.sheet .skl{grid-template-columns:1fr}.sheet .rh .rc{text-align:left}}
 
+/* ---------- product video ---------- */
+.pv{margin-top:26px;display:grid;grid-template-columns:1.5fr 1fr;gap:18px;align-items:stretch}
+@media (max-width:860px){.pv{grid-template-columns:1fr}}
+.pvmedia{background:#0F161E;border:1px solid var(--rule);border-radius:11px;overflow:hidden;aspect-ratio:16/9;max-width:100%;position:relative}
+.pvmedia img,.pvmedia video{display:block;width:100%;height:100%;object-fit:cover}
+.pvmedia video{object-fit:contain;background:#0F161E}
+.pvtext{background:var(--surface);border:1px solid var(--rule);border-radius:11px;padding:20px 22px;box-shadow:var(--shadow);display:flex;flex-direction:column;gap:10px;min-width:0}
+.pvtext h3{font-size:18px;letter-spacing:-.014em}
+.pvtext p{font-size:14.5px;color:var(--ink-2);line-height:1.58}
+.pvcuts{display:flex;gap:8px;flex-wrap:wrap;margin-top:auto}
+.pvcut{font:inherit;font-size:13px;font-weight:600;border:1px solid var(--rule);background:var(--sunk);color:var(--ink);border-radius:999px;padding:7px 13px;cursor:pointer;min-height:36px}
+.pvcut[aria-pressed="true"]{background:var(--teal-pale);border-color:var(--teal);color:var(--teal)}
+.pvcut[hidden]{display:none}
+.pvnote{font-family:"IBM Plex Mono",monospace;font-size:11.5px;color:var(--muted)}
+
 /* ---------- in motion gallery ---------- */
 .gh{margin-top:30px;font-family:"IBM Plex Mono",monospace;font-size:11px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--amber)}
 .gal{margin-top:12px;display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
@@ -688,6 +703,19 @@ dialog#lb::backdrop{background:rgba(5,12,15,.86)}
     <span class="eyebrow">In motion</span>
     <h2>The Gelly Engine, as an engineer sees it</h2>
     <p class="sectlede">Short screen recordings from the development tool, taken read-only from a desk browser. Everything here is a web page served by the engine that also drives the hardware. Click a clip to watch it larger.</p>
+
+    <div class="pv" id="pv">
+      <div class="pvmedia" id="pvmedia"><img id="pvposter" src="assets/gelly-engine-poster.png" alt="Closing card of the Gelly Engine product video: Describe the machine. Compose the behavior. Run it in simulation, then for real."></div>
+      <div class="pvtext">
+        <h3>The product video</h3>
+        <p>A 101-second film I wrote, narrated and rendered with Remotion from the engine's own screens: the hook, the architecture, a nine-shot feature tour, what it saves on the floor, and the close. There is also a 30-second cut for meetings.</p>
+        <p id="pvstatus" class="pvnote">Video available on request.</p>
+        <div class="pvcuts" id="pvcuts" hidden>
+          <button class="pvcut" type="button" data-src="assets/gelly-engine-30s.mp4" aria-pressed="true">30 s cut</button>
+          <button class="pvcut" type="button" data-src="assets/gelly-engine.mp4" aria-pressed="false">Full film, 1:41</button>
+        </div>
+      </div>
+    </div>
 
     <div class="gh">The engine and its pages</div>
     <div class="gal">
@@ -1101,6 +1129,25 @@ dialog#lb::backdrop{background:rgba(5,12,15,.86)}
     else if(location.hash==="#top"){ window.scrollTo(0,0); }
   }
   window.addEventListener("hashchange",route); route();
+
+
+  /* ---------- product video: show the player only when the file is really there ---------- */
+  var pvm=document.getElementById("pvmedia"), pvs=document.getElementById("pvstatus"), pvc=document.getElementById("pvcuts");
+  var cuts=Array.prototype.slice.call(pvc.querySelectorAll(".pvcut")), have={};
+  function probe(u){ return fetch(u,{method:"HEAD"}).then(function(r){ return r.ok; }).catch(function(){ return false; }); }
+  function mount(srcUrl){
+    var v=document.createElement("video"); v.controls=true; v.playsInline=true; v.preload="metadata";
+    v.poster="assets/gelly-engine-poster.png"; v.src=srcUrl; v.setAttribute("aria-label","Gelly Engine product video");
+    pvm.innerHTML=""; pvm.appendChild(v);
+  }
+  Promise.all(cuts.map(function(b){ return probe(b.getAttribute("data-src")).then(function(ok){ have[b.getAttribute("data-src")]=ok; b.hidden=!ok; }); })).then(function(){
+    var avail=cuts.filter(function(b){ return !b.hidden; });
+    if(!avail.length){ return; }
+    pvc.hidden=false; pvs.textContent="Narrated, 1920 x 1080. Names and addresses on screen are blurred; projections are labelled.";
+    cuts.forEach(function(b){ b.setAttribute("aria-pressed","false"); });
+    avail[0].setAttribute("aria-pressed","true"); mount(avail[0].getAttribute("data-src"));
+    cuts.forEach(function(b){ b.addEventListener("click",function(){ cuts.forEach(function(o){ o.setAttribute("aria-pressed", o===b?"true":"false"); }); mount(b.getAttribute("data-src")); }); });
+  });
 
   /* ---------- clip viewer ---------- */
   var lb=document.getElementById("lb"), lbimg=document.getElementById("lbimg"), lbcap=document.getElementById("lbcap");
