@@ -214,7 +214,11 @@ body.deck .tracker{bottom:max(68px,calc(env(safe-area-inset-bottom,0px) + 56px))
 .dshead h3{margin:4px 0;font-size:19px}
 .dshead .sub{margin:0;max-width:62ch}
 #door{display:block;width:100%;aspect-ratio:1000/420;background:#0A0D10}
-.doorsc[aria-pressed="true"]{background:var(--accent);color:#002033;border-color:var(--accent)}
+.doorsc[aria-pressed="true"],.doorview[aria-pressed="true"]{background:var(--accent);color:#002033;border-color:var(--accent)}
+.dsctl{display:flex;flex-direction:column;gap:6px;align-items:flex-end}
+.dsctl .ctas{align-items:center}
+.dsl{font:600 10px var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--dim);margin-right:2px}
+@media (max-width:760px){.dsctl{align-items:flex-start}}
 .raildots{display:flex;gap:5px;justify-content:center;margin-top:4px;flex-wrap:wrap}
 .raildots button{width:22px;height:6px;border-radius:3px;border:0;background:var(--stroke2);cursor:pointer;padding:0;transition:background .2s}
 .raildots button.on{background:var(--accent)}
@@ -368,13 +372,15 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
 .rside .grp{margin-bottom:12px}
 .rside .grp b{display:block;font:600 11px var(--mono);color:var(--dim);margin-bottom:5px;letter-spacing:.04em}
 .chips span{display:inline-block;font-size:12px;border:1px solid var(--stroke);border-radius:6px;padding:2px 7px;margin:0 4px 4px 0;color:var(--muted)}
+.rbottom{display:grid;grid-template-columns:1.15fr 1fr 1fr;gap:18px}
+@media (max-width:600px){.rbottom{grid-template-columns:1fr}}
 .edu{margin-top:8px}
 .edu b{display:block;font-size:13.5px}
 .edu span{font-size:12.5px;color:var(--dim)}
 .rlist{margin:0;padding-left:16px;font-size:13.5px;color:var(--muted);line-height:1.5}
 .racts{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin:16px auto 0;max-width:860px}
 @media (max-width:860px){.rgrid{grid-template-columns:1fr}.rhl{grid-template-columns:repeat(3,1fr)}.sheet{padding:28px 22px}}
-@media print{nav.nav,.back,.racts,.rback,.tracker,.deckbar,.floatback,#site,#simple{display:none!important}html,body{background:#fff!important;color:#111!important}#resume{display:block!important}#resume .wrap{padding:0;max-width:none}#resume{padding:0}.sheet{border:0;padding:0 3mm;max-width:none;margin:0;background:#fff;color:#111;box-shadow:none;border-radius:0}.sheet *{color:#111!important;text-shadow:none}.sheet .rt,.sheet h2{color:#0a5a7a!important}.sheet .rh{border-bottom:1.5px solid #111;padding-bottom:6px;align-items:flex-end}.sheet .rh h1{font-size:17pt;margin:0}.sheet .rh .rt{font-size:9.5pt;margin-top:1px}.sheet .rh .rc{font-size:7.3pt;line-height:1.45}#resume,#resume .wrap,.sheet,.rgrid,.rmain,.rside{min-width:0;max-width:100%;width:auto;overflow:hidden}.rhl{grid-template-columns:repeat(6,minmax(0,1fr));gap:5px;margin-top:7px}.rhl div{padding:3px 6px;border:1px solid #bbb!important;background:#fff!important;border-radius:4px;min-width:0}.rhl b{font-size:8.4pt;white-space:normal}.rhl span{font-size:6.6pt;line-height:1.2}.rgrid{grid-template-columns:minmax(0,1fr) 150px;gap:12px}.sheet h2{font-size:7.2pt;letter-spacing:.1em;margin:8px 0 3px}.sheet p{font-size:8.3pt;line-height:1.3}.sheet .job{margin-top:6px;gap:8px}.sheet .job b{font-size:9.2pt}.sheet .job span{font-size:7.3pt}.sheet .subl{font-size:8pt;margin-top:0}.sheet ul{margin-top:2px;gap:1px;padding-left:12px;font-size:8.3pt;line-height:1.3}.rside .grp{margin-bottom:4px}.rside .grp b{font-size:6.8pt;margin-bottom:1px}.chips{font-size:7.6pt;line-height:1.3}.chips span{display:inline;border:0!important;padding:0;margin:0;font-size:7.6pt;line-height:1.3;background:none!important}.chips span:not(:last-child)::after{content:", "}.edu{margin-top:3px;line-height:1.25}.edu b{font-size:8pt;line-height:1.25}.edu span{font-size:7.3pt;line-height:1.25;display:block}.rside h2{margin:6px 0 2px}.rlist{font-size:7.6pt;line-height:1.25;padding-left:11px}@page{size:Letter;margin:8mm 8mm}}
+@media print{nav.nav,.back,.racts,.rback,.tracker,.deckbar,.floatback,#site,#simple{display:none!important}html,body{background:#fff!important;color:#111!important}#resume{display:block!important}#resume .wrap{padding:0;max-width:none}#resume{padding:0}.sheet{border:0;padding:0 3mm;max-width:none;margin:0;background:#fff;color:#111;box-shadow:none;border-radius:0}.sheet *{color:#111!important;text-shadow:none}.sheet .rt,.sheet h2{color:#0a5a7a!important}.sheet .rh{border-bottom:1.5px solid #111;padding-bottom:6px;align-items:flex-end}.sheet .rh h1{font-size:17pt;margin:0}.sheet .rh .rt{font-size:9.5pt;margin-top:1px}.sheet .rh .rc{font-size:7.3pt;line-height:1.45}#resume,#resume .wrap,.sheet,.rgrid,.rmain,.rside{min-width:0;max-width:100%;width:auto;overflow:hidden}.rhl{grid-template-columns:repeat(6,minmax(0,1fr));gap:5px;margin-top:7px}.rhl div{padding:3px 6px;border:1px solid #bbb!important;background:#fff!important;border-radius:4px;min-width:0}.rhl b{font-size:8.4pt;white-space:normal}.rhl span{font-size:6.6pt;line-height:1.2}.rgrid{grid-template-columns:minmax(0,1fr) 150px;gap:12px}.sheet h2{font-size:7.4pt;letter-spacing:.1em;margin:8px 0 3px}.sheet p{font-size:8.6pt;line-height:1.3}.sheet .job{margin-top:6px;gap:8px}.sheet .job b{font-size:9.2pt}.sheet .job span{font-size:7.3pt}.sheet .subl{font-size:8pt;margin-top:0}.sheet ul{margin-top:3px;gap:2px;padding-left:12px;font-size:8.6pt;line-height:1.3}.rbottom{gap:12px;margin-top:0;grid-template-columns:1fr .85fr 1.35fr}.rbottom h2{margin-top:8px}.rbottom .rlist{font-size:7.8pt;line-height:1.25;gap:0}.rside .grp{margin-bottom:4px}.rside .grp b{font-size:6.8pt;margin-bottom:1px}.chips{font-size:7.6pt;line-height:1.3}.chips span{display:inline;border:0!important;padding:0;margin:0;font-size:7.6pt;line-height:1.3;background:none!important}.chips span:not(:last-child)::after{content:", "}.edu{margin-top:3px;line-height:1.25}.edu b{font-size:8pt;line-height:1.25}.edu span{font-size:7.3pt;line-height:1.25;display:block}.rside h2{margin:6px 0 2px}.rlist{font-size:8pt;line-height:1.3;padding-left:11px;gap:1px}.edu b{font-size:8.4pt}.edu span{font-size:7.6pt}@page{size:Letter;margin:8mm 8mm}}
 .back{display:inline-flex;align-items:center;min-height:44px;font-weight:600}
 .floatback{display:none;position:fixed;right:max(16px,env(safe-area-inset-right,0px));bottom:max(16px,env(safe-area-inset-bottom,0px));z-index:26;background:var(--text);color:var(--bg);font-weight:600;font-size:13.5px;border-radius:999px;padding:12px 16px;min-height:44px;align-items:center;box-shadow:0 10px 30px rgba(0,0,0,.5)}
 .floatback:hover{text-decoration:none;background:#fff}
@@ -657,8 +663,9 @@ body.simple .deckbar{display:none}
       </div>
     </div>
     <div class="doorsim">
-      <div class="dshead"><div><div class="kicker">In use</div><h3>Two people, one door</h3><p class="sub">Someone comes in from the corridor. Before the door moves, the disk on the other face strobes, so the person inside steps back. Pick the room.</p></div>
-        <div class="ctas"><button class="btn small doorsc" type="button" data-sc="restroom" aria-pressed="true">Restroom</button><button class="btn small doorsc" type="button" data-sc="chemical" aria-pressed="false">Chemical lab</button><button class="btn small doorsc" type="button" data-sc="laser" aria-pressed="false">Laser lab</button></div></div>
+      <div class="dshead"><div><div class="kicker">In use</div><h3>Two people, one door</h3><p class="sub">Someone comes in from the corridor. Before the door moves, the disk on the other face strobes, so the person inside steps back. Three views of the same nine seconds: from above, a side section showing the disks on the door, and what the person inside sees.</p></div>
+        <div class="dsctl"><div class="ctas"><span class="dsl">View</span><button class="btn small doorview" type="button" data-view="plan" aria-pressed="true">From above</button><button class="btn small doorview" type="button" data-view="side" aria-pressed="false">Side, on the door</button><button class="btn small doorview" type="button" data-view="face" aria-pressed="false">What B sees</button></div>
+        <div class="ctas"><span class="dsl">Room</span><button class="btn small doorsc" type="button" data-sc="restroom" aria-pressed="true">Restroom</button><button class="btn small doorsc" type="button" data-sc="chemical" aria-pressed="false">Chemical lab</button><button class="btn small doorsc" type="button" data-sc="laser" aria-pressed="false">Laser lab</button></div></div></div>
       <canvas id="door" aria-label="Animation: a person approaches a door from the corridor, the disk on the far face strobes its legend, the person inside waits outside the swing, the door opens with nobody behind it"></canvas>
     </div>
   </div>
@@ -873,6 +880,14 @@ body.simple .deckbar{display:none}
         <li><strong>Intrinsic AI for Industry Challenge, 2026, 36th of 1,600 teams.</strong> Led a global team of five; ROS 2 force-controlled fibre-connector insertion on a UR5e with Foxglove for shared observability.</li>
         <li><strong>LinkPulse, 2026.</strong> Multimodal capture, Claude Vision OCR and Whisper transcripts, auto-classification, digests and semantic search.</li>
       </ul>
+      <div class="rbottom"><div><h2>Education</h2>
+      <div class="edu"><b>MS Computer Science, Intelligent Robotics</b><span>University of Southern California · 2016</span></div>
+      <div class="edu"><b>B.Tech Computer Engineering</b><span>NIT Kurukshetra · 2011 · Gold Medalist</span></div>
+      </div><div><h2>Roles &amp; certifications</h2>
+      <ul class="rlist"><li>Technical Lead, team of five</li><li>Company AI group</li><li>Laser Safety Officer</li><li>ISO 9001:2015 contributor</li></ul>
+      </div><div><h2>Awards</h2>
+      <ul class="rlist"><li>1st place, ExecuTorch × Qualcomm, 2026</li><li>Top 2.3%, Intrinsic AI for Industry, 2026</li><li>First author, Technology Summit 2025</li><li>CES Innovation Awards 2016 honoree</li><li>Gold medalist, NIT Kurukshetra</li></ul>
+      </div></div>
       </div>
       <aside class="rside">
       <h2>Skills</h2>
@@ -882,13 +897,6 @@ body.simple .deckbar{display:none}
       <div class="grp"><b>Identification</b><div class="chips"><span>laser direct part marking</span><span>QR and barcode</span><span>MES and LIMS integration</span><span>traceability data model</span></div></div>
       <div class="grp"><b>Software</b><div class="chips"><span>C# / .NET 9 and 4.8</span><span>Python</span><span>C++</span><span>TypeScript/React</span><span>WPF</span><span>ZeroMQ</span><span>multi-process design</span><span>behaviour trees</span></div></div>
       <div class="grp"><b>Delivery</b><div class="chips"><span>GitLab CI/CD</span><span>self-hosted GitLab</span><span>Git LFS</span><span>xUnit</span><span>pytest</span><span>Playwright</span><span>CodeQL</span><span>air-gapped release</span><span>FAT/SAT</span><span>FMEA</span><span>ISO 9001:2015</span></div></div>
-      <h2>Education</h2>
-      <div class="edu"><b>MS Computer Science, Intelligent Robotics</b><span>University of Southern California · 2016</span></div>
-      <div class="edu"><b>B.Tech Computer Engineering</b><span>NIT Kurukshetra · 2011 · Gold Medalist</span></div>
-      <h2>Roles &amp; certifications</h2>
-      <ul class="rlist"><li>Technical Lead, team of five</li><li>Company AI group</li><li>Laser Safety Officer</li><li>ISO 9001:2015 contributor</li></ul>
-      <h2>Awards</h2>
-      <ul class="rlist"><li>1st place, ExecuTorch × Qualcomm, 2026</li><li>Top 2.3%, Intrinsic AI for Industry, 2026</li><li>First author, Technology Summit 2025</li><li>CES Innovation Awards 2016 honoree</li><li>Gold medalist, NIT Kurukshetra</li></ul>
       </aside>
       </div>
     </div>
@@ -2568,45 +2576,104 @@ window.makeGellyScene = function (canvasId, reduceMotion) {
     window.addEventListener("scroll",check,{passive:true}); setTimeout(check,400);
   })();
 
-  /* ---------- the flasher in use: two people, one door ---------- */
+  /* ---------- the flasher in use: two people, one door, three views ---------- */
   (function(){
-    var c=$("door"); if(!c)return; var g=c.getContext("2d"), W=1000, H=420, T=9, start=performance.now(), sc="restroom";
+    var c=$("door"); if(!c)return; var g=c.getContext("2d"), W=1000, H=420, T=9, start=performance.now(), sc="restroom", view="plan";
     var SC={restroom:{room:"RESTROOM",legend:"SOMEONE IS COMING IN",icon:"person"},chemical:{room:"CHEMICAL LAB",legend:"CHEMICALS · DOOR OPENING",icon:"flask"},laser:{room:"LASER LAB",legend:"LASER IN USE · DOOR OPENING",icon:"laser"}};
-    document.querySelectorAll(".doorsc").forEach(function(b){ b.addEventListener("click",function(){ sc=b.getAttribute("data-sc"); document.querySelectorAll(".doorsc").forEach(function(x){ x.setAttribute("aria-pressed",x===b?"true":"false"); }); start=performance.now(); if(reduce) frame(2.8); }); });
+    var reduce=window.matchMedia&&matchMedia("(prefers-reduced-motion: reduce)").matches;
+    function press(sel,b){ document.querySelectorAll(sel).forEach(function(x){ x.setAttribute("aria-pressed",x===b?"true":"false"); }); }
+    document.querySelectorAll(".doorsc").forEach(function(b){ b.addEventListener("click",function(){ sc=b.getAttribute("data-sc"); press(".doorsc",b); start=performance.now(); if(reduce) frame(2.8); }); });
+    document.querySelectorAll(".doorview").forEach(function(b){ b.addEventListener("click",function(){ view=b.getAttribute("data-view"); press(".doorview",b); if(reduce) frame(2.8); if(window.vtMark) vtMark("explode"); }); });
     function ease(t){return t<.5?4*t*t*t:1-Math.pow(-2*t+2,3)/2;} function mono(px,b){return (b?"600 ":"")+px+"px IBM Plex Mono, Cascadia Mono, monospace";}
     function resize(){ var r=c.getBoundingClientRect(); if(!r.width)return; var d=Math.min(2,window.devicePixelRatio||1); c.width=Math.round(r.width*d); c.height=Math.round(r.height*d); if(reduce) frame(2.8); }
-    function person(x,y,col,dir,label){ g.fillStyle=col; g.beginPath(); g.ellipse(x,y,22,9,0,0,Math.PI*2); g.fill(); g.beginPath(); g.arc(x,y,8,0,Math.PI*2); g.fillStyle="#F0F2F4"; g.fill(); if(dir){ g.strokeStyle=col; g.lineWidth=2; g.beginPath(); g.moveTo(x,y+dir*12); g.lineTo(x,y+dir*28); g.lineTo(x-5,y+dir*22); g.moveTo(x,y+dir*28); g.lineTo(x+5,y+dir*22); g.stroke(); } g.font=mono(9,true); g.fillStyle=col; g.textAlign="center"; g.fillText(label,x,y-18); g.textAlign="left"; }
-    function icon(x,y,s,kind){ g.save(); g.translate(x,y); g.strokeStyle="#1a1500"; g.fillStyle="#1a1500"; g.lineWidth=2.4; g.lineCap="round";
+    function icon(x,y,s,kind){ g.save(); g.translate(x,y); g.strokeStyle="#1a1500"; g.fillStyle="#1a1500"; g.lineWidth=Math.max(1.5,s*.05); g.lineCap="round";
       if(kind==="person"){ g.beginPath(); g.arc(0,-s*.52,s*.17,0,Math.PI*2); g.fill(); g.fillRect(-s*.22,-s*.3,s*.44,s*.5); g.fillRect(-s*.2,s*.2,s*.15,s*.42); g.fillRect(s*.05,s*.2,s*.15,s*.42); }
       else if(kind==="flask"){ g.beginPath(); g.moveTo(-s*.16,-s*.6); g.lineTo(s*.16,-s*.6); g.moveTo(-s*.08,-s*.6); g.lineTo(-s*.08,-s*.15); g.lineTo(-s*.42,s*.5); g.lineTo(s*.42,s*.5); g.lineTo(s*.08,-s*.15); g.lineTo(s*.08,-s*.6); g.stroke(); g.beginPath(); g.moveTo(-s*.3,s*.24); g.lineTo(s*.3,s*.24); g.lineTo(s*.42,s*.5); g.lineTo(-s*.42,s*.5); g.closePath(); g.fill(); }
       else { for(var i=0;i<8;i++){ var a=i*Math.PI/4, r1=i%2?s*.28:s*.6; g.beginPath(); g.moveTo(0,0); g.lineTo(Math.cos(a)*r1,Math.sin(a)*r1); g.stroke(); } g.beginPath(); g.arc(0,0,s*.13,0,Math.PI*2); g.fill(); }
       g.restore(); }
-    function frame(t){
-      g.setTransform(c.width/W,0,0,c.height/H,0,0); g.fillStyle="#0A0D10"; g.fillRect(0,0,W,H);
-      var S=SC[sc], hx=440, wy=200, dl=120, dx=hx+dl/2;
-      var ay=t<2.6?40+ease(Math.min(1,t/2.6))*105:t<4.6?145:t<6.4?145+ease((t-4.6)/1.8)*165:310;
-      var by=t<2.2?395-ease(Math.min(1,t/2.2))*95:300;
-      var detected=t>1.7&&t<7.4, strobe=detected&&Math.sin(t*14)>0, ang=t<3.2?0:t<4.6?ease((t-3.2)/1.4)*80:t<6.4?80:t<7.6?80-ease((t-6.4)/1.2)*80:0;
+    function phases(t){ return {
+      ay:t<2.6?40+ease(Math.min(1,t/2.6))*105:t<4.6?145:t<6.4?145+ease((t-4.6)/1.8)*165:310,
+      by:t<2.2?395-ease(Math.min(1,t/2.2))*95:300,
+      k:t<2.6?ease(Math.min(1,t/2.6)):t<4.6?1:t<6.4?1+ease((t-4.6)/1.8):2,     // A's progress: 0 far, 1 at the door, 2 through
+      kb:t<2.2?ease(Math.min(1,t/2.2)):1,
+      detected:t>1.7&&t<7.4, strobe:t>1.7&&t<7.4&&Math.sin(t*14)>0,
+      ang:t<3.2?0:t<4.6?ease((t-3.2)/1.4)*80:t<6.4?80:t<7.6?80-ease((t-6.4)/1.2)*80:0 }; }
+    function caption(t){ var step=t<1.7?"1 · A walks toward the door. The PIR on the corridor disk sees them.":t<2.2?"2 · That disk tells the disk on the other face, over Bluetooth.":t<3.2?"3 · The room-side disk strobes its legend. B sees it and stops short of the swing.":t<6.4?"4 · The door opens into the room. Nobody is behind it.":"5 · Door closes, strobe stops, both disks go back to sleep.";
+      g.fillStyle="rgba(15,19,22,.92)"; g.fillRect(0,H-44,W,44); g.font=mono(11,true); g.fillStyle="#E6EBEF"; g.fillText(step,20,H-18); g.font=mono(8); g.fillStyle="#6B757E"; g.textAlign="right"; g.fillText("ILLUSTRATION · A WARNING AID, NOT A CERTIFIED INTERLOCK",W-20,H-18); g.textAlign="left"; }
+    function legendCall(px,py,r,S,strobe,title){ g.fillStyle=strobe?"#FFE14A":"#6a5a12"; g.beginPath(); g.arc(px,py,r,0,Math.PI*2); g.fill(); if(strobe) icon(px,py,r*1.08,S.icon); g.font=mono(9,true); g.fillStyle="#FFE14A"; g.textAlign="center"; g.fillText(S.legend,px,py+r+18); if(title) g.fillText(title,px,py-r-8); g.textAlign="left"; }
+    /* --- plan: from above --- */
+    function person(x,y,col,dir,label){ g.fillStyle=col; g.beginPath(); g.ellipse(x,y,22,9,0,0,Math.PI*2); g.fill(); g.beginPath(); g.arc(x,y,8,0,Math.PI*2); g.fillStyle="#F0F2F4"; g.fill(); if(dir){ g.strokeStyle=col; g.lineWidth=2; g.beginPath(); g.moveTo(x,y+dir*12); g.lineTo(x,y+dir*28); g.lineTo(x-5,y+dir*22); g.moveTo(x,y+dir*28); g.lineTo(x+5,y+dir*22); g.stroke(); } g.font=mono(9,true); g.fillStyle=col; g.textAlign="center"; g.fillText(label,x,y-18); g.textAlign="left"; }
+    function drawPlan(t,P,S){
+      var hx=440, wy=200, dl=120, dx=hx+dl/2;
       g.fillStyle="rgba(255,255,255,.03)"; g.fillRect(0,0,W,wy-8); g.fillStyle="rgba(76,194,255,.035)"; g.fillRect(0,wy+8,W,H-wy-8);
       g.font=mono(10,true); g.fillStyle="#6B757E"; g.fillText("CORRIDOR",20,24); g.fillText(S.room,20,wy+32);
       g.setLineDash([4,5]); g.strokeStyle="rgba(255,255,255,.2)"; g.lineWidth=1; g.beginPath(); g.arc(hx,wy,dl,0,Math.PI/2); g.stroke(); g.setLineDash([]); g.font=mono(8); g.fillStyle="#6B757E"; g.fillText("door swing",hx+6,wy+dl+14);
       g.fillStyle="#2C343C"; g.fillRect(0,wy-8,hx,16); g.fillRect(hx+dl,wy-8,W-hx-dl,16);
-      g.save(); g.translate(hx,wy); g.rotate(ang*Math.PI/180); g.fillStyle="#C9A66B"; g.fillRect(0,-5,dl,10); g.fillStyle="#8a6a3a"; g.fillRect(dl-14,-3,8,6); g.restore();
+      g.save(); g.translate(hx,wy); g.rotate(P.ang*Math.PI/180); g.fillStyle="#C9A66B"; g.fillRect(0,-5,dl,10); g.fillStyle="#8a6a3a"; g.fillRect(dl-14,-3,8,6); g.restore();
       function disk(x,y,on,sensing){ if(sensing){ g.fillStyle="rgba(76,194,255,.1)"; g.beginPath(); g.moveTo(x,y); g.lineTo(x-80,y-160); g.lineTo(x+80,y-160); g.closePath(); g.fill(); } if(on){ g.fillStyle="rgba(255,225,74,.2)"; g.beginPath(); g.arc(x,y,70,0,Math.PI*2); g.fill(); } g.beginPath(); g.arc(x,y,9,0,Math.PI*2); g.fillStyle="#8D969E"; g.fill(); g.beginPath(); g.arc(x,y,6.5,0,Math.PI*2); g.fillStyle=on?"#FFE14A":"#1a1a1a"; g.fill(); }
       var top={x:dx,y:wy-13}, bot={x:dx,y:wy+13};
-      disk(top.x,top.y,false,t<7.4&&t>.3); disk(bot.x,bot.y,strobe,false);
+      disk(top.x,top.y,false,t<7.4&&t>.3); disk(bot.x,bot.y,P.strobe,false);
       g.font=mono(8); g.fillStyle="#6B757E"; g.fillText("disk · corridor face · PIR",top.x+16,top.y-6); g.fillText("disk · room face",bot.x+16,bot.y+16);
-      if(detected){ g.strokeStyle="rgba(76,194,255,.85)"; g.lineWidth=1.5; g.setLineDash([3,3]); g.beginPath(); g.moveTo(top.x-16,top.y); g.quadraticCurveTo(top.x-60,wy,bot.x-16,bot.y); g.stroke(); g.setLineDash([]); g.font=mono(8,true); g.fillStyle="#4CC2FF"; g.textAlign="right"; g.fillText("BLE · no wiring",top.x-50,wy+3); g.textAlign="left";
-        var px=bot.x+190, py=wy+72; g.fillStyle=strobe?"#FFE14A":"#6a5a12"; g.beginPath(); g.arc(px,py,46,0,Math.PI*2); g.fill(); if(strobe) icon(px,py,50,S.icon); g.font=mono(9,true); g.fillStyle="#FFE14A"; g.textAlign="center"; g.fillText(S.legend,px,py+64); g.fillText("what B sees",px,py-54); g.textAlign="left";
-        g.strokeStyle="rgba(255,225,74,.35)"; g.lineWidth=1; g.beginPath(); g.moveTo(bot.x+9,bot.y+4); g.lineTo(px-46,py-14); g.stroke(); }
-      person(dx-32,ay,"#4CC2FF",t<6.4?1:0,"A · coming in");
-      person(dx+46,by,"#F4A261",t<2.2?-1:0,t>2.2&&t<7.4?"B · sees it, waits":"B · inside");
-      if(t>2.2&&t<7.4){ g.font=mono(18,true); g.fillStyle="#FFE14A"; g.fillText("!",dx+78,by-8); }
-      var step=t<1.7?"1 · A walks toward the door. The PIR on the corridor disk sees them.":t<2.2?"2 · That disk tells the disk on the other face, over Bluetooth.":t<3.2?"3 · The room-side disk strobes its legend. B sees it and stops short of the swing.":t<6.4?"4 · The door opens into the room. Nobody is behind it.":"5 · Door closes, strobe stops, both disks go back to sleep.";
-      g.fillStyle="rgba(15,19,22,.92)"; g.fillRect(0,H-44,W,44); g.font=mono(11,true); g.fillStyle="#E6EBEF"; g.fillText(step,20,H-18);
-      g.font=mono(8); g.fillStyle="#6B757E"; g.textAlign="right"; g.fillText("ILLUSTRATION · A WARNING AID, NOT A CERTIFIED INTERLOCK",W-20,H-18); g.textAlign="left";
+      if(P.detected){ g.strokeStyle="rgba(76,194,255,.85)"; g.lineWidth=1.5; g.setLineDash([3,3]); g.beginPath(); g.moveTo(top.x-16,top.y); g.quadraticCurveTo(top.x-60,wy,bot.x-16,bot.y); g.stroke(); g.setLineDash([]); g.font=mono(8,true); g.fillStyle="#4CC2FF"; g.textAlign="right"; g.fillText("BLE · no wiring",top.x-50,wy+3); g.textAlign="left";
+        legendCall(bot.x+190,wy+72,46,S,P.strobe,"what B sees"); g.strokeStyle="rgba(255,225,74,.35)"; g.lineWidth=1; g.beginPath(); g.moveTo(bot.x+9,bot.y+4); g.lineTo(bot.x+144,wy+58); g.stroke(); }
+      person(dx-32,P.ay,"#4CC2FF",t<6.4?1:0,"A · coming in");
+      person(dx+46,P.by,"#F4A261",t<2.2?-1:0,t>2.2&&t<7.4?"B · sees it, waits":"B · inside");
+      if(t>2.2&&t<7.4){ g.font=mono(18,true); g.fillStyle="#FFE14A"; g.fillText("!",dx+78,P.by-8); }
     }
-    var reduce=window.matchMedia&&matchMedia("(prefers-reduced-motion: reduce)").matches;
+    /* --- side: a section through the door, corridor on the left, room on the right --- */
+    function figure(x,fy,h,col,label,face){ var hw=h*.12; g.fillStyle=col; g.beginPath(); g.arc(x,fy-h+h*.08,h*.08,0,Math.PI*2); g.fill(); g.beginPath(); g.moveTo(x-hw,fy-h*.8); g.lineTo(x+hw,fy-h*.8); g.lineTo(x+hw*.8,fy-h*.4); g.lineTo(x+hw*.5,fy); g.lineTo(x+hw*.1,fy); g.lineTo(x,fy-h*.35); g.lineTo(x-hw*.1,fy); g.lineTo(x-hw*.5,fy); g.lineTo(x-hw*.8,fy-h*.4); g.closePath(); g.fill(); if(face){ g.fillStyle="#F0F2F4"; g.beginPath(); g.arc(x+face*h*.03,fy-h+h*.075,h*.015,0,Math.PI*2); g.fill(); } g.font=mono(9,true); g.fillStyle=col; g.textAlign="center"; g.fillText(label,x,fy-h-12); g.textAlign="left"; }
+    function drawSide(t,P,S){
+      var fl=350, m=110, dx=500, dh=2.05*m, eye=1.5*m;
+      g.fillStyle="rgba(255,255,255,.03)"; g.fillRect(0,0,dx,fl); g.fillStyle="rgba(76,194,255,.035)"; g.fillRect(dx,0,W-dx,fl);
+      g.fillStyle="#1C2126"; g.fillRect(0,fl,W,H-fl); g.fillStyle="#2C343C"; g.fillRect(dx-6,fl-dh-18,12,18); g.fillStyle="#12161a"; g.fillRect(0,0,W,fl-dh-18); g.font=mono(9); g.fillStyle="#A9B2BA"; g.textAlign="center"; g.fillText("150 mm disk · 9.2 mm thin · one stuck to each face at eye height · battery and Bluetooth, no wiring",W/2,fl-dh-40); g.font=mono(8); g.fillStyle="#6B757E"; g.fillText("SECTION THROUGH THE DOOR",W/2,fl-dh-58); g.textAlign="left";
+      g.font=mono(10,true); g.fillStyle="#6B757E"; g.fillText("CORRIDOR",20,fl-dh+4); g.textAlign="right"; g.fillText(S.room,W-20,fl-dh+4); g.textAlign="left";
+      // door leaf: edge-on when closed, swinging into the room as it opens (its projected width grows to the right)
+      var sw=Math.sin(P.ang*Math.PI/180), lw=10+110*sw; g.fillStyle="#C9A66B"; g.beginPath(); g.moveTo(dx-5,fl-dh); g.lineTo(dx-5+lw,fl-dh+8*sw); g.lineTo(dx-5+lw,fl-8*sw); g.lineTo(dx-5,fl); g.closePath(); g.fill(); g.fillStyle="#8a6a3a"; g.fillRect(dx-5+lw-6,fl-1.0*m-4,5,8);
+      // the two disks, edge on, at eye height, one on each face
+      var cy=fl-eye, ax=dx-5-4, bx=dx-5+lw+4;
+      if(t>.3&&t<7.4){ g.fillStyle="rgba(76,194,255,.1)"; g.beginPath(); g.moveTo(ax,cy); g.lineTo(ax-260,cy-90); g.lineTo(ax-260,cy+150); g.closePath(); g.fill(); g.font=mono(8); g.fillStyle="#4CC2FF"; g.fillText("PIR · sees 3 to 4 m",ax-250,cy-96); }
+      if(P.strobe){ g.fillStyle="rgba(255,225,74,.18)"; g.beginPath(); g.arc(bx,cy,80,0,Math.PI*2); g.fill(); }
+      g.fillStyle="#8D969E"; g.beginPath(); g.ellipse(ax,cy,3.5,16.5,0,0,Math.PI*2); g.fill(); g.beginPath(); g.ellipse(bx,cy,3.5,16.5,0,0,Math.PI*2); g.fillStyle=P.strobe?"#FFE14A":"#8D969E"; g.fill();
+      // dimension notes
+      g.strokeStyle="rgba(255,255,255,.25)"; g.lineWidth=1; g.setLineDash([3,3]); g.beginPath(); g.moveTo(dx+58,fl); g.lineTo(dx+58,cy); g.stroke(); g.setLineDash([]); g.font=mono(8); g.fillStyle="#A9B2BA"; g.fillText("1.5 m",dx+64,cy+(fl-cy)/2); g.fillText("eye height",dx+64,cy+(fl-cy)/2+11);
+      if(P.detected){ g.strokeStyle="rgba(76,194,255,.85)"; g.lineWidth=1.5; g.setLineDash([3,3]); g.beginPath(); g.moveTo(ax,cy-20); g.quadraticCurveTo(dx-5+lw/2,cy-60,bx,cy-20); g.stroke(); g.setLineDash([]); g.font=mono(8,true); g.fillStyle="#4CC2FF"; g.textAlign="center"; g.fillText("BLE",dx-5+lw/2,cy-66); g.textAlign="left";
+        legendCall(W-120,110,42,S,P.strobe,"what B sees"); }
+      // people, 1.75 m tall; A walks right, through the door once it is open; B stops outside the swing
+      var axp=P.k<=1?120+P.k*300:420+(P.k-1)*220, bxp=900-P.kb*220;
+      figure(axp,fl,1.75*m,"#4CC2FF","A · coming in",1); figure(bxp,fl,1.7*m,"#F4A261",t>2.2&&t<7.4?"B · sees it, waits":"B · inside",-1);
+      if(t>2.2&&t<7.4){ g.font=mono(18,true); g.fillStyle="#FFE14A"; g.fillText("!",bxp+26,fl-1.7*m-30); }
+      g.setLineDash([4,5]); g.strokeStyle="rgba(255,255,255,.2)"; g.beginPath(); g.moveTo(dx+120,fl); g.lineTo(dx+120,fl-30); g.stroke(); g.setLineDash([]); g.font=mono(8); g.fillStyle="#6B757E"; g.fillText("swing",dx+104,fl-34);
+    }
+    /* --- inside: what B sees, standing in the room facing the door --- */
+    function drawFace(t,P,S){
+      var m=150, fl=380, dw=.9*m, dh=2.05*m, x0=500-dw/2, y0=fl-dh, eye=1.5*m;
+      g.fillStyle="#1A2128"; g.fillRect(0,0,W,fl); g.fillStyle="#12161a"; g.fillRect(0,fl,W,H-fl);
+      g.strokeStyle="rgba(255,255,255,.05)"; g.lineWidth=1; g.beginPath(); for(var x=0;x<W;x+=60){ g.moveTo(x,0); g.lineTo(x,fl);} g.stroke();
+      g.font=mono(10,true); g.fillStyle="#6B757E"; g.fillText("INSIDE THE "+S.room+" · B'S VIEW",20,24);
+      // frame
+      g.fillStyle="#2C343C"; g.fillRect(x0-14,y0-14,dw+28,14); g.fillRect(x0-14,y0-14,14,dh+14); g.fillRect(x0+dw,y0-14,14,dh+14);
+      // the opening behind the leaf, with A standing in it once the door is open
+      g.fillStyle="#0A0D10"; g.fillRect(x0,y0,dw,dh);
+      if(P.ang>25){ var ah=1.75*m*.92; figure(x0+dw*.68,fl,ah,"#4CC2FF","A",0); }
+      // the leaf swings toward us: hinge on the left stays, the free edge comes closer and looks taller
+      var sw=Math.sin(P.ang*Math.PI/180), fx=x0+dw*(1-sw*.55)+sw*60, grow=sw*.22*dh;
+      g.fillStyle="#C9A66B"; g.beginPath(); g.moveTo(x0,y0); g.lineTo(fx,y0-grow); g.lineTo(fx,fl+grow*.3); g.lineTo(x0,fl); g.closePath(); g.fill();
+      g.fillStyle="#8a6a3a"; g.fillRect(fx-22,fl-1.0*m-6,14,10);
+      // the disk at eye height on this face: real size, plus the legend as you would read it
+      var cx=x0+(fx-x0)*.5, cy=y0-grow*.5+eye*.37, r=.075*m*(1+sw*.3);
+      if(P.strobe){ g.fillStyle="rgba(255,225,74,.22)"; g.beginPath(); g.arc(cx,cy,r*4,0,Math.PI*2); g.fill(); g.fillStyle="rgba(255,225,74,.08)"; g.fillRect(0,0,W,fl); }
+      g.fillStyle="#8D969E"; g.beginPath(); g.arc(cx,cy,r,0,Math.PI*2); g.fill(); g.fillStyle=P.strobe?"#FFE14A":"#16181B"; g.beginPath(); g.arc(cx,cy,r*.86,0,Math.PI*2); g.fill(); if(P.strobe) icon(cx,cy,r*1.3,S.icon);
+      g.font=mono(8); g.fillStyle="#A9B2BA"; g.fillText("150 mm · eye height",x0+dw+24,cy+3);
+      if(P.detected){ g.strokeStyle="rgba(255,225,74,.35)"; g.beginPath(); g.moveTo(cx+r,cy); g.lineTo(W-200,120); g.stroke(); legendCall(W-140,120,52,S,P.strobe,"up close"); }
+      else { g.font=mono(9); g.fillStyle="#6B757E"; g.fillText("idle: a grey disk on the door, nothing to see",x0+dw+24,cy+20); }
+      if(t>2.2&&t<7.4){ g.font=mono(11,true); g.fillStyle="#F4A261"; g.fillText("you stop here, outside the swing",20,fl-16); }
+    }
+    function frame(t){
+      g.setTransform(c.width/W,0,0,c.height/H,0,0); g.fillStyle="#0A0D10"; g.fillRect(0,0,W,H);
+      var S=SC[sc], P=phases(t);
+      if(view==="side") drawSide(t,P,S); else if(view==="face") drawFace(t,P,S); else drawPlan(t,P,S);
+      caption(t);
+    }
     function loop(now){ frame(((now-start)/1000)%T); requestAnimationFrame(loop); }
     window.addEventListener("resize",resize); resize(); if(reduce) frame(2.8); else requestAnimationFrame(loop);
   })();
