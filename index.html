@@ -107,7 +107,8 @@ body.deck .tracker{bottom:max(68px,calc(env(safe-area-inset-bottom,0px) + 56px))
 .dpad button{min-width:44px;min-height:44px;border-radius:8px;border:1px solid var(--stroke2);background:rgba(23,27,31,.9);color:var(--text);font-size:16px;cursor:pointer;touch-action:none}
 .dpad button:nth-child(1){grid-column:2}.dpad button:nth-child(2){grid-column:1;grid-row:2}.dpad button:nth-child(3){grid-column:3;grid-row:2}.dpad button:nth-child(4){grid-column:2;grid-row:2}
 @media (pointer:coarse){.dpad{display:grid}}
-.labgrid{display:grid;grid-template-columns:minmax(0,1fr) 300px;gap:14px;align-items:stretch}
+.labgrid{display:grid;grid-template-columns:minmax(0,1fr) 300px;gap:14px;align-items:start}
+@media (min-width:1001px){.labgrid .arena{aspect-ratio:auto;height:clamp(440px,44vw,640px)}.labgrid .cpanel{height:clamp(440px,44vw,640px);overflow:hidden}}
 @media (max-width:1000px){.labgrid{grid-template-columns:minmax(0,1fr)}}
 .cpanel{background:var(--panel);border:1px solid var(--stroke);border-radius:18px;padding:14px;display:flex;flex-direction:column;gap:10px;min-width:0}
 .cph{display:flex;justify-content:space-between;align-items:center}
@@ -115,7 +116,7 @@ body.deck .tracker{bottom:max(68px,calc(env(safe-area-inset-bottom,0px) + 56px))
 .cplist{display:grid;grid-template-columns:1fr;gap:4px}
 @media (max-width:1000px){.cplist{grid-template-columns:repeat(3,1fr)}}
 @media (max-width:560px){.cplist{grid-template-columns:repeat(2,1fr)}}
-.cplist button{display:flex;align-items:center;gap:8px;text-align:left;border:1px solid var(--stroke);background:rgba(255,255,255,.03);color:var(--text);border-radius:8px;padding:7px 10px;font:600 11px var(--mono);letter-spacing:.04em;cursor:pointer;min-height:38px;min-width:0}
+.cplist button{display:flex;align-items:center;gap:8px;text-align:left;border:1px solid var(--stroke);background:rgba(255,255,255,.03);color:var(--text);border-radius:8px;padding:5px 10px;font:600 11px var(--mono);letter-spacing:.04em;cursor:pointer;min-height:34px;min-width:0}
 .cplist button span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .cplist button small{margin-left:auto;color:var(--dim);font-weight:400;flex:none}
 .cplist button i{width:8px;height:8px;border-radius:50%;background:var(--dim);flex:none}
@@ -123,7 +124,9 @@ body.deck .tracker{bottom:max(68px,calc(env(safe-area-inset-bottom,0px) + 56px))
 .cplist button.lit i{background:var(--ok)}
 .cplist button.at{border-color:var(--accent);background:rgba(76,194,255,.1)}
 .cplist button.at i{background:var(--accent);box-shadow:0 0 8px var(--accent)}
-.cpdetail{flex:1;min-height:110px}
+.cpdetail{flex:1;min-height:0;overflow:auto;scrollbar-width:thin;padding-right:2px}
+.cplist,.cph,.cpfoot{flex:none}
+@media (min-width:1001px){.labgrid .cpdock img{display:none}.cpanel.docked .cplist button{min-height:28px;padding:2px 8px;font-size:10px}.cpanel.docked .cplist button small{display:none}}
 .cpidle{color:var(--muted);font-size:13px;line-height:1.5}
 .cpidle[hidden],.cpdock[hidden]{display:none}
 .cpdock img{width:100%;aspect-ratio:16/9;object-fit:cover;object-position:top left;border-radius:8px;border:1px solid var(--stroke);display:block;margin-bottom:8px}
@@ -1943,7 +1946,7 @@ window.makeGellyScene = function (canvasId, reduceMotion) {
     function count(){ return Object.keys(done).length; }
     var cplist=$("cplist"), exitBtn=$("exitBtn"), cphint=$("cphint"), cpidle=$("cpidle");
     BENCH.forEach(function(s){ var b=document.createElement("button"); b.type="button"; b.setAttribute("role","listitem"); b.setAttribute("data-id",s.id); b.innerHTML='<i></i><span>'+s.n+'</span><small>'+s.k+'</small>'; b.addEventListener("click",function(){ auto=false; $("tourBtn").textContent="Autopilot tour"; if(at===s){ openPanel(s); } else driveTo(s); }); cplist.appendChild(b); });
-    function paintList(){ cplist.querySelectorAll("button").forEach(function(b){ var id=b.getAttribute("data-id"); b.classList.toggle("lit",!!done[id]); b.classList.toggle("at",!!at&&at.id===id); }); }
+    function paintList(){ $("cpanel").classList.toggle("docked",!!at); cplist.querySelectorAll("button").forEach(function(b){ var id=b.getAttribute("data-id"); b.classList.toggle("lit",!!done[id]); b.classList.toggle("at",!!at&&at.id===id); }); }
     function hud(){ var c=count(), left=BENCH.length-c; fill.style.width=(c/BENCH.length*100)+"%"; hudtxt.textContent=c+"/"+BENCH.length; $("cpn").textContent=c+"/"+BENCH.length+" lit"; exitBtn.disabled=left>0; exitBtn.classList.toggle("ready",!left); exitBtn.textContent=left?"EXIT · "+left+" left":"EXIT · SAY HELLO →"; cphint.textContent=left?"Lights the exit when all six are lit":"The door is open. Reset to play again any time."; paintList(); }
     hud();
     function mono(px,b){return (b?"600 ":"")+px+"px IBM Plex Mono, Cascadia Mono, monospace";}
