@@ -58,54 +58,51 @@ h3{font-size:18px;font-weight:600}
 .nav a.res:hover{text-decoration:none;background:#fff}
 @media (max-width:760px){.nav a.l{display:none}}
 
-/* ---- hero: stage + panel ---- */
-.hero{display:grid;grid-template-columns:minmax(340px,440px) 1fr;min-height:min(86vh,760px);border-bottom:1px solid var(--stroke)}
-.panel{position:relative;z-index:1;display:flex;flex-direction:column;gap:14px;padding:clamp(22px,3.5vh,44px) clamp(18px,2.4vw,36px);background:linear-gradient(180deg,#171B1F 0%,#13171A 100%);border-right:1px solid var(--stroke);animation:rise .5s ease-out both}
-.panel>*{flex:none}
-.brand{display:flex;align-items:center;gap:14px}
-.tile{width:60px;height:60px;flex:none;display:grid;place-items:center;background:#fff;border-radius:14px;box-shadow:0 2px 10px rgba(0,0,0,.35);color:#0F1316;font:700 20px var(--mono)}
-.panel h1{font-size:clamp(26px,2.4vw,36px);font-weight:700;letter-spacing:-.02em;line-height:1.05}
-.tagline{color:var(--muted);font-size:13px;letter-spacing:.3px;margin-top:4px}
-.chips{display:flex;flex-wrap:wrap;gap:6px}
-.tool{color:var(--muted);min-height:1.45em;font-size:14px}
-.progress{height:4px;border-radius:2px;background:var(--stroke);overflow:hidden}
-.progress span{display:block;height:100%;width:2%;background:linear-gradient(90deg,var(--teal),var(--accent));transition:width .45s ease}
-.foot{display:flex;justify-content:space-between;gap:12px;color:var(--muted);font-size:13px}
-#elapsed{color:var(--dim)}
-.steps{list-style:none;margin:0;padding:0;display:grid;gap:2px}
-.step{display:grid;grid-template-columns:22px 1fr;column-gap:10px;padding:6px 0;border-bottom:1px solid var(--stroke)}
-.step:last-child{border-bottom:0}
-.step .ic{grid-row:span 2;position:relative;width:16px;height:16px;margin-top:3px;border-radius:50%;border:2px solid var(--dim)}
-.step .lbl{font-weight:600;color:var(--muted);font-size:14px}
-.step .det{grid-column:2;color:var(--dim);font-size:12px;font-family:var(--mono);overflow-wrap:anywhere}
-.step.active .lbl,.step.done .lbl{color:var(--text)}
-.step.active .det{color:var(--muted)}
-.step.active .ic{border-color:rgba(76,194,255,.25);border-top-color:var(--accent);animation:spin .8s linear infinite}
-.step.done .ic{border-color:var(--ok);background:var(--ok)}
-.step.done .ic::after{content:'';position:absolute;left:3px;top:0;width:4px;height:8px;border:solid #0F1A0D;border-width:0 2px 2px 0;transform:rotate(45deg)}
-.step.ready.done .lbl{color:var(--ok)}
-.ready{display:grid;gap:12px;padding-top:4px}
+/* ---- hero: intro + work map ---- */
+.hero{border-bottom:1px solid var(--stroke);background:radial-gradient(80% 60% at 70% 20%,#141A20 0%,var(--bg) 70%)}
+.hero-in{display:grid;grid-template-columns:minmax(300px,380px) 1fr;gap:28px;padding-block:40px 36px;align-items:start}
+@media (max-width:980px){.hero-in{grid-template-columns:1fr;gap:18px}}
+.intro{display:flex;flex-direction:column;gap:14px;position:sticky;top:64px}
+@media (max-width:980px){.intro{position:static}}
+.intro h1{font-size:clamp(30px,3vw,44px);font-weight:700;letter-spacing:-.02em;line-height:1.02}
 .thesis{font-size:17px;line-height:1.45;color:var(--text);margin:0}
 .thesis b{color:var(--accent);font-weight:600}
+.lenses{display:flex;flex-wrap:wrap;gap:6px}
+.lens{min-height:36px;padding:6px 12px;border-radius:999px;border:1px solid var(--stroke2);background:rgba(255,255,255,.04);color:var(--muted);font:600 13px var(--sans);cursor:pointer;display:inline-flex;align-items:center;gap:7px}
+.lens i{width:8px;height:8px;border-radius:50%;background:var(--c,var(--dim));font-style:normal}
+.lens[aria-pressed="true"]{background:var(--text);color:var(--bg);border-color:var(--text)}
+.lens[aria-pressed="true"] i{outline:2px solid var(--bg)}
 .ctas{display:flex;flex-wrap:wrap;gap:8px}
-.skip{align-self:flex-start;background:none;border:0;color:var(--dim);font:12px var(--mono);cursor:pointer;padding:6px 0;min-height:32px;text-decoration:underline}
-.skip:hover{color:var(--muted)}
-.stage{position:relative;min-width:0;min-height:0;background:radial-gradient(120% 90% at 60% 45%,#161B20 0%,#0E1114 70%)}
-.stage canvas{position:absolute;inset:0;width:100%;height:100%;display:block}
-.stage-note{position:absolute;left:14px;bottom:10px;right:14px;display:flex;justify-content:space-between;align-items:center;gap:10px;font:11px var(--mono);color:var(--dim);letter-spacing:.3px;pointer-events:none}
-.stage-note span{background:rgba(15,19,22,.6);padding:3px 8px;border-radius:4px;max-width:70%}
-.stage-note button{pointer-events:auto;background:rgba(23,27,31,.9);border:1px solid var(--stroke2);color:var(--text);border-radius:6px;padding:6px 12px;min-height:34px;cursor:pointer;font:12px var(--mono)}
-@keyframes spin{to{transform:rotate(360deg)}}
-@keyframes rise{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
-@media (max-width:900px){
-  .hero{grid-template-columns:1fr;grid-template-rows:auto auto;min-height:0}
-  .stage{grid-row:1;aspect-ratio:1000/660;max-height:60vh}
-  .panel{grid-row:2;border-right:0;border-top:1px solid var(--stroke)}
-  .stage-note span{display:none}
-  .stage-note{top:10px;bottom:auto;justify-content:flex-end}
-}
+.hint{font:11.5px var(--mono);color:var(--dim);letter-spacing:.3px}
+.mapwrap{overflow-x:auto;overflow-y:hidden;border:1px solid var(--stroke);border-radius:16px;background:linear-gradient(180deg,#121619 0%,#0E1114 100%);scrollbar-width:thin;scrollbar-color:rgba(255,255,255,.18) transparent}
+.map{position:relative;min-width:720px;aspect-ratio:16/10;max-height:640px;width:100%}
+.map svg{position:absolute;inset:0;width:100%;height:100%;overflow:visible}
+.map .lane{position:absolute;left:14px;transform:translateY(-50%);font:600 11px var(--mono);letter-spacing:.16em;color:var(--dim);display:flex;align-items:center;gap:8px;pointer-events:none}
+.map .lane i{width:8px;height:8px;border-radius:50%;background:var(--c);font-style:normal}
+.map .lane small{font:10px var(--mono);letter-spacing:.04em;color:rgba(169,178,186,.55);text-transform:none}
+.map .laneline{position:absolute;left:0;right:0;border-top:1px dashed rgba(255,255,255,.06);pointer-events:none}
+.node{position:absolute;transform:translate(-50%,-50%);display:flex;flex-direction:column;align-items:center;gap:6px;background:none;border:0;padding:0;cursor:pointer;color:var(--text);width:112px;transition:opacity .2s,filter .2s}
+.node .th{width:64px;height:64px;border-radius:50%;overflow:hidden;border:2px solid var(--c,var(--stroke2));box-shadow:0 0 0 4px rgba(15,19,22,.9),0 8px 24px rgba(0,0,0,.45);background:#1C2126;display:grid;place-items:center;transition:transform .2s,box-shadow .2s}
+.node .th img{width:100%;height:100%;object-fit:cover;object-position:center}
+.node .th.tile{font:700 15px var(--mono);letter-spacing:-.02em;color:var(--text);background:radial-gradient(70% 70% at 40% 35%,#26303A 0%,#161B20 100%)}
+.node .nm{font:600 12px var(--sans);line-height:1.2;text-align:center;text-wrap:balance;background:rgba(15,19,22,.7);padding:2px 6px;border-radius:4px}
+.node:hover .th,.node:focus-visible .th,.node.on .th{transform:scale(1.12);box-shadow:0 0 0 4px rgba(15,19,22,.9),0 0 0 6px var(--c,var(--accent)),0 10px 30px rgba(0,0,0,.5)}
+.map.filtered .node:not(.in){opacity:.22;filter:saturate(.2)}
+.map.filtered .node.in .th{box-shadow:0 0 0 4px rgba(15,19,22,.9),0 0 0 6px var(--c,var(--accent))}
+.tip{position:absolute;z-index:3;width:260px;background:var(--panel);border:1px solid var(--stroke2);border-radius:12px;padding:12px 14px;box-shadow:0 14px 40px rgba(0,0,0,.5);pointer-events:none;opacity:0;transform:translateY(4px);transition:opacity .15s,transform .15s}
+.tip.show{opacity:1;transform:none}
+.tip .tk{font:600 10.5px var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--c,var(--teal))}
+.tip b{display:block;font-size:15px;margin-top:3px}
+.tip p{margin:4px 0 0;color:var(--muted);font-size:13px;line-height:1.4}
+.tip .tn{display:flex;gap:14px;margin-top:8px}
+.tip .tn span{font:600 14px var(--mono);color:var(--text)}
+.tip .tn small{display:block;font:10.5px var(--sans);color:var(--dim)}
+.tip .go{margin-top:8px;font:11.5px var(--mono);color:var(--accent)}
+@media (max-width:980px){.tip{display:none}}
+.mcard.flash{outline:2px solid var(--accent);outline-offset:2px}
+.mcard[hidden]{display:none}
 
-/* ---- machines rail ---- */
+/* ---- machines rail ---- *//* ---- machines rail ---- */
 .railwrap{position:relative}
 .rail{display:grid;grid-auto-flow:column;grid-auto-columns:min(420px,86vw);gap:14px;overflow-x:auto;scroll-snap-type:x mandatory;padding:4px 4px 18px;scrollbar-width:thin;scrollbar-color:rgba(255,255,255,.18) transparent}
 .rail>*{scroll-snap-align:start}
@@ -273,34 +270,28 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
 
 <div id="site">
 <header class="hero" id="top">
-  <aside class="panel" aria-label="Boot panel">
-    <div class="brand">
-      <div class="tile" aria-hidden="true">VT</div>
-      <div>
-        <h1>Vishwa Theja Pokala</h1>
-        <div class="tagline">Roboticist · perception, motion, decision · automation platforms</div>
-      </div>
-    </div>
-    <div class="chips"><span class="chip mode" id="mode">Booting</span><span class="chip" id="where">Bay Area, California</span><span class="chip" id="vers">v2026.11</span></div>
-    <div class="tool" id="tool">Starting the portfolio</div>
-    <div class="progress" aria-hidden="true"><span id="bar"></span></div>
-    <div class="foot"><span id="message">Starting</span><span class="mono" id="elapsed">0:00</span></div>
-    <ol class="steps" id="steps" role="status" aria-live="polite"></ol>
-    <div class="ready" id="ready" hidden>
+  <div class="wrap hero-in">
+    <div class="intro">
+      <div class="kicker">Roboticist · perception, motion, decision</div>
+      <h1>Vishwa Theja Pokala</h1>
       <p class="thesis">I make precise physical work happen without a person doing it. <b>Pick it up, see it, place it to a micron, prove it happened.</b> Then do it ten thousand times.</p>
-      <div class="ctas">
-        <a class="btn primary" href="#machines">See the machines</a>
-        <a class="btn" href="#play">Play something</a>
-        <a class="btn" href="#resume">Resume</a>
+      <div class="lenses" role="group" aria-label="Lens">
+        <button class="lens" type="button" data-lane="all" aria-pressed="true">Everything</button>
+        <button class="lens" type="button" data-lane="see" aria-pressed="false" style="--c:#4CC2FF"><i></i>See</button>
+        <button class="lens" type="button" data-lane="move" aria-pressed="false" style="--c:#F4CE14"><i></i>Move</button>
+        <button class="lens" type="button" data-lane="build" aria-pressed="false" style="--c:#00A2B1"><i></i>Build</button>
+        <button class="lens" type="button" data-lane="prove" aria-pressed="false" style="--c:#6CCB5F"><i></i>Prove</button>
+        <button class="lens" type="button" data-lane="play" aria-pressed="false" style="--c:#FF99A4"><i></i>Play</button>
       </div>
+      <div class="ctas"><button class="btn primary" type="button" id="surprise">Surprise me</button><a class="btn" href="#play">Play a game</a><a class="btn" href="#resume">Resume</a></div>
+      <div class="hint">HOVER A NODE FOR THE SHORT VERSION · CLICK TO JUMP TO IT · LINES ARE SHARED TECHNOLOGY</div>
     </div>
-    <button class="skip" id="skip" type="button">Skip the boot</button>
-  </aside>
-  <section class="stage" aria-label="The Gelly cell at work, drawn in code">
-    <canvas id="scene"></canvas>
-    <div class="stage-note"><span>THE REAL TOOL'S START-UP SCREEN, DRAWN IN CODE · GANG TRAYS, DETETHER STATION, SLIDE TRAYS, STATION CAMERA</span><button type="button" id="replay">Replay boot</button></div>
-  </section>
-</header>
+    <div class="mapwrap"><div class="map" id="map" aria-label="Map of work, five lanes">
+      <svg viewBox="0 0 100 62.5" preserveAspectRatio="none" aria-hidden="true" id="maplinks"></svg>
+      <div class="tip" id="tip"><div class="tk"></div><b></b><p></p><div class="tn"></div><div class="go">click to open ↓</div></div>
+    </div></div>
+  </div>
+</header></header>
 
 <section class="sec" id="machines">
   <div class="wrap">
@@ -310,7 +301,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
     </div>
     <div class="railwrap"><div class="rail" id="rail">
 
-      <article class="mcard">
+      <article class="mcard" id="c-engine" data-lane="build">
         <div class="media"><img src="assets/engine-tree-editor.gif" alt="Behaviour tree editor of the Gelly Engine" loading="lazy"></div>
         <div class="mbody">
           <div class="kicker"><span>Automation platform</span><span class="st prod">In production</span></div>
@@ -322,19 +313,19 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
         </div>
       </article>
 
-      <article class="mcard">
-        <div class="media"><img src="assets/engine-home.gif" alt="Engine home page with live camera and tray maps" loading="lazy"></div>
+      <article class="mcard" id="c-cell" data-lane="move">
+        <div class="media" style="background:#0E1114"><canvas id="scene" aria-label="The cell at work, drawn in code: trays, head, detether station, station camera"></canvas></div>
         <div class="mbody">
           <div class="kicker"><span>Micro-assembly under vision</span><span class="st prod">In production</span></div>
           <h3>Pick a microscopic part, place it to a micron</h3>
-          <p>Picks spring gangs from wafer trays, aligns them on a glass slide under micron vision, breaks the tethers. The drawing at the top is this cell.</p>
+          <p>Picks spring gangs from wafer trays, aligns them on a glass slide under micron vision, breaks the tethers. This drawing is the cell, running a scripted cycle: it is the start-up screen I built for the real tool.</p>
           <div class="stats"><div class="stat"><b>±1 µm</b><span>placement, fleet-wide</span></div><div class="stat"><b>15 → 5 s</b><span>station cycle</span></div><div class="stat"><b>300 → 50 ms</b><span>verification</span></div></div>
           <div class="tech"><span>Meca500</span><span>Cognex</span><span>closed-loop vision</span></div>
-          <div class="acts"><a class="btn small" href="#top">Watch it run above</a></div>
+          <div class="acts"><a class="btn small" href="#watch">See the real screens</a></div>
         </div>
       </article>
 
-      <article class="mcard">
+      <article class="mcard" id="c-gellyml" data-lane="see">
         <div class="media"><img src="assets/ml-annotate.gif" alt="Model builder annotation page" loading="lazy"></div>
         <div class="mbody">
           <div class="kicker"><span>Vision and ML</span><span class="st prod">In production</span></div>
@@ -346,7 +337,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
         </div>
       </article>
 
-      <article class="mcard">
+      <article class="mcard" id="c-framework" data-lane="build">
         <div class="media"><canvas id="cells" width="640" height="400" aria-label="One hundred cells lighting up on one framework"></canvas></div>
         <div class="mbody">
           <div class="kicker"><span>Universal framework</span><span class="st prod">In production</span></div>
@@ -357,7 +348,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
         </div>
       </article>
 
-      <article class="mcard">
+      <article class="mcard" id="c-trace" data-lane="prove">
         <div class="media">
           <svg viewBox="0 0 640 400" role="img" aria-label="Identity loop: mark, read, record, act, watch">
             <defs><marker id="ah2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#6B757E"/></marker>
@@ -389,7 +380,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
         </div>
       </article>
 
-      <article class="mcard">
+      <article class="mcard" id="c-mv" data-lane="see">
         <div class="media"><video id="mvv" preload="none" poster="assets/motionvitals-poster.jpg" playsinline controls hidden src="assets/motionvitals.mp4"></video><img id="mvp" src="assets/motionvitals-poster.jpg" alt="MotionVitals AI film poster"><button class="play" type="button" data-video="mvv" data-poster="mvp" aria-label="Play the MotionVitals film"><span>▶</span></button></div>
         <div class="mbody">
           <div class="kicker"><span>On-device AI · hackathon</span><span class="st prod">Shipped, judged</span></div>
@@ -401,7 +392,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
         </div>
       </article>
 
-      <article class="mcard">
+      <article class="mcard" id="c-aic" data-lane="move">
         <div class="media">
           <svg viewBox="0 0 640 400" role="img" aria-label="A connector searching in a spiral until it seats in the port">
             <rect width="640" height="400" fill="#0A0D10"/>
@@ -429,7 +420,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
         </div>
       </article>
 
-      <article class="mcard">
+      <article class="mcard" id="c-flasher" data-lane="build">
         <div class="media"><img src="assets/flasher-turntable.gif" alt="Door Safety Flasher concept render turning, legend strobing" loading="lazy"></div>
         <div class="mbody">
           <div class="kicker"><span>Hardware · personal project</span><span class="st proto">Design stage</span></div>
@@ -441,7 +432,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
         </div>
       </article>
 
-      <article class="mcard">
+      <article class="mcard" id="c-lp" data-lane="play">
         <div class="media"><video id="lpv" preload="none" playsinline controls hidden src="assets/linkpulse-pitch.mp4"></video><div id="lpp" style="position:absolute;inset:0;display:grid;place-items:center;background:radial-gradient(80% 80% at 50% 40%,#1C2A36 0%,#0A0D10 75%)"><div style="text-align:center"><div style="font:700 44px var(--mono);letter-spacing:-.02em;color:#F0F2F4">LP</div><div style="font:600 13px var(--mono);letter-spacing:.2em;color:#4CC2FF">LINKPULSE</div><div style="color:#A9B2BA;font-size:13px;margin-top:6px">Stop saving. Start knowing.</div></div></div><button class="play" type="button" data-video="lpv" data-poster="lpp" aria-label="Play the LinkPulse pitch film"><span>▶</span></button></div>
         <div class="mbody">
           <div class="kicker"><span>Consumer AI app · capstone</span><span class="st proto">Prototype</span></div>
@@ -453,7 +444,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
         </div>
       </article>
 
-      <article class="mcard">
+      <article class="mcard" id="c-rearch" data-lane="prove">
         <div class="media"><img src="assets/engine-system-setup.gif" alt="System setup page of the engine" loading="lazy"></div>
         <div class="mbody">
           <div class="kicker"><span>Software that stays up</span><span class="st prod">In production</span></div>
@@ -464,7 +455,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
         </div>
       </article>
 
-      <article class="mcard">
+      <article class="mcard" id="c-strider" data-lane="play">
         <div class="media"><div style="position:absolute;inset:0;display:grid;place-items:center;background:radial-gradient(90% 80% at 50% 50%,#1A2430 0%,#0A0D10 80%)"><div style="text-align:center;padding:20px"><div style="font:700 28px var(--sans);letter-spacing:-.02em">Strider Robotics</div><div style="color:#A9B2BA;font-size:13px;margin-top:6px">site · 3D exploded view · seven films, all from one content file</div></div></div></div>
         <div class="mbody">
           <div class="kicker"><span>Go-to-market site · side project</span><span class="st prod">Live</span></div>
@@ -1738,61 +1729,87 @@ window.makeGellyScene = function (canvasId, reduceMotion) {
   }
   window.addEventListener("hashchange",route); route();
 
-  /* ---------- the stage: the Gelly cell drawing ---------- */
+  /* ---------- the cell drawing lives in its card ---------- */
   var scene=window.makeGellyScene("scene",reduceMotion);
 
-  /* ---------- boot: steps that are facts, then the portfolio opens ---------- */
-  var STEPS=[
-    ["Engine process","robotics software engineer · 15 years",0.3],
-    ["Tool profile","FormFactor · Principal Robotics Software Engineer · lead of 5",1.1],
-    ["Devices","6-axis arms · cameras · motion controllers · NPUs",2.0],
-    ["Skills","130 reusable skills · 160+ behaviour trees · 100+ cells",3.0],
-    ["Vision","Cognex → GellyML · validated in shadow · ±1 µm",4.0],
-    ["Web server","portfolio listening on :443",4.8]
+  /* ---------- the work map ---------- */
+  var LANES={see:{y:12,c:"#4CC2FF",n:"SEE",d:"vision, ML, on-device"},move:{y:30,c:"#F4CE14",n:"MOVE",d:"arms, motion, force"},build:{y:48,c:"#00A2B1",n:"BUILD",d:"platforms, hardware"},prove:{y:66,c:"#6CCB5F",n:"PROVE",d:"traceability, delivery"},play:{y:86,c:"#FF99A4",n:"PLAY",d:"games, films, apps"}};
+  var NODES=[
+    {id:"gellyml",lane:"see",x:44,nm:"GellyML vision",img:"assets/ml-annotate.gif",k:"Vision and ML",t:"Vision you can diff and roll back",p:"Replaced a licensed suite with an in-house pipeline and model builder, validated in shadow.",n:[["10 ms","detector"],["0","defect labels"]],go:"#c-gellyml"},
+    {id:"mv",lane:"see",x:72,nm:"MotionVitals AI",img:"assets/motionvitals-poster.jpg",k:"On-device AI",t:"Clinical movement tests, scored on the NPU",p:"Pose estimation moved off the cloud; built in 24 hours as architect and lead of five.",n:[["89 → 1.6 ms","inference"],["1st","Compute Track"]],go:"#c-mv"},
+    {id:"early",lane:"move",x:14,nm:"Where it started",tile:"ROS",k:"2014 to 2016",t:"Warehouse robots, drones, a 3D printer",p:"Fetch Robotics navigation, GPS-denied drone flight at USC, CES-honored printer firmware at AIO.",n:[["ROS","Fetch"],["CES 2016","honoree"]],go:"#path"},
+    {id:"cell",lane:"move",x:38,nm:"Micro-assembly cell",img:"assets/engine-home.gif",k:"Precision",t:"Pick a microscopic part, place it to a micron",p:"Closed loop across vision, motion and behaviour trees, in production on three cells.",n:[["±1 µm","placement"],["15 → 5 s","cycle"]],go:"#c-cell"},
+    {id:"aic",lane:"move",x:66,nm:"Intrinsic challenge",tile:"UR5",k:"Force control",t:"Fibre-connector insertion with no direct feedback",p:"Led a team of five; compliant approach, force bias, spiral search on a UR5, Foxglove for shared eyes.",n:[["36 / 1,600","teams"],["2 ports","SC and SFP"]],go:"#c-aic"},
+    {id:"framework",lane:"build",x:22,nm:"Universal framework",tile:"100+",k:"Platform",t:"One framework, a hundred cells",p:"A new cell is configured and simulated, not written. Bring-up from three years to three months.",n:[["3 yr → 3 mo","bring-up"],["130","skills"]],go:"#c-framework"},
+    {id:"engine",lane:"build",x:50,nm:"Gelly Engine",img:"assets/engine-tree-editor.gif",k:"Platform",t:"One headless engine runs every cell",p:"Profiles, skills, behaviour trees, isolated workers, an all-web UI with live debugging.",n:[["186k","lines"],["<1 ms","tick"]],go:"#c-engine"},
+    {id:"flasher",lane:"build",x:82,nm:"Door Safety Flasher",img:"assets/flasher-turntable.gif",k:"Hardware, design stage",t:"A warning sign that sees the other side of the door",p:"Two edge-lit disks talking over BLE. Parametric CAD with an automated audit. Not built yet.",n:[["150 mm","disk"],["9.2 mm","thin"]],go:"#c-flasher"},
+    {id:"trace",lane:"prove",x:34,nm:"Enhanced Traceability",tile:"ID",k:"Traceability",t:"Identity that survives singulation",p:"Laser-scribed IDs, tablet scanning into MES, robots that act only on a verified ID.",n:[["Zero","retyping"],["1st author","Tech Summit 2025"]],go:"#c-trace"},
+    {id:"rearch",lane:"prove",x:62,nm:"Engine that stays up",img:"assets/engine-system-setup.gif",k:"Delivery",t:"From one fragile app to isolated workers",p:"A crash in one worker no longer stops the tool; weekly releases into an air-gapped factory.",n:[["1,700","tests"],["5 in 10 wk","releases"]],go:"#c-rearch"},
+    {id:"games",lane:"play",x:26,nm:"Two games",tile:"▶",k:"Play",t:"Shark Odyssey and Wafer Guardian",p:"Plain web pages, no build step. One for kids who like sharks, one that teaches probe cards.",n:[["10","real sharks"],["1","probe card to build"]],go:"#play"},
+    {id:"strider",lane:"play",x:54,nm:"Strider site",tile:"M3",k:"Side project",t:"A quadruped's website, rendered from code",p:"3D exploded view, mission configurator and seven films from one content file.",n:[["7","films"],["1","parametric model"]],go:"#c-strider"},
+    {id:"lp",lane:"play",x:80,nm:"LinkPulse",tile:"LP",k:"Consumer AI",t:"Stop saving. Start knowing.",p:"Saved links and screenshots read by AI, resurfaced as digests and semantic search.",n:[["4","outputs"],["Cohort 4","capstone"]],go:"#c-lp"}
   ];
-  var READY_AT=5.5, t0=0, timer=null, bootDone=false;
-  var ol=$("steps"), bar=$("bar"), msg=$("message"), el=$("elapsed"), mode=$("mode"), tool=$("tool"), ready=$("ready"), skip=$("skip");
-  function fmt(s){ s=Math.floor(s); return Math.floor(s/60)+":"+("0"+(s%60)).slice(-2); }
-  function renderSteps(s){
-    var html="", sum=0, total=STEPS.length+1, active=null;
-    STEPS.forEach(function(st,i){
-      var next=i+1<STEPS.length?STEPS[i+1][2]:READY_AT;
-      var state=s>=next?"done":s>=st[2]?"active":"pending";
-      if(state==="done")sum+=1; else if(state==="active"){sum+=.5; active=st;}
-      html+='<li class="step '+state+'"><span class="ic"></span><span class="lbl">'+st[0]+'</span><span class="det">'+(state==="pending"?"":st[1])+'</span></li>';
-    });
-    var rd=s>=READY_AT;
-    if(rd)sum+=1;
-    html+='<li class="step ready '+(rd?"done":"pending")+'"><span class="ic"></span><span class="lbl">Ready</span><span class="det">'+(rd?"opening the portfolio":"")+'</span></li>';
-    ol.innerHTML=html;
-    bar.style.width=Math.max(2,Math.round(100*sum/total))+"%";
-    msg.textContent=rd?"Ready":active?active[0]+": "+active[1]:"Starting";
-    el.textContent=fmt(s);
+  var LINKS=[["framework","engine"],["engine","gellyml"],["engine","rearch"],["cell","engine"],["cell","gellyml"],["trace","cell"],["mv","gellyml"],["early","aic"],["early","cell"],["aic","cell"],["games","strider"],["strider","lp"],["flasher","strider"]];
+  var map=$("map"), svg=$("maplinks"), tip=$("tip");
+  Object.keys(LANES).forEach(function(k){
+    var L=LANES[k];
+    var line=document.createElement("div"); line.className="laneline"; line.style.top=L.y+"%"; map.appendChild(line);
+    var lab=document.createElement("div"); lab.className="lane"; lab.style.top=L.y+"%"; lab.style.setProperty("--c",L.c); lab.innerHTML='<i></i>'+L.n+' <small>'+L.d+'</small>'; map.appendChild(lab);
+  });
+  var byId={};
+  NODES.forEach(function(n){
+    byId[n.id]=n;
+    var b=document.createElement("button"); b.type="button"; b.className="node"; b.id="n-"+n.id; b.setAttribute("data-lane",n.lane);
+    b.style.left=n.x+"%"; b.style.top=LANES[n.lane].y+"%"; b.style.setProperty("--c",LANES[n.lane].c);
+    b.setAttribute("aria-label",n.nm+": "+n.t);
+    b.innerHTML=(n.img?'<span class="th"><img src="'+n.img+'" alt="" loading="lazy"></span>':'<span class="th tile">'+n.tile+'</span>')+'<span class="nm">'+n.nm+'</span>';
+    b.addEventListener("mouseenter",function(){ showTip(n,b); }); b.addEventListener("focus",function(){ showTip(n,b); });
+    b.addEventListener("mouseleave",hideTip); b.addEventListener("blur",hideTip);
+    b.addEventListener("click",function(){ go(n); });
+    map.appendChild(b); n.el=b;
+  });
+  LINKS.forEach(function(l){
+    var a=byId[l[0]], b=byId[l[1]]; if(!a||!b)return;
+    var p=document.createElementNS("http://www.w3.org/2000/svg","path");
+    var x1=a.x, y1=LANES[a.lane].y*0.625, x2=b.x, y2=LANES[b.lane].y*0.625, mx=(x1+x2)/2;
+    p.setAttribute("d","M"+x1+","+y1+" C"+mx+","+y1+" "+mx+","+y2+" "+x2+","+y2);
+    p.setAttribute("fill","none"); p.setAttribute("stroke","rgba(255,255,255,.12)"); p.setAttribute("stroke-width","0.25"); p.setAttribute("vector-effect","non-scaling-stroke");
+    p.setAttribute("data-a",a.id); p.setAttribute("data-b",b.id); svg.appendChild(p);
+  });
+  function showTip(n,b){
+    tip.querySelector(".tk").textContent=n.k; tip.querySelector("b").textContent=n.t; tip.querySelector("p").textContent=n.p;
+    tip.querySelector(".tn").innerHTML=n.n.map(function(x){return '<span>'+x[0]+'<small>'+x[1]+'</small></span>';}).join("");
+    tip.style.setProperty("--c",LANES[n.lane].c);
+    var r=map.getBoundingClientRect(), br=b.getBoundingClientRect();
+    var left=br.left-r.left+br.width/2+70, top=br.top-r.top-20;
+    if(left+270>r.width) left=br.left-r.left-br.width/2-270; if(left<8) left=8;
+    if(top+150>r.height) top=r.height-160; if(top<8) top=8;
+    tip.style.left=left+"px"; tip.style.top=top+"px"; tip.classList.add("show");
+    svg.querySelectorAll("path").forEach(function(p){ var hit=p.getAttribute("data-a")===n.id||p.getAttribute("data-b")===n.id; p.setAttribute("stroke",hit?LANES[n.lane].c:"rgba(255,255,255,.12)"); p.setAttribute("stroke-width",hit?"0.6":"0.25"); });
   }
-  function finish(){
-    if(bootDone)return; bootDone=true;
-    renderSteps(READY_AT+1);
-    mode.textContent="Ready"; mode.className="chip mode ok"; tool.textContent="GellyDev (real motion and vision) · and everything else below";
-    ready.hidden=false; skip.hidden=true;
-    scene.finish();
-    try{ sessionStorage.setItem("vt-booted","1"); }catch(e){}
+  function hideTip(){ tip.classList.remove("show"); svg.querySelectorAll("path").forEach(function(p){ p.setAttribute("stroke","rgba(255,255,255,.12)"); p.setAttribute("stroke-width","0.25"); }); }
+  function go(n){
+    var target=document.querySelector(n.go); if(!target)return;
+    if(target.classList.contains("mcard")){
+      setLens("all",true);
+      target.scrollIntoView({behavior:reduceMotion?"auto":"smooth",block:"center",inline:"center"});
+      target.classList.add("flash"); setTimeout(function(){ target.classList.remove("flash"); },1800);
+    } else { target.scrollIntoView({behavior:reduceMotion?"auto":"smooth",block:"start"}); }
   }
-  function tick(){
-    var s=(Date.now()-t0)/1000;
-    renderSteps(s);
-    if(s>=READY_AT){ clearTimeout(timer); finish(); return; }
-    timer=setTimeout(tick,200);
+  var lenses=document.querySelectorAll(".lens");
+  function setLens(lane,quiet){
+    lenses.forEach(function(l){ l.setAttribute("aria-pressed",l.getAttribute("data-lane")===lane?"true":"false"); });
+    map.classList.toggle("filtered",lane!=="all");
+    NODES.forEach(function(n){ n.el.classList.toggle("in",lane==="all"||n.lane===lane); });
+    document.querySelectorAll("#rail .mcard").forEach(function(c){ c.hidden=!(lane==="all"||c.getAttribute("data-lane")===lane); });
+    if(!quiet&&lane!=="all"){ var rail=$("rail"); if(rail) rail.scrollTo({left:0,behavior:"smooth"}); }
   }
-  function boot(fast){
-    clearTimeout(timer); bootDone=false;
-    mode.textContent="Booting"; mode.className="chip mode"; tool.textContent="Starting the portfolio"; ready.hidden=true; skip.hidden=false;
-    if(fast||reduceMotion){ finish(); return; }
-    t0=Date.now(); tick();
-  }
-  skip.addEventListener("click",function(){ clearTimeout(timer); finish(); });
-  $("replay").addEventListener("click",function(){ boot(false); window.scrollTo({top:0,behavior:"smooth"}); });
-  var seen=false; try{ seen=sessionStorage.getItem("vt-booted")==="1"; }catch(e){}
-  boot(seen);
+  lenses.forEach(function(l){ l.addEventListener("click",function(){ setLens(l.getAttribute("data-lane")); }); });
+  $("surprise").addEventListener("click",function(){
+    var n=NODES[Math.floor(Math.random()*NODES.length)];
+    NODES.forEach(function(o){ o.el.classList.remove("on"); }); n.el.classList.add("on"); n.el.focus({preventScroll:true}); showTip(n,n.el);
+    setTimeout(function(){ go(n); },650);
+  });
 
   /* ---------- machines rail ---------- */
   var rail=$("rail");
