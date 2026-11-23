@@ -95,6 +95,9 @@ h3{font-size:18px;font-weight:600}
 .spn{display:flex;gap:16px;margin-top:6px}
 .spn span b{display:inline;font:600 14px var(--mono);color:var(--text)}
 .spn small{display:block;font:10.5px var(--sans);color:var(--dim)}
+.sproi{margin-top:6px;font-size:12.5px;color:var(--text);border-left:3px solid var(--ok);padding-left:8px;line-height:1.4}
+.sproi b{color:var(--ok);font:600 10px var(--mono);letter-spacing:.12em;margin-right:6px}
+@media (max-width:760px){.sproi{display:none}}
 .spacts{display:flex;flex-direction:column;gap:6px}
 @media (max-width:760px){.stpanel{grid-template-columns:1fr;gap:8px;right:70px}.stpanel img{display:none}.sptext p{display:none}.spacts{flex-direction:row}}
 .done{position:absolute;inset:0;display:grid;place-items:center;background:rgba(10,13,16,.78);backdrop-filter:blur(3px);padding:20px}
@@ -102,6 +105,20 @@ h3{font-size:18px;font-weight:600}
 .donein{max-width:560px;background:var(--panel);border:1px solid rgba(108,203,95,.5);border-radius:16px;padding:24px 26px;display:flex;flex-direction:column;gap:10px;box-shadow:0 20px 60px rgba(0,0,0,.6)}
 .donein h2{font-size:24px}
 .donein p{margin:0;color:var(--muted)}
+.missed{display:flex;flex-wrap:wrap;gap:6px}
+.missed a{font:600 12px var(--mono);border:1px solid var(--stroke2);border-radius:999px;padding:5px 10px;color:var(--text);background:rgba(255,255,255,.04)}
+.missed a:hover{border-color:var(--accent);text-decoration:none}
+.tracker{position:fixed;left:max(12px,env(safe-area-inset-left,0px));bottom:max(12px,env(safe-area-inset-bottom,0px));z-index:25;display:flex;flex-direction:column;align-items:flex-start;gap:6px}
+.tracker[hidden]{display:none}
+.tracker button{min-height:40px;border-radius:999px;border:1px solid var(--stroke2);background:rgba(23,27,31,.95);color:var(--text);font:600 12px var(--mono);padding:8px 14px;cursor:pointer;box-shadow:0 10px 30px rgba(0,0,0,.45)}
+.tracker .list{display:none;background:rgba(23,27,31,.97);border:1px solid var(--stroke2);border-radius:12px;padding:12px 14px;max-width:min(92vw,340px);box-shadow:0 14px 40px rgba(0,0,0,.5)}
+.tracker.open .list{display:block}
+.tracker .list .t{font:600 10.5px var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--dim);margin-bottom:8px}
+.tracker .list a,.tracker .list span{display:flex;align-items:center;gap:8px;font-size:13px;color:var(--text);padding:4px 0}
+.tracker .list a:hover{text-decoration:none;color:var(--accent)}
+.tracker .list i{width:8px;height:8px;border-radius:50%;background:var(--dim);font-style:normal;flex:none}
+.tracker .list .ok i{background:var(--ok)}
+.tracker .list .ok{color:var(--muted);text-decoration:line-through}
 @keyframes rise{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
 .mcard.flash{outline:2px solid var(--accent);outline-offset:2px}
 .mcard[hidden]{display:none}
@@ -129,6 +146,8 @@ h3{font-size:18px;font-weight:600}
 .stat b{display:block;font:600 22px/1.1 var(--mono);color:var(--text);letter-spacing:-.02em}
 .stat span{font-size:12px;color:var(--dim)}
 .acts{display:flex;gap:8px;flex-wrap:wrap;margin-top:auto;padding-top:6px}
+.roi{display:flex;gap:10px;align-items:flex-start;font-size:13.5px;line-height:1.45;color:var(--text);background:rgba(108,203,95,.07);border:1px solid rgba(108,203,95,.35);border-radius:8px;padding:8px 10px}
+.roi b{color:var(--ok);font:600 10.5px var(--mono);letter-spacing:.12em;margin-top:3px;flex:none}
 .tech{display:flex;gap:5px;flex-wrap:wrap}
 .tech span{font:11px var(--mono);color:var(--muted);background:rgba(255,255,255,.05);border-radius:4px;padding:2px 7px}
 .arrows{display:flex;gap:6px}
@@ -308,10 +327,10 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
       <div class="dpad" id="dpad" aria-label="Move the head"><button type="button" data-d="0,-1" aria-label="Up">▲</button><button type="button" data-d="-1,0" aria-label="Left">◀</button><button type="button" data-d="1,0" aria-label="Right">▶</button><button type="button" data-d="0,1" aria-label="Down">▼</button></div>
       <div class="stpanel" id="stpanel" hidden>
         <img id="spimg" src="" alt="">
-        <div class="sptext"><div class="kicker" id="spk"></div><b id="spt"></b><p id="spp"></p><div class="spn" id="spn"></div></div>
+        <div class="sptext"><div class="kicker" id="spk"></div><b id="spt"></b><p id="spp"></p><div class="spn" id="spn"></div><div class="sproi" id="sproi"></div></div>
         <div class="spacts"><a class="btn small primary" id="spgo" href="#machines">Open</a><button class="btn small" type="button" id="spnext">Next station →</button></div>
       </div>
-      <div class="done" id="done" hidden><div class="donein"><div class="kicker" style="color:var(--ok)">CELL COMMISSIONED</div><h2>Every station is up. That is the short version of me.</h2><p>The long version is below: each machine moving, two games to play, a design to pull apart, and the numbers.</p><div class="ctas"><a class="btn primary" href="#machines">See the machines</a><a class="btn" href="#contact">Say hello</a><a class="btn" href="#resume">Resume</a><button class="btn" type="button" id="doneClose">Keep driving</button></div></div></div>
+      <div class="done" id="done" hidden><div class="donein"><div class="kicker" style="color:var(--ok)">ALL SIX BENCHES LIT</div><h2>That is the short version of me.</h2><p id="doneSummary">The long version is below.</p><div class="missed" id="doneMissed"></div><div class="ctas"><a class="btn primary" href="#machines">See the machines</a><a class="btn" href="#contact">Say hello</a><button class="btn" type="button" id="resetBtn">Reset and play again</button><button class="btn" type="button" id="doneClose">Keep driving</button></div></div></div>
     </div>
   </div>
 </header></header>
@@ -331,6 +350,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
           <h3>Gelly Engine</h3>
           <p>One headless engine runs every cell: a profile per machine, reusable skills, behaviour trees, and a browser UI you can debug live.</p>
           <div class="stats"><div class="stat"><b>186k</b><span>lines, built in 2026</span></div><div class="stat"><b>&lt;1 ms</b><span>tick, was 100 ms</span></div><div class="stat"><b>134</b><span>FMEA recovery rows</span></div></div>
+          <div class="roi"><b>ROI</b><span>Each new type of cell costs about a quarter of a custom build: roughly 1,500 engineering hours instead of 6,000, about $585k saved per cell type (estimate). About $19k of vendor licences avoided per tool.</span></div>
           <div class="tech"><span>.NET 9</span><span>behaviour trees</span><span>ZeroMQ workers</span><span>ACS motion</span></div>
           <div class="acts"><a class="btn small" href="#watch">Watch the film</a><a class="btn small" href="#watch">See every page</a></div>
         </div>
@@ -343,6 +363,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
           <h3>Pick a microscopic part, place it to a micron</h3>
           <p>Picks spring gangs from wafer trays, aligns them on a glass slide under micron vision, breaks the tethers. This drawing is the cell, running a scripted cycle: it is the start-up screen I built for the real tool.</p>
           <div class="stats"><div class="stat"><b>±1 µm</b><span>placement, fleet-wide</span></div><div class="stat"><b>15 → 5 s</b><span>station cycle</span></div><div class="stat"><b>300 → 50 ms</b><span>verification</span></div></div>
+          <div class="roi"><b>ROI</b><span>Station cycle 15 s to under 5 s: three times the throughput at that step. Placement held at ±1 µm across the fleet, so yield does not depend on one golden machine.</span></div>
           <div class="tech"><span>Meca500</span><span>Cognex</span><span>closed-loop vision</span></div>
           <div class="acts"><a class="btn small" href="#watch">See the real screens</a></div>
         </div>
@@ -355,6 +376,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
           <h3>GellyML: vision you can diff and roll back</h3>
           <p>Replaced a licensed vision suite with an in-house pipeline and a model builder, rolled out in shadow mode before anyone switched.</p>
           <div class="stats"><div class="stat"><b>10 ms</b><span>part detector</span></div><div class="stat"><b>0</b><span>defect labels needed</span></div><div class="stat"><b>100%</b><span>on reference trays</span></div></div>
+          <div class="roi"><b>ROI</b><span>Retires per-station vision licences, about $19k per tool and about $16k a year across the fleet, and addresses 278 logged vision stops on two tools. Catches defects only operators caught before.</span></div>
           <div class="tech"><span>PyTorch</span><span>OpenCV</span><span>RF-DETR</span><span>PatchCore</span></div>
           <div class="acts"><a class="btn small" href="#watch">See the editor</a></div>
         </div>
@@ -367,6 +389,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
           <h3>One framework, a hundred cells</h3>
           <p>A new automation cell is configured and simulated, not written from scratch. UR, Meca500, SCARA and custom platforms all run on it.</p>
           <div class="stats"><div class="stat"><b>3 yr → 3 mo</b><span>to stand up a cell</span></div><div class="stat"><b>100+</b><span>production cells</span></div><div class="stat"><b>130</b><span>reusable skills</span></div></div>
+          <div class="roi"><b>ROI</b><span>Cell bring-up from about three years to three months. Roughly three engineers a year of effort avoided.</span></div>
           <div class="tech"><span>RoboDK</span><span>behaviour trees</span><span>CI/CD</span><span>fleet telemetry</span></div>
         </div>
       </article>
@@ -378,6 +401,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
           <h3>Enhanced Traceability, fab to assembly</h3>
           <p>Lot IDs laser-scribed on the part, a centre mark that survives singulation, tablet scanning into the MES, robots that act only on a verified ID.</p>
           <div class="stats"><div class="stat"><b>Zero</b><span>retyping at stations</span></div><div class="stat"><b>1st author</b><span>Technology Summit 2025</span></div></div>
+          <div class="roi"><b>ROI</b><span>Quality escapes ran 2 to 3 a quarter at about $50k each. The marking station costs under $20k and pays back in under two months (business case, Technology Summit 2025).</span></div>
           <div class="tech"><span>laser marking</span><span>QR / DPM</span><span>MES integration</span></div>
           <div class="acts"><button class="btn small" type="button" id="traceBig">Watch it larger</button></div>
         </div>
@@ -390,6 +414,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
           <h3>MotionVitals AI</h3>
           <p>Clinical movement tests scored by a camera, with pose estimation moved off the cloud and onto the NPU. Built in 24 hours as architect and lead of five.</p>
           <div class="stats"><div class="stat"><b>89 → 1.6 ms</b><span>pose inference, 55×</span></div><div class="stat"><b>1st place</b><span>Compute Track, ExecuTorch × Qualcomm 2026</span></div></div>
+          <div class="roi"><b>ROI</b><span>Pose inference 55× faster with no cloud round trip: usable at the point of care, no per-frame cloud cost, and patient video never leaves the device.</span></div>
           <div class="tech"><span>ExecuTorch</span><span>Hexagon NPU</span><span>C++</span><span>RTMPose</span></div>
           <div class="acts"><a class="btn small" href="https://secondhands-ai.github.io/SecondHands/">Project site</a></div>
         </div>
@@ -406,6 +431,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
           <h3>Force-controlled insertion, no direct feedback</h3>
           <p>Led a global team of five inserting SC and SFP fibre connectors on a UR5e: compliant approach, force bias, spiral search. Foxglove was the team's shared eyes on every run, Gazebo the proving ground, MoveIt the planner.</p>
           <div class="stats"><div class="stat"><b>36 / 1,600</b><span>teams, top 2.3%</span></div><div class="stat"><b>2 ports</b><span>SC and SFP, end to end</span></div></div>
+          <div class="roi"><b>ROI</b><span>Top 2.3% of 1,600 teams, with a policy that runs end to end on the real UR5e rather than only in simulation.</span></div>
           <div class="tech"><span>ROS 2</span><span>MoveIt</span><span>Foxglove</span><span>Gazebo</span><span>force / torque</span><span>UR5e · Hand-E · Axia80</span></div>
           <div class="acts"><a class="btn small" href="https://www.intrinsic.ai/events/ai-for-industry-challenge">The challenge ↗</a></div>
         </div>
@@ -418,6 +444,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
           <h3>Door Safety Flasher</h3>
           <p>A thin disk on each face of a door. Each senses people on its own side and strobes the disk on the other side, over Bluetooth, no hub. Parametric CAD with an automated audit; nothing built yet.</p>
           <div class="stats"><div class="stat"><b>150 mm</b><span>disk, 9.2 mm thin</span></div><div class="stat"><b>9</b><span>cut files, 34-line BOM</span></div><div class="stat"><b>~6 mo</b><span>battery, quiet door, estimate</span></div></div>
+          <div class="roi"><b>ROI</b><span>A door hit avoided. Two disks per door, no wiring, no hub, months on a charge (estimate). Capital per door is the cost of two consumer gadgets.</span></div>
           <div class="tech"><span>CadQuery</span><span>ESP32-C6 · BLE</span><span>AM312 PIR</span><span>MJF PA12</span><span>AI-assisted design</span></div>
           <div class="acts"><a class="btn small" href="#build">Explode it in 3D</a></div>
         </div>
@@ -430,6 +457,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
           <h3>LinkPulse</h3>
           <p>Your saved links, screenshots and videos, read and understood by AI, then resurfaced as weekly digests and semantic search. Screenshots become searchable.</p>
           <div class="stats"><div class="stat"><b>4</b><span>outputs: digest, trends, year in review, search</span></div><div class="stat"><b>Screenshots</b><span>become searchable</span></div></div>
+          <div class="roi"><b>ROI</b><span>Saved links stop being a graveyard: four outputs people actually open, and screenshots become searchable for the first time.</span></div>
           <div class="tech"><span>Claude Vision</span><span>Whisper</span><span>ChromaDB</span><span>Next.js</span><span>Remotion</span></div>
           <div class="acts"><a class="btn small" href="https://docs.google.com/presentation/d/135KlwexhedrqziYtiUxQzwldMFNpVsvSrs4vrjfCvvw/edit?usp=sharing">Pitch deck</a></div>
         </div>
@@ -442,6 +470,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
           <h3>From one fragile app to an engine with workers</h3>
           <p>A desktop monolith became a headless engine with isolated motion and vision workers. A crash in one no longer stops the tool, and releases go into an air-gapped factory weekly.</p>
           <div class="stats"><div class="stat"><b>1,700</b><span>automated tests</span></div><div class="stat"><b>5 in 10 wk</b><span>production releases</span></div><div class="stat"><b>99.6%</b><span>smaller repo, Git LFS</span></div></div>
+          <div class="roi"><b>ROI</b><span>Five production releases in ten weeks into an air-gapped factory, production-down fixes in three days or less, and a crash in one worker no longer stops the tool.</span></div>
           <div class="tech"><span>GitLab CI/CD</span><span>Playwright</span><span>xUnit · pytest</span><span>air-gapped deploy</span></div>
         </div>
       </article>
@@ -587,16 +616,6 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
   </div>
 </section>
 
-<section class="sec" id="read">
-  <div class="wrap">
-    <div class="sec-head"><div><div class="kicker">Read, if you want to</div><h2>Code and decks</h2><p class="sub">Everything else is on the page. These are the places you can dig into on your own.</p></div></div>
-    <div class="links">
-      <a class="lk" href="https://github.com/theja2289/sharkOdessey"><b>Shark Odyssey</b><span>PWA game, Capacitor Android build, store listing.</span><i>github</i></a>
-      <a class="lk" href="https://github.com/theja2289/WaferGuardian"><b>Wafer Guardian</b><span>Browser game plus two reference pages on the probe-card industry and the robotics case.</span><i>github</i></a>
-      <a class="lk" href="https://docs.google.com/presentation/d/135KlwexhedrqziYtiUxQzwldMFNpVsvSrs4vrjfCvvw/edit?usp=sharing"><b>LinkPulse pitch deck</b><span>18 slides: the problem, the product, the wedge and the roadmap.</span><i>slides</i></a>
-    </div>
-  </div>
-</section>
 
 <section class="sec" id="contact">
   <div class="wrap">
@@ -619,6 +638,8 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
 
 <footer><div class="wrap"><span>Vishwa Theja Pokala</span><span>Every number here comes from a system I worked on and can walk you through. Projections are marked.</span></div></footer>
 </div>
+
+<div class="tracker" id="tracker" hidden><div class="list" id="trackerList"></div><button type="button" id="trackerBtn">EXPLORED 0/12</button></div>
 
 <div id="resume" hidden>
   <div class="wrap">
@@ -1726,12 +1747,12 @@ window.makeGellyScene = function (canvasId, reduceMotion) {
     var arena=$("arena"), canvas=$("cell"); if(!arena||!canvas)return;
     var ctx=canvas.getContext("2d"), W=1000, H=560, dpr=1, sc=1, ox=0, oy=0;
     var BENCH=[
-      {id:"vision",x:175,y:168,w:210,h:120,n:"VISION BENCH",k:"See",t:"Vision you can diff and roll back",p:"GellyML replaced a licensed vision suite with a pipeline and model builder validated in shadow. MotionVitals put pose estimation on an NPU in 24 hours.",nn:[["10 ms","detector"],["89 → 1.6 ms","on-device pose"]],img:"assets/ml-annotate.gif",go:"#c-gellyml",card:true,act:"Inspecting parts: find, measure, pass or fail"},
-      {id:"pick",x:500,y:168,w:250,h:130,n:"PICK & PLACE CELL",k:"Move",t:"Pick a microscopic part, place it to a micron",p:"Spring gangs from wafer trays onto glass slides under micron vision, in production on three cells. Plus force-controlled fibre insertion on a UR5e for the Intrinsic challenge.",nn:[["±1 µm","placement"],["36 / 1,600","Intrinsic teams"]],img:"assets/engine-home.gif",go:"#c-cell",card:true,act:"Picking gangs from the tray, placing them on slides"},
-      {id:"engine",x:830,y:168,w:200,h:130,n:"CONTROL CABINET",k:"Build",t:"One engine for every cell",p:"Profiles, skills, behaviour trees, isolated workers, an all-web UI with live debugging. A new cell is configured and simulated, not written.",nn:[["186k","lines"],["3 yr → 3 mo","cell bring-up"]],img:"assets/engine-tree-editor.gif",go:"#c-engine",card:true,act:"Ticking the behaviour tree: skills light up as they run"},
-      {id:"trace",x:175,y:420,w:210,h:120,n:"TRACE STATION",k:"Prove",t:"Identity that survives singulation",p:"Laser-scribed IDs, a scan at every station, robots that act only on a verified ID. And releases that go into an air-gapped factory weekly without taking the line down.",nn:[["Zero","retyping"],["1,700","tests behind each release"]],img:"assets/engine-system-setup.gif",go:"#c-trace",card:true,act:"Scanning the wafer ID, writing the record"},
-      {id:"bench",x:500,y:420,w:230,h:120,n:"HARDWARE BENCH",k:"Hardware",t:"Door Safety Flasher",p:"Two edge-lit disks that sense people and strobe the other side of the door over Bluetooth. Parametric CAD with an automated audit. Pull it apart in 3D further down.",nn:[["150 mm","disk"],["9.2 mm","thin"]],img:"assets/flasher-turntable.gif",go:"#build",card:false,act:"Laser-cutting a legend plate, testing the strobe"},
-      {id:"arcade",x:830,y:420,w:200,h:130,n:"ARCADE CORNER",k:"Play",t:"Two games and a pitch",p:"Shark Odyssey for kids who like sharks, Wafer Guardian for what I do at work, LinkPulse for everything you saved and never read. Playable on this page.",nn:[["10","real sharks"],["4","LinkPulse outputs"]],img:"assets/shark-odyssey.jpg",go:"#play",card:false,act:"Attract mode: sharks, wafers, a pitch"}
+      {id:"vision",roi:"Vision licences retired (about $19k per tool); 278 logged vision stops addressed; defects caught that only operators caught before.",x:175,y:168,w:210,h:120,n:"VISION BENCH",k:"See",t:"Vision you can diff and roll back",p:"GellyML replaced a licensed vision suite with a pipeline and model builder validated in shadow. MotionVitals put pose estimation on an NPU in 24 hours.",nn:[["10 ms","detector"],["89 → 1.6 ms","on-device pose"]],img:"assets/ml-annotate.gif",go:"#c-gellyml",card:true,act:"Inspecting parts: find, measure, pass or fail"},
+      {id:"pick",roi:"Three times the throughput at the station (15 s to under 5 s); ±1 µm held fleet-wide.",x:500,y:168,w:250,h:130,n:"PICK & PLACE CELL",k:"Move",t:"Pick a microscopic part, place it to a micron",p:"Spring gangs from wafer trays onto glass slides under micron vision, in production on three cells. Plus force-controlled fibre insertion on a UR5e for the Intrinsic challenge.",nn:[["±1 µm","placement"],["36 / 1,600","Intrinsic teams"]],img:"assets/engine-home.gif",go:"#c-cell",card:true,act:"Picking gangs from the tray, placing them on slides"},
+      {id:"engine",roi:"A new cell type at about a quarter of a custom build, about $585k saved per type (estimate); bring-up in three months instead of three years.",x:830,y:168,w:200,h:130,n:"CONTROL CABINET",k:"Build",t:"One engine for every cell",p:"Profiles, skills, behaviour trees, isolated workers, an all-web UI with live debugging. A new cell is configured and simulated, not written.",nn:[["186k","lines"],["3 yr → 3 mo","cell bring-up"]],img:"assets/engine-tree-editor.gif",go:"#c-engine",card:true,act:"Ticking the behaviour tree: skills light up as they run"},
+      {id:"trace",roi:"Quality escapes of $400k to $600k a year addressed with under $20k of capital; weekly releases, three-day fixes.",x:175,y:420,w:210,h:120,n:"TRACE STATION",k:"Prove",t:"Identity that survives singulation",p:"Laser-scribed IDs, a scan at every station, robots that act only on a verified ID. And releases that go into an air-gapped factory weekly without taking the line down.",nn:[["Zero","retyping"],["1,700","tests behind each release"]],img:"assets/engine-system-setup.gif",go:"#c-trace",card:true,act:"Scanning the wafer ID, writing the record"},
+      {id:"bench",roi:"A door hit avoided for the price of two consumer gadgets per door; no wiring, no hub.",x:500,y:420,w:230,h:120,n:"HARDWARE BENCH",k:"Hardware",t:"Door Safety Flasher",p:"Two edge-lit disks that sense people and strobe the other side of the door over Bluetooth. Parametric CAD with an automated audit. Pull it apart in 3D further down.",nn:[["150 mm","disk"],["9.2 mm","thin"]],img:"assets/flasher-turntable.gif",go:"#build",card:false,act:"Laser-cutting a legend plate, testing the strobe"},
+      {id:"arcade",roi:"Nothing to put on an invoice. These are how I learn fast and how my kids learn what I do.",x:830,y:420,w:200,h:130,n:"ARCADE CORNER",k:"Play",t:"Two games and a pitch",p:"Shark Odyssey for kids who like sharks, Wafer Guardian for what I do at work, LinkPulse for everything you saved and never read. Playable on this page.",nn:[["10","real sharks"],["4","LinkPulse outputs"]],img:"assets/shark-odyssey.jpg",go:"#play",card:false,act:"Attract mode: sharks, wafers, a pitch"}
     ];
     var EXIT={x:975,y:300};
     var head={x:500,y:300,tx:null,ty:null}, dir={x:0,y:0}, keys={}, done={}, at=null, dockedAt=0, driving=null, trail=[], fx=[], auto=false, autoQ=[], autoWait=0, clock=0, hover=null, tut=true, exitShown=false;
@@ -1901,9 +1922,9 @@ window.makeGellyScene = function (canvasId, reduceMotion) {
       ctx.restore();
     }
     /* ---- panel + progress ---- */
-    function openPanel(s){ $("spk").textContent=s.k+" · "+s.n; $("spt").textContent=s.t; $("spp").textContent=s.p; $("spn").innerHTML=s.nn.map(function(n){return '<span><b>'+n[0]+'</b><small>'+n[1]+'</small></span>';}).join(""); var im=$("spimg"); im.src=s.img; im.alt=s.t; $("spgo").href=s.go; panel.hidden=false; }
+    function openPanel(s){ $("spk").textContent=s.k+" · "+s.n; $("spt").textContent=s.t; $("spp").textContent=s.p; $("spn").innerHTML=s.nn.map(function(n){return '<span><b>'+n[0]+'</b><small>'+n[1]+'</small></span>';}).join(""); $("sproi").innerHTML='<b>ROI</b>'+s.roi; var im=$("spimg"); im.src=s.img; im.alt=s.t; $("spgo").href=s.go; panel.hidden=false; }
     function closePanel(){ panel.hidden=true; }
-    function arrive(s){ at=s; dockedAt=clock; driving=null; openPanel(s); setStatus("DOCKED · "+s.n+" · "+s.act,"#4CC2FF");
+    function arrive(s){ at=s; dockedAt=clock; driving=null; openPanel(s); if(window.vtMark)vtMark("bench:"+s.id); setStatus("DOCKED · "+s.n+" · "+s.act,"#4CC2FF");
       if(!done[s.id]){ done[s.id]=true; fx.push({x:s.x,y:s.y,k:0}); hud(); try{ sessionStorage.setItem("vt-cell",JSON.stringify(done)); }catch(e){} if(count()===BENCH.length){ setTimeout(function(){ doneBox.hidden=false; },900); } } }
     function leave(){ at=null; closePanel(); setStatus(auto?"AUTOPILOT":"DRIVING","var(--muted)"); }
     function nextUndone(){ var u=BENCH.filter(function(s){return !done[s.id];}); return u.length?u[0]:null; }
@@ -1920,6 +1941,7 @@ window.makeGellyScene = function (canvasId, reduceMotion) {
     $("spnext").addEventListener("click",function(){ var n=nextUndone()||BENCH[(BENCH.indexOf(at)+1)%BENCH.length]; driveTo(n); });
     $("spgo").addEventListener("click",function(){ var tg=document.querySelector($("spgo").getAttribute("href")); if(tg&&tg.classList.contains("mcard")){ tg.classList.add("flash"); setTimeout(function(){tg.classList.remove("flash");},1800); setTimeout(function(){ tg.scrollIntoView({behavior:reduceMotion?"auto":"smooth",block:"center",inline:"center"}); },50); } });
     $("doneClose").addEventListener("click",function(){ doneBox.hidden=true; });
+    $("resetBtn").addEventListener("click",function(){ done={}; exitShown=false; tut=true; at=null; closePanel(); trail=[]; head.x=500; head.y=300; head.tx=head.ty=null; auto=false; $("tourBtn").textContent="Autopilot tour"; hud(); setStatus("IDLE · tap a bench","var(--muted)"); try{ sessionStorage.removeItem("vt-cell"); }catch(e){} doneBox.hidden=true; });
     /* ---- loop ---- */
     var last=0, SPEED=260;
     function step(dt){
@@ -1938,6 +1960,7 @@ window.makeGellyScene = function (canvasId, reduceMotion) {
     }
     function loop(now){ var dt=last?Math.min(.05,(now-last)/1000):.016; last=now; step(dt); draw(clock); requestAnimationFrame(loop); }
     setStatus("IDLE · tap a bench","var(--muted)");
+    setTimeout(function(){ if(window.vtMark) Object.keys(done).forEach(function(k){ vtMark("bench:"+k); }); },0);
     window.addEventListener("resize",resize); resize(); requestAnimationFrame(loop);
   })();
 
@@ -2141,6 +2164,35 @@ window.makeGellyScene = function (canvasId, reduceMotion) {
   });
   function grow(){ bars.querySelectorAll(".fill").forEach(function(f){ f.style.width=f.getAttribute("data-w")+"%"; }); }
   if("IntersectionObserver" in window){ var io=new IntersectionObserver(function(en){ if(en[0].isIntersecting){ grow(); io.disconnect(); } },{threshold:.2}); io.observe(bars); } else grow();
+
+
+  /* ---------- what the visitor has explored, and what is still waiting ---------- */
+  var TRACK=[
+    ["bench:vision","Vision bench","#top"],["bench:pick","Pick & place cell","#top"],["bench:engine","Control cabinet","#top"],["bench:trace","Trace station","#top"],["bench:bench","Hardware bench","#top"],["bench:arcade","Arcade corner","#top"],
+    ["cards","The machines rail","#machines"],["play","Played a game","#play"],["explode","Pulled the flasher apart in 3D","#build"],["film","Watched the engine clips","#watch"],["numbers","Before and after numbers","#numbers"],["resume","The resume","#resume"]
+  ];
+  var seen={}; try{ seen=JSON.parse(sessionStorage.getItem("vt-explore")||"{}"); }catch(e){}
+  var tracker=$("tracker"), tlist=$("trackerList"), tbtn=$("trackerBtn");
+  function seenCount(){ return TRACK.filter(function(t){return seen[t[0]];}).length; }
+  function renderTracker(){
+    var n=seenCount(); tbtn.textContent="EXPLORED "+n+"/"+TRACK.length+(n<TRACK.length?" · WHAT'S LEFT?":" · ALL OF IT");
+    tlist.innerHTML='<div class="t">Your tour</div>'+TRACK.map(function(t){ var ok=!!seen[t[0]]; return ok?'<span class="ok"><i></i>'+t[1]+'</span>':'<a href="'+t[2]+'"><i></i>'+t[1]+'</a>'; }).join("");
+    tracker.hidden=n===0;
+    var ds=$("doneSummary"), dm=$("doneMissed");
+    if(ds){ var left=TRACK.filter(function(t){return !seen[t[0]];});
+      ds.textContent=left.length?"You have explored "+n+" of "+TRACK.length+" things on this page. Still waiting for you:":"You have explored everything on this page. Thank you for the time.";
+      dm.innerHTML=left.map(function(t){return '<a href="'+t[2]+'">'+t[1]+' →</a>';}).join(""); }
+  }
+  window.vtMark=function(k){ if(seen[k])return; seen[k]=true; try{ sessionStorage.setItem("vt-explore",JSON.stringify(seen)); }catch(e){} renderTracker(); };
+  tbtn.addEventListener("click",function(){ tracker.classList.toggle("open"); });
+  document.addEventListener("click",function(e){ if(!e.target.closest(".tracker")) tracker.classList.remove("open"); });
+  if("IntersectionObserver" in window){
+    var secIO=new IntersectionObserver(function(en){ en.forEach(function(x){ if(x.isIntersecting){ var id=x.target.id; vtMark(id==="machines"?"cards":id==="play"?"play":id==="watch"?"film":id==="numbers"?"numbers":id); } }); },{threshold:.35});
+    ["machines","play","watch","numbers"].forEach(function(id){ var el=$(id); if(el)secIO.observe(el); });
+  }
+  var ex=$("explode"); if(ex) ex.addEventListener("input",function(){ vtMark("explode"); });
+  window.addEventListener("hashchange",function(){ if(location.hash==="#resume")vtMark("resume"); }); if(location.hash==="#resume")vtMark("resume");
+  renderTracker();
 
   /* ---------- copy buttons ---------- */
   document.querySelectorAll(".copy").forEach(function(b){
