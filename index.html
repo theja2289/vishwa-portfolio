@@ -100,9 +100,11 @@ h3{font-size:18px;font-weight:600}
 @media (max-width:760px){.sproi{display:none}}
 .spacts{display:flex;flex-direction:column;gap:6px}
 @media (max-width:760px){.stpanel{grid-template-columns:1fr;gap:8px;right:70px}.stpanel img{display:none}.sptext p{display:none}.spacts{flex-direction:row}}
-.done{position:absolute;inset:0;display:grid;place-items:center;background:rgba(10,13,16,.78);backdrop-filter:blur(3px);padding:20px}
+.done{position:fixed;inset:0;z-index:40;display:grid;place-items:center;background:rgba(10,13,16,.82);backdrop-filter:blur(3px);padding:max(16px,env(safe-area-inset-top,0px)) max(16px,env(safe-area-inset-right,0px)) max(16px,env(safe-area-inset-bottom,0px)) max(16px,env(safe-area-inset-left,0px));overflow:auto}
 .done[hidden]{display:none}
-.donein{max-width:560px;background:var(--panel);border:1px solid rgba(108,203,95,.5);border-radius:16px;padding:24px 26px;display:flex;flex-direction:column;gap:10px;box-shadow:0 20px 60px rgba(0,0,0,.6)}
+.donein{position:relative;width:min(560px,100%);max-height:calc(100dvh - 32px);overflow:auto;background:var(--panel);border:1px solid rgba(108,203,95,.5);border-radius:16px;padding:22px 22px 18px;display:flex;flex-direction:column;gap:10px;box-shadow:0 20px 60px rgba(0,0,0,.6)}
+.donein .ctas .btn{min-height:44px}
+.donex{position:absolute;right:10px;top:10px;width:36px;height:36px;border-radius:50%;border:1px solid var(--stroke2);background:rgba(255,255,255,.06);color:var(--text);font-size:16px;cursor:pointer}
 .donein h2{font-size:24px}
 .donein p{margin:0;color:var(--muted)}
 .missed{display:flex;flex-wrap:wrap;gap:6px}
@@ -330,7 +332,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
         <div class="sptext"><div class="kicker" id="spk"></div><b id="spt"></b><p id="spp"></p><div class="spn" id="spn"></div><div class="sproi" id="sproi"></div></div>
         <div class="spacts"><a class="btn small primary" id="spgo" href="#machines">Open</a><button class="btn small" type="button" id="spnext">Next station →</button></div>
       </div>
-      <div class="done" id="done" hidden><div class="donein"><div class="kicker" style="color:var(--ok)">ALL SIX BENCHES LIT</div><h2>That is the short version of me.</h2><p id="doneSummary">The long version is below.</p><div class="missed" id="doneMissed"></div><div class="ctas"><a class="btn primary" href="#machines">See the machines</a><a class="btn" href="#contact">Say hello</a><button class="btn" type="button" id="resetBtn">Reset and play again</button><button class="btn" type="button" id="doneClose">Keep driving</button></div></div></div>
+      
     </div>
   </div>
 </header></header>
@@ -638,6 +640,8 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
 
 <footer><div class="wrap"><span>Vishwa Theja Pokala</span><span>Every number here comes from a system I worked on and can walk you through. Projections are marked.</span></div></footer>
 </div>
+
+<div class="done" id="done" hidden><div class="donein"><button class="donex" type="button" id="doneX" aria-label="Close">✕</button><div class="kicker" style="color:var(--ok)">ALL SIX BENCHES LIT</div><h2>That is the short version of me.</h2><p id="doneSummary">The long version is below.</p><div class="missed" id="doneMissed"></div><div class="ctas"><a class="btn primary" href="#machines">See the machines</a><a class="btn" href="#contact">Say hello</a><button class="btn" type="button" id="resetBtn">Reset and play again</button><button class="btn" type="button" id="doneClose">Keep driving</button></div></div></div>
 
 <div class="tracker" id="tracker" hidden><div class="list" id="trackerList"></div><button type="button" id="trackerBtn">EXPLORED 0/12</button></div>
 
@@ -1941,6 +1945,9 @@ window.makeGellyScene = function (canvasId, reduceMotion) {
     $("spnext").addEventListener("click",function(){ var n=nextUndone()||BENCH[(BENCH.indexOf(at)+1)%BENCH.length]; driveTo(n); });
     $("spgo").addEventListener("click",function(){ var tg=document.querySelector($("spgo").getAttribute("href")); if(tg&&tg.classList.contains("mcard")){ tg.classList.add("flash"); setTimeout(function(){tg.classList.remove("flash");},1800); setTimeout(function(){ tg.scrollIntoView({behavior:reduceMotion?"auto":"smooth",block:"center",inline:"center"}); },50); } });
     $("doneClose").addEventListener("click",function(){ doneBox.hidden=true; });
+    $("doneX").addEventListener("click",function(){ doneBox.hidden=true; });
+    doneBox.addEventListener("click",function(e){ if(e.target===doneBox) doneBox.hidden=true; });
+    doneBox.querySelectorAll("a[href^=\"#\"]").forEach(function(a){ a.addEventListener("click",function(){ doneBox.hidden=true; }); });
     $("resetBtn").addEventListener("click",function(){ done={}; exitShown=false; tut=true; at=null; closePanel(); trail=[]; head.x=500; head.y=300; head.tx=head.ty=null; auto=false; $("tourBtn").textContent="Autopilot tour"; hud(); setStatus("IDLE · tap a bench","var(--muted)"); try{ sessionStorage.removeItem("vt-cell"); }catch(e){} doneBox.hidden=true; });
     /* ---- loop ---- */
     var last=0, SPEED=260;
