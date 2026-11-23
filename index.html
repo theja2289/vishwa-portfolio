@@ -131,6 +131,14 @@ h3{font-size:18px;font-weight:600}
 .arrow:hover{background:rgba(255,255,255,.12)}
 
 /* ---- play ---- */
+.games{display:grid;gap:18px}
+.game{display:grid;grid-template-columns:minmax(260px,.9fr) 1.6fr;gap:16px;align-items:start;background:var(--panel);border:1px solid var(--stroke);border-radius:16px;padding:16px}
+@media (max-width:900px){.game{grid-template-columns:1fr}}
+.gtext{display:flex;flex-direction:column;gap:8px;min-width:0}
+.gtext h3{font-size:20px}
+.gtext p{margin:0;color:var(--muted);font-size:14.5px;line-height:1.5}
+.howto{margin:0;padding-left:18px;color:var(--muted);font-size:13.5px;display:flex;flex-direction:column;gap:3px}
+.howto li::marker{color:var(--accent)}
 .tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px}
 .tab{min-height:40px;padding:8px 14px;border-radius:999px;border:1px solid var(--stroke2);background:rgba(255,255,255,.04);color:var(--muted);font-weight:600;font-size:14px;cursor:pointer}
 .tab[aria-selected="true"]{background:var(--text);color:var(--bg);border-color:var(--text)}
@@ -474,19 +482,30 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
 <section class="sec" id="play">
   <div class="wrap">
     <div class="sec-head">
-      <div><div class="kicker">Play</div><h2>Two games I made, running right here</h2><p class="sub">Both are plain web pages with no build step. One is for my kids and anyone who likes sharks. The other teaches what a probe card is by letting you build one.</p></div>
+      <div><div class="kicker">Play</div><h2>Two games I made, running right here</h2><p class="sub">Both are plain web pages with no build step, served from GitHub. They load as you scroll to them. Sound starts after you tap.</p></div>
     </div>
-    <div class="tabs" role="tablist" aria-label="Games">
-      <button class="tab" role="tab" aria-selected="true" data-src="https://theja2289.github.io/sharkOdessey/" data-title="Shark Odyssey" data-desc="A true-facts shark adventure. Become ten real sharks, spin them in 360, compare them, earn badges." type="button">Shark Odyssey</button>
-      <button class="tab" role="tab" aria-selected="false" data-src="https://theja2289.github.io/WaferGuardian/" data-title="Wafer Guardian" data-desc="Match the probe card to the chip, run the prober, catch the bad dies. Then design a MEMS spring and let the robots assemble it." type="button">Wafer Guardian</button>
+    <div class="games">
+      <article class="game">
+        <div class="gtext">
+          <div class="kicker">Shark Odyssey · for kids who like sharks</div>
+          <h3>Become ten real sharks</h3>
+          <p>A true-facts adventure. Pick a shark, spin it in 360, read what it actually eats and how deep it dives, then swim its mission. Compare two sharks side by side and earn badges for what you learn.</p>
+          <ul class="howto"><li>Tap a shark on the home screen to start.</li><li>Drag to spin the shark; arrows or swipe to swim.</li><li>Badges unlock as you meet each shark.</li></ul>
+          <div class="acts"><a class="btn small" href="https://theja2289.github.io/sharkOdessey/">Open full screen ↗</a><a class="btn small" href="https://github.com/theja2289/sharkOdessey">Code</a></div>
+        </div>
+        <!--IFRAME-SHARK--><div class="frame"><iframe src="https://theja2289.github.io/sharkOdessey/" title="Shark Odyssey" allow="fullscreen; autoplay" loading="lazy"></iframe></div><!--/IFRAME-SHARK-->
+      </article>
+      <article class="game">
+        <div class="gtext">
+          <div class="kicker">Wafer Guardian · what I do at work, as a game</div>
+          <h3>Match the probe card, catch the bad dies</h3>
+          <p>A small game about wafer test. Match the probe card to the chip, load the wafer, run the prober and catch the bad dies. Then build a MEMS probe card yourself: design the spring, grow it with lithography, let the robots assemble it, measure every tip.</p>
+          <ul class="howto"><li>Start with Match: read the chip's pad pitch and current, pick the card.</li><li>Run the prober and tap the dies that fail.</li><li>Open Workshop to design and assemble your own card.</li></ul>
+          <div class="acts"><a class="btn small" href="https://theja2289.github.io/WaferGuardian/">Open full screen ↗</a><a class="btn small" href="https://github.com/theja2289/WaferGuardian">Code</a></div>
+        </div>
+        <!--IFRAME-WAFER--><div class="frame"><iframe src="https://theja2289.github.io/WaferGuardian/" title="Wafer Guardian" allow="fullscreen; autoplay" loading="lazy"></iframe></div><!--/IFRAME-WAFER-->
+      </article>
     </div>
-    
-    <div class="frame" id="frame">
-      <iframe id="gameframe" title="Game" allow="fullscreen; autoplay" loading="lazy"></iframe>
-      <div class="cover" id="cover"><div><h3 id="coverTitle">Shark Odyssey</h3><p id="coverDesc">A true-facts shark adventure. Become ten real sharks, spin them in 360, compare them, earn badges.</p><button class="btn primary" type="button" id="startGame">Start playing</button></div></div>
-    </div>
-    
-    <div class="playmeta"><span id="playNote">Keyboard and touch both work. Sound starts after you tap.</span><a id="playOpen" href="https://theja2289.github.io/sharkOdessey/">open full screen ↗</a></div>
   </div>
 </section>
 
@@ -514,7 +533,9 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
         </div>
       </div>
       <div class="card">
-        <h3>How it got here</h3>
+        <h3>Why</h3>
+        <p style="margin:0;color:var(--muted);font-size:14.5px">People get hit by doors. Someone pushes, someone on the other side is already there. I have kept a folder called Door Safety since 2018; this year I designed the thing. <a href="https://drive.google.com/file/d/1691iuND-1-aaDlsgmj9vfyOwut9Mp-9y/view?usp=drive_link">A thirty-second clip of the problem, courtesy of Larry David ↗</a></p>
+        <h3 style="margin-top:6px">How it got here</h3>
         <div class="facts">
           <div class="fact"><span class="k">1 · Off-the-shelf</span><span class="v">Zigbee radar + light + hub</span></div>
           <div class="fact"><span class="k">2 · Hinged box</span><span class="v">70 × 64 × 34 mm, 3×AA</span></div>
@@ -1848,22 +1869,6 @@ window.makeGellyScene = function (canvasId, reduceMotion) {
     if(reduceMotion){ start=performance.now()-9000; draw(performance.now()); } else requestAnimationFrame(draw);
   })();
 
-  /* ---------- play: games in the page, loaded on demand ---------- */
-  var tabs=document.querySelectorAll(".tab"), frame=$("gameframe"), cover=$("cover"), openLink=$("playOpen");
-  var current=tabs[0];
-  function showTab(t){
-    current=t;
-    tabs.forEach(function(o){ o.setAttribute("aria-selected",o===t?"true":"false"); });
-    openLink.href=t.getAttribute("data-src");
-    if(frame){ frame.src="about:blank"; }
-    if(cover){ cover.hidden=false; $("coverTitle").textContent=t.getAttribute("data-title"); $("coverDesc").textContent=t.getAttribute("data-desc"); }
-    var alt=$("playAlt"); if(alt){ alt.querySelector("h3").textContent=t.getAttribute("data-title"); alt.querySelector("p").textContent=t.getAttribute("data-desc"); alt.querySelector("a").href=t.getAttribute("data-src"); }
-  }
-  tabs.forEach(function(t){ t.addEventListener("click",function(){ showTab(t); }); });
-  var startBtn=$("startGame");
-  if(startBtn){ startBtn.addEventListener("click",function(){ frame.src=current.getAttribute("data-src"); cover.hidden=true; frame.focus(); }); }
-
-
   /* ---------- build: the flasher's STL parts in three.js, exploded by a slider ---------- */
   (function(){
     var box=$("viewer"), fb=$("vfallback"), slider=$("explode"), spinBtn=$("spin"); if(!box)return;
@@ -1897,6 +1902,7 @@ window.makeGellyScene = function (canvasId, reduceMotion) {
           var mat=new THREE.MeshStandardMaterial({color:p.c,metalness:.15,roughness:.65,transparent:!!p.t,opacity:p.t||1,emissive:p.e||0x000000,emissiveIntensity:p.e?.6:0});
           var m=new THREE.Mesh(geom,mat); m.userData=p; m.visible=!p.hide; group.add(m); meshes.push(m);
           if(--left===0){ fb.hidden=true; }
+          box.setAttribute("data-parts",String(meshes.length));
           applyExplode();
         }, undefined, function(){ if(--left===0 && meshes.length){ fb.hidden=true; } });
       });
@@ -1913,9 +1919,12 @@ window.makeGellyScene = function (canvasId, reduceMotion) {
         meshes.forEach(function(m){ if(m.userData.plate) m.visible=(m.userData.plate===b.getAttribute("data-plate")); });
       });
     });
+    function onScreen(){ var r=box.getBoundingClientRect(); return r.bottom>0 && r.top<window.innerHeight; }
+    function check(){ visible=onScreen(); if(visible)start(); }
     if("IntersectionObserver" in window){
       new IntersectionObserver(function(en){ visible=en[0].isIntersecting; if(visible)start(); },{threshold:.15}).observe(box);
-    } else { visible=true; start(); }
+    }
+    window.addEventListener("scroll",check,{passive:true}); setTimeout(check,400);
   })();
 
   /* ---------- product film: the player appears only when the file exists ---------- */
