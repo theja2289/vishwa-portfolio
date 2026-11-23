@@ -1920,7 +1920,11 @@ window.makeGellyScene = function (canvasId, reduceMotion) {
     site.hidden=isRes||isSimple; resumeView.hidden=!isRes; simpleView.hidden=!isSimple; document.body.classList.toggle("simple",isSimple);
     if(simpleBtn){ simpleBtn.textContent=isSimple?"Full version":"Simple view"; simpleBtn.setAttribute("aria-pressed",isSimple?"true":"false"); }
     if(isRes||isSimple||h==="#top"||h===""){ window.scrollTo(0,0); }
+    relayout();
   }
+  function relayout(){ requestAnimationFrame(function(){ window.dispatchEvent(new Event("resize")); setTimeout(function(){ window.dispatchEvent(new Event("resize")); },250); }); }
+  window.vtRelayout=relayout;
+  if("ResizeObserver" in window){ var ro=new ResizeObserver(function(es){ var grew=false; es.forEach(function(e){ var w=e.contentRect.width; if(w>0&&e.target.__w===0) grew=true; e.target.__w=w; }); if(grew) relayout(); }); document.querySelectorAll("canvas").forEach(function(c){ c.__w=c.getBoundingClientRect().width; ro.observe(c); }); }
   window.addEventListener("hashchange",route); route();
   if(simpleBtn) simpleBtn.addEventListener("click",function(){ location.hash=(location.hash==="#simple")?"#top":"#simple"; });
 
@@ -2369,8 +2373,8 @@ window.makeGellyScene = function (canvasId, reduceMotion) {
     var slides=[["top","Lab"],["machines","Machines"],["build","3D"],["watch","Watch"],["numbers","Numbers"],["path","Path"],["play","Fun"],["contact","Contact"]].map(function(s){ var el=s[0]==="top"?document.querySelector("header.hero"):$(s[0]); return el?{el:el,id:s[0],n:s[1]}:null; }).filter(Boolean);
     var cur=0, on=false, dots=$("deckdots");
     slides.forEach(function(s,i){ var d=document.createElement("button"); d.type="button"; d.setAttribute("aria-label",s.n); d.innerHTML="<i></i><span>"+s.n+"</span>"; d.addEventListener("click",function(){ show(i); }); dots.appendChild(d); });
-    function show(i,noScroll){ cur=(i+slides.length)%slides.length; slides.forEach(function(s,j){ s.el.classList.toggle("cur",j===cur); }); dots.querySelectorAll("button").forEach(function(d,j){ d.classList.toggle("on",j===cur); }); $("deckname").textContent=slides[cur].n; if(!noScroll) window.scrollTo({top:0,behavior:"auto"}); window.dispatchEvent(new Event("scroll")); }
-    function set(v){ on=v; document.body.classList.toggle("deck",on); btn.textContent=on?"Scroll view":"Deck view"; btn.setAttribute("aria-pressed",on?"true":"false"); try{ sessionStorage.setItem("vt-deck",on?"1":"0"); }catch(e){} if(on){ var i=slideOf(window.location.hash); show(i>=0?i:0); } else { slides.forEach(function(s){ s.el.classList.remove("cur"); }); } }
+    function show(i,noScroll){ cur=(i+slides.length)%slides.length; slides.forEach(function(s,j){ s.el.classList.toggle("cur",j===cur); }); dots.querySelectorAll("button").forEach(function(d,j){ d.classList.toggle("on",j===cur); }); $("deckname").textContent=slides[cur].n; if(!noScroll) window.scrollTo({top:0,behavior:"auto"}); window.dispatchEvent(new Event("scroll")); if(window.vtRelayout) vtRelayout(); }
+    function set(v){ on=v; document.body.classList.toggle("deck",on); if(window.vtRelayout) vtRelayout(); btn.textContent=on?"Scroll view":"Deck view"; btn.setAttribute("aria-pressed",on?"true":"false"); try{ sessionStorage.setItem("vt-deck",on?"1":"0"); }catch(e){} if(on){ var i=slideOf(window.location.hash); show(i>=0?i:0); } else { slides.forEach(function(s){ s.el.classList.remove("cur"); }); } }
     function slideOf(hash){ if(!hash||hash==="#"||hash==="#resume"||hash==="#simple")return -1; var t=document.querySelector(hash); if(!t)return -1; for(var i=0;i<slides.length;i++){ if(slides[i].el===t||slides[i].el.contains(t)) return i; } return -1; }
     btn.addEventListener("click",function(){ set(!on); });
     $("deckPrev").addEventListener("click",function(){ show(cur-1); }); $("deckNext").addEventListener("click",function(){ show(cur+1); }); $("deckExit").addEventListener("click",function(){ set(false); });
