@@ -285,7 +285,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
       <div class="who">
         <div class="kicker">Roboticist · perception, motion, decision</div>
         <h1>Vishwa Theja Pokala</h1>
-        <p class="thesis">I make precise physical work happen without a person doing it. <b>Pick it up, see it, place it to a micron, prove it happened.</b> Then do it ten thousand times.</p>
+        <p class="thesis">I make machines do precise physical work. <b>Pick it up, see it, place it to a micron, prove it happened.</b> Then do it ten thousand times.</p>
       </div>
       <div class="mission">
         <div class="kicker">Your mission</div>
@@ -296,7 +296,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
     </div>
     <div class="arena" id="arena" tabindex="0" aria-label="The workcell. Move the head to a station to see that part of the work.">
       <canvas id="cell"></canvas>
-      <div class="hud" aria-live="polite"><span class="hudk">COMMISSIONING</span><div class="hudbar"><span id="hudfill"></span></div><span id="hudtxt">0 / 6 stations</span></div>
+      <div class="hud" aria-live="polite"><span class="hudk">COMMISSIONING</span><div class="hudbar"><span id="hudfill"></span></div><span id="hudtxt">0/6</span></div>
       <div class="dpad" id="dpad" aria-label="Move the head"><button type="button" data-d="0,-1" aria-label="Up">▲</button><button type="button" data-d="-1,0" aria-label="Left">◀</button><button type="button" data-d="1,0" aria-label="Right">▶</button><button type="button" data-d="0,1" aria-label="Down">▼</button></div>
       <div class="stpanel" id="stpanel" hidden>
         <img id="spimg" src="" alt="">
@@ -388,30 +388,18 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
       </article>
 
       <article class="mcard" id="c-aic" data-lane="move">
-        <div class="media">
-          <svg viewBox="0 0 640 400" role="img" aria-label="A connector searching in a spiral until it seats in the port">
-            <rect width="640" height="400" fill="#0A0D10"/>
-            <g stroke="rgba(255,255,255,.06)"><path d="M0 100H640M0 200H640M0 300H640M160 0V400M320 0V400M480 0V400"/></g>
-            <rect x="430" y="150" width="150" height="100" rx="8" fill="#1C2126" stroke="rgba(255,255,255,.25)"/>
-            <rect x="470" y="182" width="36" height="36" rx="3" fill="#06080A" stroke="#4CC2FF"/>
-            <g>
-              <rect x="-70" y="-14" width="70" height="28" rx="4" fill="#A7B0B8"/><rect x="-16" y="-9" width="34" height="18" rx="2" fill="#4CC2FF"/>
-              <animateMotion dur="5s" repeatCount="indefinite" keyPoints="0;0.55;1" keyTimes="0;0.7;1" calcMode="linear" path="M120,200 C160,120 240,120 280,200 C300,240 330,240 350,200 C365,175 395,175 410,200 C420,212 440,212 452,200 L470,200"/>
-            </g>
-            <path d="M120,200 C160,120 240,120 280,200 C300,240 330,240 350,200 C365,175 395,175 410,200 C420,212 440,212 452,200" fill="none" stroke="#00A2B1" stroke-width="1.2" stroke-dasharray="3 5" opacity=".7"/>
-            <g font-family="IBM Plex Mono, monospace" font-size="12" fill="#A9B2BA">
-              <text x="40" y="60" fill="#00A2B1" letter-spacing="2">COMPLIANT APPROACH · FORCE BIAS · SPIRAL SEARCH</text>
-              <text x="40" y="340">no direct feedback from the port; tolerance smaller than the port's pose uncertainty</text>
-              <text x="40" y="362" fill="#6B757E">F/T sensor on a UR5 · ROS 2 · MoveIt · Foxglove for the whole team's eyes</text>
-            </g>
-          </svg>
+        <div class="media" style="background:#0A0D10;display:grid;grid-template-columns:1fr 1fr;gap:2px">
+          <video src="assets/aic-gazebo-left.mp4" autoplay muted loop playsinline preload="metadata" aria-label="Gazebo simulation, left wrist camera: the UR5e brings a fibre plug to the task board" style="width:100%;height:100%;object-fit:cover"></video>
+          <video src="assets/aic-gazebo-center.mp4" autoplay muted loop playsinline preload="metadata" aria-label="Gazebo simulation, centre wrist camera: the plug seats in the port" style="width:100%;height:100%;object-fit:cover"></video>
+          <span style="position:absolute;left:8px;bottom:6px;font:10px var(--mono);color:#A9B2BA;background:rgba(15,19,22,.7);padding:2px 6px;border-radius:4px">GAZEBO · UR5e WRIST CAMERAS · public AIC dataset, Apache-2.0</span>
         </div>
         <div class="mbody">
           <div class="kicker"><span>Intrinsic AI for Industry Challenge</span><span class="st proto">Prototype</span></div>
           <h3>Force-controlled insertion, no direct feedback</h3>
-          <p>Led a global team of five inserting SC and SFP fibre connectors on a UR5. Split the work into vision, fiducial, geometric and learned-policy tracks so they could be compared, not argued about.</p>
+          <p>Led a global team of five inserting SC and SFP fibre connectors on a UR5e: compliant approach, force bias, spiral search. Foxglove was the team's shared eyes on every run, Gazebo the proving ground, MoveIt the planner.</p>
           <div class="stats"><div class="stat"><b>36 / 1,600</b><span>teams, top 2.3%</span></div><div class="stat"><b>2 ports</b><span>SC and SFP, end to end</span></div></div>
-          <div class="tech"><span>ROS 2</span><span>MoveIt</span><span>Foxglove</span><span>force / torque</span><span>Gazebo</span></div>
+          <div class="tech"><span>ROS 2</span><span>MoveIt</span><span>Foxglove</span><span>Gazebo</span><span>force / torque</span><span>UR5e · Hand-E · Axia80</span></div>
+          <div class="acts"><a class="btn small" href="https://www.intrinsic.ai/events/ai-for-industry-challenge">The challenge ↗</a></div>
         </div>
       </article>
 
@@ -430,10 +418,10 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
       <article class="mcard" id="c-lp" data-lane="play">
         <div class="media"><video id="lpv" preload="none" playsinline controls hidden src="assets/linkpulse-pitch.mp4"></video><div id="lpp" style="position:absolute;inset:0;display:grid;place-items:center;background:radial-gradient(80% 80% at 50% 40%,#1C2A36 0%,#0A0D10 75%)"><div style="text-align:center"><div style="font:700 44px var(--mono);letter-spacing:-.02em;color:#F0F2F4">LP</div><div style="font:600 13px var(--mono);letter-spacing:.2em;color:#4CC2FF">LINKPULSE</div><div style="color:#A9B2BA;font-size:13px;margin-top:6px">Stop saving. Start knowing.</div></div></div><button class="play" type="button" data-video="lpv" data-poster="lpp" aria-label="Play the LinkPulse pitch film"><span>▶</span></button></div>
         <div class="mbody">
-          <div class="kicker"><span>Consumer AI app · capstone</span><span class="st proto">Prototype</span></div>
+          <div class="kicker"><span>Consumer AI app</span><span class="st proto">Prototype</span></div>
           <h3>LinkPulse</h3>
           <p>Your saved links, screenshots and videos, read and understood by AI, then resurfaced as weekly digests and semantic search. Screenshots become searchable.</p>
-          <div class="stats"><div class="stat"><b>4</b><span>outputs: digest, trends, year in review, search</span></div><div class="stat"><b>Cohort 4</b><span>AI Masterclass capstone, with Amit Kalita</span></div></div>
+          <div class="stats"><div class="stat"><b>4</b><span>outputs: digest, trends, year in review, search</span></div><div class="stat"><b>Screenshots</b><span>become searchable</span></div></div>
           <div class="tech"><span>Claude Vision</span><span>Whisper</span><span>ChromaDB</span><span>Next.js</span><span>Remotion</span></div>
           <div class="acts"><a class="btn small" href="https://docs.google.com/presentation/d/135KlwexhedrqziYtiUxQzwldMFNpVsvSrs4vrjfCvvw/edit?usp=sharing">Pitch deck</a></div>
         </div>
@@ -581,7 +569,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
     <div class="sec-head"><div><div class="kicker">Path</div><h2>Fifteen years, one direction</h2></div></div>
     <div class="path">
       <div class="pt now"><div class="yr">2016 → NOW</div><b>FormFactor, Livermore</b><span>Principal Robotics Software Engineer and Technical Lead. Lead a team of five. Own the platform, the CI/CD and GitLab for ~60 engineers. Company AI group. ISO 9001:2015, Laser Safety Officer.</span></div>
-      <div class="pt"><div class="yr">2026 · SIDE QUESTS</div><b>Three competitions, one year</b><span>1st place, ExecuTorch × Qualcomm (MotionVitals). 36th of 1,600, Intrinsic AI for Industry. AI Masterclass capstone (LinkPulse).</span></div>
+      <div class="pt"><div class="yr">2026 · SIDE QUESTS</div><b>Three competitions, one year</b><span>1st place, ExecuTorch × Qualcomm (MotionVitals). 36th of 1,600, Intrinsic AI for Industry. LinkPulse, a consumer AI app, pitched and filmed.</span></div>
       <div class="pt"><div class="yr">2016</div><b>USC</b><span>MS Computer Science, Intelligent Robotics. Drone navigation in GPS-denied spaces with stereo vision.</span></div>
       <div class="pt"><div class="yr">2015 → 2016</div><b>AIO Robotics</b><span>Firmware and Wi-Fi for an app-integrated 3D printer. CES Innovation Awards 2016 honoree.</span></div>
       <div class="pt"><div class="yr">2015</div><b>Fetch Robotics</b><span>Navigation and localization for warehouse robots on ROS.</span></div>
@@ -597,7 +585,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
     <div class="links">
       <a class="lk" href="https://github.com/theja2289/sharkOdessey"><b>Shark Odyssey</b><span>PWA game, Capacitor Android build, store listing.</span><i>github</i></a>
       <a class="lk" href="https://github.com/theja2289/WaferGuardian"><b>Wafer Guardian</b><span>Browser game plus two reference pages on the probe-card industry and the robotics case.</span><i>github</i></a>
-      <a class="lk" href="https://docs.google.com/presentation/d/135KlwexhedrqziYtiUxQzwldMFNpVsvSrs4vrjfCvvw/edit?usp=sharing"><b>LinkPulse pitch deck</b><span>18 slides with speaker notes, the 60-second product walkthrough, the wedge and the roadmap.</span><i>slides</i></a>
+      <a class="lk" href="https://docs.google.com/presentation/d/135KlwexhedrqziYtiUxQzwldMFNpVsvSrs4vrjfCvvw/edit?usp=sharing"><b>LinkPulse pitch deck</b><span>18 slides: the problem, the product, the wedge and the roadmap.</span><i>slides</i></a>
     </div>
   </div>
 </section>
@@ -657,7 +645,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
       <ul>
         <li><strong>MotionVitals AI, 2026:</strong> architect and lead on a team of five; RTMPose lowered onto the Qualcomm Hexagon NPU via ExecuTorch with a native C++ runtime; 89 ms to 1.6 ms, live at 30 fps. First place, Compute Track, ExecuTorch × Qualcomm.</li>
         <li><strong>Intrinsic AI for Industry Challenge, 2026:</strong> led a global team of five; ROS 2 force-controlled fibre-connector insertion on a UR5 with Foxglove for shared observability; 36th of 1,600 teams.</li>
-        <li><strong>LinkPulse, 2026:</strong> AI Masterclass capstone; multimodal capture, Claude Vision OCR and Whisper transcripts, auto-classification, digests and semantic search.</li>
+        <li><strong>LinkPulse, 2026:</strong> multimodal capture, Claude Vision OCR and Whisper transcripts, auto-classification, digests and semantic search.</li>
       </ul>
       <h2>Skills</h2>
       <div class="skl">
@@ -1742,7 +1730,7 @@ window.makeGellyScene = function (canvasId, reduceMotion) {
     try{ var saved=JSON.parse(sessionStorage.getItem("vt-cell")||"{}"); Object.keys(saved).forEach(function(k){done[k]=true;}); }catch(e){}
     var fill=$("hudfill"), hudtxt=$("hudtxt"), panel=$("stpanel"), doneBox=$("done");
     function count(){ return Object.keys(done).length; }
-    function hud(){ var c=count(); fill.style.width=(c/ST.length*100)+"%"; hudtxt.textContent=c+" / "+ST.length+" stations"; }
+    function hud(){ var c=count(); fill.style.width=(c/ST.length*100)+"%"; hudtxt.textContent=c+"/"+ST.length; }
     hud();
     function mono(px,b){return (b?"600 ":"")+px+"px IBM Plex Mono, Cascadia Mono, monospace";}
     function rr(x,y,w,h,r){ ctx.beginPath(); ctx.moveTo(x+r,y); ctx.arcTo(x+w,y,x+w,y+h,r); ctx.arcTo(x+w,y+h,x,y+h,r); ctx.arcTo(x,y+h,x,y,r); ctx.arcTo(x,y,x+w,y,r); ctx.closePath(); }
