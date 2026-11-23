@@ -108,6 +108,7 @@ h3{font-size:18px;font-weight:600}
 .rail>*{scroll-snap-align:start}
 .mcard{background:var(--panel);border:1px solid var(--stroke);border-radius:14px;overflow:hidden;display:flex;flex-direction:column;min-width:0}
 .media{position:relative;aspect-ratio:16/10;background:#0A0D10;overflow:hidden;border-bottom:1px solid var(--stroke)}
+.media .tracecanvas{width:100%;height:100%;display:block}
 .media img,.media video,.media canvas,.media svg{display:block;width:100%;height:100%;object-fit:cover;object-position:top left}
 .media video{object-fit:cover}
 .media .play{position:absolute;inset:0;display:grid;place-items:center;background:rgba(10,13,16,.25);border:0;cursor:pointer;color:#fff}
@@ -189,7 +190,8 @@ h3{font-size:18px;font-weight:600}
 .clip figcaption{padding:10px 12px 12px;font-size:13px;color:var(--muted);line-height:1.4}
 .clip figcaption b{display:block;color:var(--text);font-weight:600}
 .clip .grp{font:600 10px var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--teal);padding:8px 12px 0}
-dialog#lb{border:0;padding:0;background:transparent;max-width:min(96vw,1400px)}
+dialog#lb,dialog#tracedlg{border:0;padding:0;background:transparent;max-width:min(96vw,1400px)}
+dialog#tracedlg::backdrop{background:rgba(5,8,10,.88)}
 dialog#lb::backdrop{background:rgba(5,8,10,.88)}
 #lb .lbin{background:var(--panel);border-radius:12px;overflow:hidden;border:1px solid var(--stroke2)}
 #lb img{display:block;max-width:min(96vw,1400px);max-height:78vh;width:auto;height:auto}
@@ -317,7 +319,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
           <p>One headless engine runs every cell: a profile per machine, reusable skills, behaviour trees, and a browser UI you can debug live.</p>
           <div class="stats"><div class="stat"><b>186k</b><span>lines, built in 2026</span></div><div class="stat"><b>&lt;1 ms</b><span>tick, was 100 ms</span></div><div class="stat"><b>134</b><span>FMEA recovery rows</span></div></div>
           <div class="tech"><span>.NET 9</span><span>behaviour trees</span><span>ZeroMQ workers</span><span>ACS motion</span></div>
-          <div class="acts"><a class="btn small" href="#watch">Watch the film</a><a class="btn small" href="https://claude.ai/artifact/DXcgm21QgUHxmu5LHgdwPS">Read: inside the engine</a></div>
+          <div class="acts"><a class="btn small" href="#watch">Watch the film</a><a class="btn small" href="#watch">See every page</a></div>
         </div>
       </article>
 
@@ -341,7 +343,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
           <p>Replaced a licensed vision suite with an in-house pipeline and a model builder, rolled out in shadow mode before anyone switched.</p>
           <div class="stats"><div class="stat"><b>10 ms</b><span>part detector</span></div><div class="stat"><b>0</b><span>defect labels needed</span></div><div class="stat"><b>100%</b><span>on reference trays</span></div></div>
           <div class="tech"><span>PyTorch</span><span>OpenCV</span><span>RF-DETR</span><span>PatchCore</span></div>
-          <div class="acts"><a class="btn small" href="#watch">See the editor</a><a class="btn small" href="https://claude.ai/artifact/WzgAjyoKZz6zdAu72fFUZK">Read: the migration</a></div>
+          <div class="acts"><a class="btn small" href="#watch">See the editor</a></div>
         </div>
       </article>
 
@@ -357,34 +359,14 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
       </article>
 
       <article class="mcard" id="c-trace" data-lane="prove">
-        <div class="media">
-          <svg viewBox="0 0 640 400" role="img" aria-label="Identity loop: mark, read, record, act, watch">
-            <defs><marker id="ah2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#6B757E"/></marker>
-              <path id="loop" d="M80,200 L220,200 L360,200 L500,200 L560,200 L560,300 L80,300 Z"/></defs>
-            <rect width="640" height="400" fill="#0A0D10"/>
-            <g font-family="IBM Plex Mono, monospace" font-size="13" fill="#A9B2BA" text-anchor="middle">
-              <g><rect x="30" y="160" width="100" height="80" rx="10" fill="rgba(244,206,20,.12)" stroke="#F4CE14"/><text x="80" y="195" fill="#F0F2F4" font-weight="600">MARK</text><text x="80" y="218" font-size="11">laser · code</text></g>
-              <line x1="130" y1="200" x2="166" y2="200" stroke="#6B757E" stroke-width="1.5" marker-end="url(#ah2)"/>
-              <g><rect x="170" y="160" width="100" height="80" rx="10" fill="rgba(255,255,255,.04)" stroke="rgba(255,255,255,.2)"/><text x="220" y="195" fill="#F0F2F4" font-weight="600">READ</text><text x="220" y="218" font-size="11">every station</text></g>
-              <line x1="270" y1="200" x2="306" y2="200" stroke="#6B757E" stroke-width="1.5" marker-end="url(#ah2)"/>
-              <g><rect x="310" y="160" width="100" height="80" rx="10" fill="rgba(255,255,255,.04)" stroke="rgba(255,255,255,.2)"/><text x="360" y="195" fill="#F0F2F4" font-weight="600">RECORD</text><text x="360" y="218" font-size="11">who · when · where</text></g>
-              <line x1="410" y1="200" x2="446" y2="200" stroke="#6B757E" stroke-width="1.5" marker-end="url(#ah2)"/>
-              <g><rect x="450" y="160" width="100" height="80" rx="10" fill="rgba(0,162,177,.15)" stroke="#00A2B1"/><text x="500" y="195" fill="#F0F2F4" font-weight="600">ACT</text><text x="500" y="218" font-size="11">robot verifies</text></g>
-              <path d="M550,200 L590,200 L590,320 L80,320 L80,244" fill="none" stroke="#6B757E" stroke-width="1.2" stroke-dasharray="4 4" marker-end="url(#ah2)"/>
-              <text x="335" y="345" font-size="11" fill="#6B757E">missed reads feed back into how parts are marked</text>
-              <text x="320" y="70" font-size="12" fill="#00A2B1" letter-spacing="2">IDENTITY THAT SURVIVES SINGULATION</text>
-              <text x="320" y="96" font-size="11" fill="#6B757E">one wafer becomes many parts; the ID goes with every piece</text>
-            </g>
-            <circle r="6" fill="#4CC2FF"><animateMotion dur="6s" repeatCount="indefinite" path="M80,200 L220,200 L360,200 L500,200 L590,200 L590,320 L80,320 L80,200"/></circle>
-          </svg>
-        </div>
+        <div class="media" style="background:#0A0D10"><canvas class="tracecanvas" aria-label="Follow one wafer: marked by laser, scanned at a station, singulated into marked pieces, picked by a robot that reads the ID, every step recorded"></canvas></div>
         <div class="mbody">
           <div class="kicker"><span>Traceability</span><span class="st prod">In production</span></div>
           <h3>Enhanced Traceability, fab to assembly</h3>
           <p>Lot IDs laser-scribed on the part, a centre mark that survives singulation, tablet scanning into the MES, robots that act only on a verified ID.</p>
           <div class="stats"><div class="stat"><b>Zero</b><span>retyping at stations</span></div><div class="stat"><b>1st author</b><span>Technology Summit 2025</span></div></div>
           <div class="tech"><span>laser marking</span><span>QR / DPM</span><span>MES integration</span></div>
-          <div class="acts"><a class="btn small" href="https://claude.ai/artifact/147YFp1MKbBjn1k3v1AKko">Read: the poster</a></div>
+          <div class="acts"><button class="btn small" type="button" id="traceBig">Watch it larger</button></div>
         </div>
       </article>
 
@@ -463,18 +445,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
         </div>
       </article>
 
-      <article class="mcard" id="c-strider" data-lane="play">
-        <div class="media"><div style="position:absolute;inset:0;display:grid;place-items:center;background:radial-gradient(90% 80% at 50% 50%,#1A2430 0%,#0A0D10 80%)"><div style="text-align:center;padding:20px"><div style="font:700 28px var(--sans);letter-spacing:-.02em">Strider Robotics</div><div style="color:#A9B2BA;font-size:13px;margin-top:6px">site · 3D exploded view · seven films, all from one content file</div></div></div></div>
-        <div class="mbody">
-          <div class="kicker"><span>Go-to-market site · side project</span><span class="st prod">Live</span></div>
-          <h3>A quadruped's website, rendered from code</h3>
-          <p>Interactive 3D hero, scroll-driven exploded view, mission configurator and films for an industrial quadruped. Change a number once and the site and the films both update.</p>
-          <div class="stats"><div class="stat"><b>7</b><span>films from code</span></div><div class="stat"><b>1</b><span>parametric robot model</span></div></div>
-          <div class="tech"><span>React Three Fiber</span><span>Remotion</span><span>TypeScript</span></div>
-          <div class="acts"><a class="btn small" href="https://theja2289.github.io/Strider/">Open the site</a><a class="btn small" href="https://github.com/theja2289/Strider">Code</a></div>
-        </div>
-      </article>
-
+      
     </div></div>
   </div>
 </section>
@@ -546,7 +517,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
           <div class="fact"><span class="k">Power finding</span><span class="v">BLE idle 34 µA with a 32 kHz crystal, 3.3 mA without</span></div>
         </div>
         <div class="caveat">Concept design, not a product. Software renders, not photos. Battery life, cost and sensor height are estimates. No PCB layout yet. A warning aid, not a certified interlock. CAD, audit and BOM produced with AI assistance from my requirements and direction.</div>
-        <div class="ctas"><button class="btn small clipbtn" type="button" data-src="assets/flasher-evolution.png" data-cap="Four stages: hinged box, thick disk, slim disk on paper, v2.1 toleranced and audited.">Design evolution</button><button class="btn small clipbtn" type="button" data-src="assets/flasher-section.png" data-cap="Cross-section with the thickness stack: floor, cells, PCB, reflector, light guide, diffuser, plate.">Section</button><button class="btn small clipbtn" type="button" data-src="assets/flasher-plate-off.png" data-cap="Legend plate lifted off its eight magnets: diffuser, LEDs, PIR, USB-C, test switch, webbed bosses.">Under the plate</button></div>
+        <div class="ctas"><button class="btn small imgbtn" type="button" data-src="assets/flasher-evolution.png" data-cap="Four stages: hinged box, thick disk, slim disk on paper, v2.1 toleranced and audited.">Design evolution</button><button class="btn small imgbtn" type="button" data-src="assets/flasher-section.png" data-cap="Cross-section with the thickness stack: floor, cells, PCB, reflector, light guide, diffuser, plate.">Section</button><button class="btn small imgbtn" type="button" data-src="assets/flasher-plate-off.png" data-cap="Legend plate lifted off its eight magnets: diffuser, LEDs, PIR, USB-C, test switch, webbed bosses.">Under the plate</button></div>
       </div>
     </div>
   </div>
@@ -590,6 +561,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
   </div>
 </section>
 
+<dialog id="tracedlg" aria-label="Follow one wafer"><div class="lbin"><canvas class="tracecanvas" id="tracebigcanvas" style="display:block;width:min(96vw,1100px);aspect-ratio:16/10"></canvas><div class="lbbar"><span>Follow one wafer: laser mark, scan at every station, singulate with the mark on every piece, pick by a verified ID. Every step lands in the record.</span><button class="btn small" type="button" id="tracedlgclose">Close</button></div></div></dialog>
 <dialog id="lb" aria-label="Clip viewer"><div class="lbin"><img id="lbimg" src="" alt=""><div class="lbbar"><span id="lbcap"></span><button class="btn small" type="button" id="lbclose">Close</button></div></div></dialog>
 
 <section class="sec" id="numbers">
@@ -616,15 +588,10 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
 
 <section class="sec" id="read">
   <div class="wrap">
-    <div class="sec-head"><div><div class="kicker">Read, if you want to</div><h2>Longer write-ups and code</h2><p class="sub">The engineering documents are private by default; ask and I will open them.</p></div></div>
+    <div class="sec-head"><div><div class="kicker">Read, if you want to</div><h2>Code and decks</h2><p class="sub">Everything else is on the page. These are the places you can dig into on your own.</p></div></div>
     <div class="links">
-      <a class="lk" href="https://claude.ai/artifact/DXcgm21QgUHxmu5LHgdwPS"><b>Inside the Gelly Engine</b><span>How a Start becomes axis moves; what Pause and STOP really do; building skills, trees and vision jobs.</span><i>document · request access</i></a>
-      <a class="lk" href="https://claude.ai/artifact/JXAFCqQj6Z5sLVZBfE4rYZ"><b>Engine architecture</b><span>Process layout, worker protocol, supervisor restarts, the independent stop channel.</span><i>document · request access</i></a>
-      <a class="lk" href="https://claude.ai/artifact/147YFp1MKbBjn1k3v1AKko"><b>Enhanced Traceability poster</b><span>The Technology Summit poster: method, analysis, nine solution areas, the marking rule.</span><i>poster · request access</i></a>
-      <a class="lk" href="https://claude.ai/artifact/WzgAjyoKZz6zdAu72fFUZK"><b>Retiring a commercial vision stack</b><span>Job-by-job migration with shadow validation against production.</span><i>document · request access</i></a>
       <a class="lk" href="https://github.com/theja2289/sharkOdessey"><b>Shark Odyssey</b><span>PWA game, Capacitor Android build, store listing.</span><i>github</i></a>
       <a class="lk" href="https://github.com/theja2289/WaferGuardian"><b>Wafer Guardian</b><span>Browser game plus two reference pages on the probe-card industry and the robotics case.</span><i>github</i></a>
-      <a class="lk" href="https://github.com/theja2289/Strider"><b>Strider Robotics site</b><span>React Three Fiber site and Remotion films sharing one model and one content file.</span><i>github</i></a>
       <a class="lk" href="https://docs.google.com/presentation/d/135KlwexhedrqziYtiUxQzwldMFNpVsvSrs4vrjfCvvw/edit?usp=sharing"><b>LinkPulse pitch deck</b><span>18 slides with speaker notes, the 60-second product walkthrough, the wedge and the roadmap.</span><i>slides</i></a>
     </div>
   </div>
@@ -1766,11 +1733,10 @@ window.makeGellyScene = function (canvasId, reduceMotion) {
     {id:"flasher",lane:"build",x:82,nm:"Door Safety Flasher",img:"assets/flasher-turntable.gif",k:"Hardware, design stage",t:"A warning sign that sees the other side of the door",p:"Two edge-lit disks talking over BLE. Parametric CAD with an automated audit. Not built yet.",n:[["150 mm","disk"],["9.2 mm","thin"]],go:"#c-flasher"},
     {id:"trace",lane:"prove",x:34,nm:"Enhanced Traceability",tile:"ID",k:"Traceability",t:"Identity that survives singulation",p:"Laser-scribed IDs, tablet scanning into MES, robots that act only on a verified ID.",n:[["Zero","retyping"],["1st author","Tech Summit 2025"]],go:"#c-trace"},
     {id:"rearch",lane:"prove",x:62,nm:"Engine that stays up",img:"assets/engine-system-setup.gif",k:"Delivery",t:"From one fragile app to isolated workers",p:"A crash in one worker no longer stops the tool; weekly releases into an air-gapped factory.",n:[["1,700","tests"],["5 in 10 wk","releases"]],go:"#c-rearch"},
-    {id:"games",lane:"play",x:26,nm:"Two games",tile:"▶",k:"Play",t:"Shark Odyssey and Wafer Guardian",p:"Plain web pages, no build step. One for kids who like sharks, one that teaches probe cards.",n:[["10","real sharks"],["1","probe card to build"]],go:"#play"},
-    {id:"strider",lane:"play",x:54,nm:"Strider site",tile:"M3",k:"Side project",t:"A quadruped's website, rendered from code",p:"3D exploded view, mission configurator and seven films from one content file.",n:[["7","films"],["1","parametric model"]],go:"#c-strider"},
-    {id:"lp",lane:"play",x:80,nm:"LinkPulse",tile:"LP",k:"Consumer AI",t:"Stop saving. Start knowing.",p:"Saved links and screenshots read by AI, resurfaced as digests and semantic search.",n:[["4","outputs"],["Cohort 4","capstone"]],go:"#c-lp"}
+    {id:"games",lane:"play",x:34,nm:"Two games",tile:"▶",k:"Play",t:"Shark Odyssey and Wafer Guardian",p:"Plain web pages, no build step. One for kids who like sharks, one that teaches probe cards.",n:[["10","real sharks"],["1","probe card to build"]],go:"#play"},
+    {id:"lp",lane:"play",x:66,nm:"LinkPulse",tile:"LP",k:"Consumer AI",t:"Stop saving. Start knowing.",p:"Saved links and screenshots read by AI, resurfaced as digests and semantic search.",n:[["4","outputs"],["Cohort 4","capstone"]],go:"#c-lp"}
   ];
-  var LINKS=[["framework","engine"],["engine","gellyml"],["engine","rearch"],["cell","engine"],["cell","gellyml"],["trace","cell"],["mv","gellyml"],["early","aic"],["early","cell"],["aic","cell"],["games","strider"],["strider","lp"],["flasher","strider"]];
+  var LINKS=[["framework","engine"],["engine","gellyml"],["engine","rearch"],["cell","engine"],["cell","gellyml"],["trace","cell"],["mv","gellyml"],["early","aic"],["early","cell"],["aic","cell"],["trace","rearch"]];
   var map=$("map"), svg=$("maplinks"), tip=$("tip");
   Object.keys(LANES).forEach(function(k){
     var L=LANES[k];
@@ -1831,6 +1797,68 @@ window.makeGellyScene = function (canvasId, reduceMotion) {
     NODES.forEach(function(o){ o.el.classList.remove("on"); }); n.el.classList.add("on"); n.el.focus({preventScroll:true}); showTip(n,n.el);
     setTimeout(function(){ go(n); },650);
   });
+
+
+  /* ---------- follow one wafer: the traceability story as a drawing ---------- */
+  function makeTraceScene(canvas){
+    var ctx=canvas.getContext("2d"), W=640, H=400, dpr=1, sc=1, ox=0, oy=0, T=17, log=[], lastLogT=-1;
+    var STN=[{x:90,n:"LASER MARK"},{x:250,n:"SCAN IN / OUT"},{x:400,n:"SINGULATE"},{x:545,n:"PICK BY ID"}], Y=150;
+    var LOG=[[1.6,"09:15  W276878.1  back-side mark scribed  ·  laser"],[4.6,"10:30  Tip Litho  IN   ·  JC  ·  tablet 02"],[6.0,"10:31  OEM screen captured  ·  attached to lot"],[8.6,"14:05  singulated  ·  9 mesh  ·  centre mark on every piece"],[12.2,"14:12  G0051 read 100%  ·  tray T002 cell 3  ·  robot"],[14.0,"14:12  record complete  ·  wafer → mesh → gang → tray"]];
+    function ease(t){return t<.5?4*t*t*t:1-Math.pow(-2*t+2,3)/2;}
+    function clamp(v){return Math.max(0,Math.min(1,v));}
+    function mono(px,b){return (b?"600 ":"")+px+"px IBM Plex Mono, Cascadia Mono, monospace";}
+    function resize(){ var r=canvas.getBoundingClientRect(); if(!r.width)return; dpr=Math.min(2,window.devicePixelRatio||1); canvas.width=Math.round(r.width*dpr); canvas.height=Math.round(r.height*dpr); sc=Math.min(r.width/W,r.height/H); ox=(r.width-W*sc)/2; oy=(r.height-H*sc)/2; }
+    function code(x,y,size,col,prog){ var n=7, c=size/n, k=0; ctx.fillStyle=col; for(var r=0;r<n;r++)for(var q=0;q<n;q++){ if(prog!==undefined && k++/(n*n)>prog)return; var on=(r*31+q*17+r*q)%3!==0||r===0||q===0||r===n-1||q===n-1; if(on)ctx.fillRect(x+q*c,y+r*c,c*.92,c*.92);} }
+    function wafer(x,y,r,marked,prog){ ctx.beginPath(); ctx.arc(x,y,r,0,Math.PI*2); ctx.fillStyle="#6E7A86"; ctx.fill(); ctx.strokeStyle="rgba(255,255,255,.35)"; ctx.lineWidth=1.2; ctx.stroke(); ctx.beginPath(); ctx.arc(x,y,r-5,0,Math.PI*2); ctx.strokeStyle="rgba(255,255,255,.08)"; ctx.stroke(); if(marked) code(x-11,y-11,22,"#0F1316",prog); }
+    function frame(t){
+      ctx.setTransform(dpr,0,0,dpr,0,0); ctx.clearRect(0,0,canvas.width,canvas.height);
+      ctx.setTransform(dpr*sc,0,0,dpr*sc,dpr*ox,dpr*oy);
+      ctx.fillStyle="#0A0D10"; ctx.fillRect(0,0,W,H);
+      // title and conveyor
+      ctx.font=mono(11,true); ctx.fillStyle="#00A2B1"; ctx.fillText("FOLLOW ONE WAFER", 20,24);
+      ctx.font=mono(10); ctx.fillStyle="#6B757E"; ctx.fillText("the ID lives on the part · every touch is a read · the robot acts only on a verified ID", 20,40);
+      ctx.fillStyle="#141A1F"; ctx.fillRect(20,Y+48,600,10); ctx.fillStyle="rgba(255,255,255,.06)"; for(var k=0;k<60;k++)ctx.fillRect(24+k*10+((t*40)%10),Y+50,4,6);
+      STN.forEach(function(s,i){ var act=(i===0&&t<3.2)||(i===1&&t>=3.2&&t<6.4)||(i===2&&t>=6.4&&t<9.4)||(i===3&&t>=9.4&&t<14.5); ctx.fillStyle=act?"#F4CE14":"#3A4148"; ctx.fillRect(s.x-34,Y+64,68,3); ctx.font=mono(9.5,act); ctx.fillStyle=act?"#F0F2F4":"#6B757E"; ctx.textAlign="center"; ctx.fillText(s.n,s.x,Y+82); ctx.textAlign="left"; });
+      // the wafer's position along the line
+      var x = t<3.2? STN[0].x : t<4? STN[0].x+(STN[1].x-STN[0].x)*ease((t-3.2)/.8) : t<6.4? STN[1].x : t<7.2? STN[1].x+(STN[2].x-STN[1].x)*ease((t-6.4)/.8) : STN[2].x;
+      if(t<7.2){ var inprog=clamp((t-.3)/1.3); wafer(x,Y,36,t>.3,inprog);
+        if(t>.3&&t<1.7){ // laser head and beam
+          var lx=x-11+22*((t-.3)/1.4); ctx.fillStyle="#AEB6BD"; ctx.fillRect(x-20,Y-78,40,14); ctx.strokeStyle="rgba(255,90,90,.9)"; ctx.lineWidth=1.3; ctx.beginPath(); ctx.moveTo(x,Y-64); ctx.lineTo(lx,Y-2); ctx.stroke(); ctx.fillStyle="rgba(255,120,120,.9)"; ctx.beginPath(); ctx.arc(lx,Y-2,2.5,0,Math.PI*2); ctx.fill(); }
+        if(t>=4&&t<6.4){ // tablet scan
+          ctx.fillStyle="#1C2126"; ctx.fillRect(x+48,Y-40,46,70); ctx.strokeStyle="rgba(255,255,255,.25)"; ctx.strokeRect(x+48.5,Y-39.5,45,69); ctx.fillStyle="#0F1316"; ctx.fillRect(x+52,Y-34,38,50);
+          var sp=(t-4)%1.2/1.2, sy=Y-30+60*sp; ctx.strokeStyle="rgba(76,194,255,.9)"; ctx.lineWidth=1.5; ctx.beginPath(); ctx.moveTo(x-30,sy); ctx.lineTo(x+30,sy); ctx.stroke();
+          ctx.font=mono(8.5,true); ctx.fillStyle=t>4.6?"#6CCB5F":"#A9B2BA"; ctx.fillText(t>4.6?"IN ✓":"IN", x+56,Y+22); ctx.fillStyle="#A9B2BA"; ctx.fillText("OUT", x+74,Y+22); ctx.fillStyle="#4CC2FF"; ctx.fillText("W276878.1", x+54,Y-24); }
+      } else { // singulated: a 3x3 of pieces, each with the mark
+        var sep=t<8.6?ease((t-7.2)/1.4):1, g=22+8*sep;
+        for(var r=0;r<3;r++)for(var q=0;q<3;q++){ var picked=(t>=10.6&&r===1&&q===1); if(picked)continue; var px=STN[2].x+(q-1)*g, py=Y+(r-1)*g; ctx.fillStyle="#6E7A86"; ctx.fillRect(px-10,py-10,20,20); ctx.strokeStyle="rgba(255,255,255,.3)"; ctx.strokeRect(px-9.5,py-9.5,19,19); if(sep>.5) code(px-4,py-4,8,"#0F1316"); }
+        if(t<8.6){ ctx.strokeStyle="rgba(255,90,90,.8)"; ctx.lineWidth=1; ctx.setLineDash([3,3]); ctx.beginPath(); for(var m=-1;m<=1;m+=2){ ctx.moveTo(STN[2].x+m*g/2,Y-40); ctx.lineTo(STN[2].x+m*g/2,Y+40); ctx.moveTo(STN[2].x-40,Y+m*g/2); ctx.lineTo(STN[2].x+40,Y+m*g/2);} ctx.stroke(); ctx.setLineDash([]); }
+      }
+      // robot head and tray at station 4
+      var tx=STN[3].x+42, ty=Y-18; ctx.fillStyle="#1AA3C2"; ctx.fillRect(tx-24,ty-14,48,56); for(var c=0;c<3;c++){ ctx.fillStyle=(t>=13.2&&c===1)?"#6E7A86":"#0D6A80"; ctx.fillRect(tx-19,ty-9+c*17,38,13); if(t>=13.2&&c===1) code(tx-4,ty-9+c*17+2.5,8,"#0F1316"); }
+      ctx.font=mono(8); ctx.fillStyle="#DDF1F2"; ctx.fillText("T002",tx-14,ty+52);
+      var hx,hy,hold=false; if(t<9.4){hx=STN[3].x-30;hy=Y-90;} else if(t<10.6){var k1=ease((t-9.4)/1.2);hx=STN[3].x-30+(STN[2].x-STN[3].x+30)*k1;hy=Y-90+(-40+90)*k1;} else if(t<11.2){hx=STN[2].x;hy=Y-40;hold=false;} else if(t<12.2){hx=STN[2].x;hy=Y-40;hold=true;} else if(t<13.2){var k2=ease((t-12.2)/1);hx=STN[2].x+(tx-STN[2].x)*k2;hy=Y-40+(ty+8-(Y-40))*k2;hold=true;} else {hx=tx;hy=ty+8;hold=false;}
+      if(t>=9.4&&t<14.5){ ctx.fillStyle="#2C343C"; ctx.fillRect(hx-6,0,12,hy-10); ctx.fillStyle="#AEB6BD"; ctx.beginPath(); ctx.arc(hx,hy-6,9,0,Math.PI*2); ctx.fill(); ctx.fillStyle="#2A2F34"; ctx.beginPath(); ctx.arc(hx,hy-6,3,0,Math.PI*2); ctx.fill();
+        if(hold){ ctx.fillStyle="#6E7A86"; ctx.fillRect(hx-10,hy+2,20,20); code(hx-4,hy+8,8,"#0F1316"); ctx.strokeStyle="rgba(0,162,177,.9)"; ctx.beginPath(); ctx.arc(hx,hy-6,13+Math.sin(t*12)*1.5,0,Math.PI*2); ctx.stroke(); }
+        if(t>=11.2&&t<12.2){ ctx.strokeStyle="#6CCB5F"; ctx.lineWidth=1.4; ctx.strokeRect(hx-16,hy-4,32,32); ctx.font=mono(9,true); ctx.fillStyle="#6CCB5F"; ctx.textAlign="center"; ctx.fillText("ID G0051 · 100%",hx,hy+44); ctx.textAlign="left"; }
+      }
+      // the record
+      ctx.fillStyle="rgba(10,13,16,.9)"; ctx.fillRect(20,268,600,112); ctx.strokeStyle="rgba(255,255,255,.1)"; ctx.strokeRect(20.5,268.5,599,111);
+      ctx.font=mono(9,true); ctx.fillStyle="#6B757E"; ctx.fillText("RECORD · who · when · where",30,284);
+      var shown=LOG.filter(function(l){return t>=l[0];}).slice(-5); ctx.font=mono(10);
+      shown.forEach(function(l,i){ var fresh=t-l[0]<.6; ctx.fillStyle=fresh?"#F0F2F4":"#A9B2BA"; ctx.fillText(l[1],30,302+i*15); if(fresh){ ctx.fillStyle="#6CCB5F"; ctx.fillRect(22,295+i*15,3,10);} });
+      if(t>14.5){ ctx.fillStyle="rgba(10,13,16,"+clamp((t-14.5)/1.2)*0.85+")"; ctx.fillRect(0,0,W,H); }
+    }
+    var start=performance.now(), running=true;
+    function loop(now){ if(!running)return; frame(((now-start)/1000)%T); requestAnimationFrame(loop); }
+    window.addEventListener("resize",resize); resize();
+    if(reduceMotion){ frame(11.6); } else requestAnimationFrame(loop);
+    return {stop:function(){running=false;},restart:function(){ start=performance.now(); if(!running){running=true; requestAnimationFrame(loop);} resize(); }};
+  }
+  var traceScenes=[]; document.querySelectorAll("#c-trace .tracecanvas").forEach(function(c){ traceScenes.push(makeTraceScene(c)); });
+  var tdlg=$("tracedlg"), tbig=null;
+  $("traceBig").addEventListener("click",function(){ tdlg.showModal?tdlg.showModal():tdlg.setAttribute("open",""); if(!tbig){ tbig=makeTraceScene($("tracebigcanvas")); } else tbig.restart(); });
+  $("tracedlgclose").addEventListener("click",function(){ tdlg.close?tdlg.close():tdlg.removeAttribute("open"); if(tbig)tbig.stop(); });
+  tdlg.addEventListener("click",function(e){ if(e.target===tdlg){ tdlg.close(); if(tbig)tbig.stop(); } });
 
   /* ---------- machines rail ---------- */
   var rail=$("rail");
@@ -1944,8 +1972,8 @@ window.makeGellyScene = function (canvasId, reduceMotion) {
 
   /* ---------- clip viewer ---------- */
   var lb=$("lb"), lbimg=$("lbimg"), lbcap=$("lbcap");
-  document.querySelectorAll(".clipbtn").forEach(function(b){
-    b.addEventListener("click",function(){ lbimg.src=b.getAttribute("data-src"); lbimg.alt=b.querySelector("img").alt; lbcap.textContent=b.getAttribute("data-cap"); lb.showModal?lb.showModal():lb.setAttribute("open",""); });
+  document.querySelectorAll(".clipbtn,.imgbtn").forEach(function(b){
+    b.addEventListener("click",function(){ lbimg.src=b.getAttribute("data-src"); var im=b.querySelector("img"); lbimg.alt=im?im.alt:b.textContent; lbcap.textContent=b.getAttribute("data-cap"); lb.showModal?lb.showModal():lb.setAttribute("open",""); });
   });
   $("lbclose").addEventListener("click",function(){ lb.close?lb.close():lb.removeAttribute("open"); });
   lb.addEventListener("click",function(e){ if(e.target===lb){ lb.close?lb.close():lb.removeAttribute("open"); } });
