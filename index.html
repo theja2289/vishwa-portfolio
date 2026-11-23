@@ -146,6 +146,28 @@ h3{font-size:18px;font-weight:600}
 .playmeta a{font-family:var(--mono);font-size:12.5px}
 @media (max-width:600px){.frame{aspect-ratio:3/4}}
 
+/* ---- build: 3D viewer ---- */
+.viewer{position:relative;aspect-ratio:16/10;background:radial-gradient(90% 80% at 50% 45%,#161B20 0%,#0A0D10 75%);border:1px solid var(--stroke2);border-radius:14px;overflow:hidden;max-width:100%}
+.viewer canvas{display:block;width:100%;height:100%}
+.viewer .fallback{position:absolute;inset:0}
+.viewer .fallback img{width:100%;height:100%;object-fit:cover}
+.viewer .vlabel{position:absolute;left:12px;top:10px;font:11px var(--mono);color:var(--dim);letter-spacing:.3px;background:rgba(15,19,22,.6);padding:3px 8px;border-radius:4px;pointer-events:none}
+.viewer .vhint{position:absolute;right:12px;bottom:10px;font:11px var(--mono);color:var(--dim);background:rgba(15,19,22,.6);padding:3px 8px;border-radius:4px;pointer-events:none}
+.vctl{display:grid;grid-template-columns:1fr auto;gap:12px 18px;align-items:center;margin-top:12px}
+@media (max-width:760px){.vctl{grid-template-columns:1fr}}
+.vctl label{display:flex;align-items:center;gap:12px;font:600 12px var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--dim)}
+.vctl input[type=range]{flex:1;accent-color:var(--accent);min-width:0}
+.vctl .legs{display:flex;gap:6px;flex-wrap:wrap}
+.vctl .legs button[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:#002033}
+.buildgrid{display:grid;grid-template-columns:1.6fr 1fr;gap:16px;align-items:start}
+@media (max-width:900px){.buildgrid{grid-template-columns:1fr}}
+.facts{display:grid;gap:8px}
+.fact{display:flex;justify-content:space-between;gap:12px;border-top:1px solid var(--stroke);padding-top:8px;font-size:14px}
+.fact:first-child{border-top:0;padding-top:0}
+.fact .k{color:var(--dim)}
+.fact .v{color:var(--text);text-align:right;font-family:var(--mono);font-size:13px}
+.caveat{border-left:3px solid var(--warn);padding:8px 10px;background:rgba(242,198,97,.07);border-radius:0 6px 6px 0;font-size:13px;color:var(--text)}
+
 /* ---- watch ---- */
 .pv{display:grid;grid-template-columns:1.5fr 1fr;gap:16px;align-items:stretch;margin-bottom:22px}
 @media (max-width:860px){.pv{grid-template-columns:1fr}}
@@ -240,6 +262,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
     <a class="name" href="#top">Vishwa Theja Pokala</a>
     <a class="l" href="#machines">Machines</a>
     <a class="l" href="#play">Play</a>
+    <a class="l" href="#build">3D</a>
     <a class="l" href="#watch">Watch</a>
     <a class="l" href="#numbers">Numbers</a>
     <a class="l" href="#path">Path</a>
@@ -407,6 +430,18 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
       </article>
 
       <article class="mcard">
+        <div class="media"><img src="assets/flasher-turntable.gif" alt="Door Safety Flasher concept render turning, legend strobing" loading="lazy"></div>
+        <div class="mbody">
+          <div class="kicker"><span>Hardware · personal project</span><span class="st proto">Design stage</span></div>
+          <h3>Door Safety Flasher</h3>
+          <p>A thin disk on each face of a door. Each senses people on its own side and strobes the disk on the other side, over Bluetooth, no hub. Parametric CAD with an automated audit; nothing built yet.</p>
+          <div class="stats"><div class="stat"><b>150 mm</b><span>disk, 9.2 mm thin</span></div><div class="stat"><b>9</b><span>cut files, 34-line BOM</span></div><div class="stat"><b>~6 mo</b><span>battery, quiet door, estimate</span></div></div>
+          <div class="tech"><span>CadQuery</span><span>ESP32-C6 · BLE</span><span>AM312 PIR</span><span>MJF PA12</span><span>AI-assisted design</span></div>
+          <div class="acts"><a class="btn small" href="#build">Explode it in 3D</a></div>
+        </div>
+      </article>
+
+      <article class="mcard">
         <div class="media"><video id="lpv" preload="none" playsinline controls hidden src="assets/linkpulse-pitch.mp4"></video><div id="lpp" style="position:absolute;inset:0;display:grid;place-items:center;background:radial-gradient(80% 80% at 50% 40%,#1C2A36 0%,#0A0D10 75%)"><div style="text-align:center"><div style="font:700 44px var(--mono);letter-spacing:-.02em;color:#F0F2F4">LP</div><div style="font:600 13px var(--mono);letter-spacing:.2em;color:#4CC2FF">LINKPULSE</div><div style="color:#A9B2BA;font-size:13px;margin-top:6px">Stop saving. Start knowing.</div></div></div><button class="play" type="button" data-video="lpv" data-poster="lpp" aria-label="Play the LinkPulse pitch film"><span>▶</span></button></div>
         <div class="mbody">
           <div class="kicker"><span>Consumer AI app · capstone</span><span class="st proto">Prototype</span></div>
@@ -464,6 +499,47 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
   </div>
 </section>
 
+<section class="sec" id="build">
+  <div class="wrap">
+    <div class="sec-head">
+      <div><div class="kicker">Build</div><h2>Pull a design apart</h2><p class="sub">The Door Safety Flasher as its real CAD parts, loaded from the STL files. Drag to turn it, slide to explode it, swap the legend.</p></div>
+    </div>
+    <div class="buildgrid">
+      <div>
+        <div class="viewer" id="viewer">
+          <div class="fallback" id="vfallback"><img src="assets/flasher-turntable.gif" alt="Door Safety Flasher turntable render"></div>
+          <span class="vlabel">DISK v2.1 · 21 PARTS · MILLIMETRES</span>
+          <span class="vhint">drag to orbit · wheel to zoom</span>
+        </div>
+        <div class="vctl">
+          <label for="explode">Explode <input type="range" id="explode" min="0" max="100" value="0"></label>
+          <div class="legs" role="group" aria-label="Legend plate">
+            <button class="btn small" type="button" data-plate="men" aria-pressed="true">Men</button>
+            <button class="btn small" type="button" data-plate="women" aria-pressed="false">Women</button>
+            <button class="btn small" type="button" data-plate="chem" aria-pressed="false">Chemical</button>
+            <button class="btn small" type="button" data-plate="laser" aria-pressed="false">Laser</button>
+            <button class="btn small" type="button" id="spin" aria-pressed="true">Spin</button>
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <h3>How it got here</h3>
+        <div class="facts">
+          <div class="fact"><span class="k">1 · Off-the-shelf</span><span class="v">Zigbee radar + light + hub</span></div>
+          <div class="fact"><span class="k">2 · Hinged box</span><span class="v">70 × 64 × 34 mm, 3×AA</span></div>
+          <div class="fact"><span class="k">3 · Round disk</span><span class="v">100 mm, PIR, no bridge</span></div>
+          <div class="fact"><span class="k">4 · Edge-lit slim disk</span><span class="v">7.5 mm on paper</span></div>
+          <div class="fact"><span class="k">5 · v2 DFM review</span><span class="v">7.5 mm could not be built</span></div>
+          <div class="fact"><span class="k">6 · v2.1 audit</span><span class="v">floating bosses caught, 9.2 mm</span></div>
+          <div class="fact"><span class="k">Power finding</span><span class="v">BLE idle 34 µA with a 32 kHz crystal, 3.3 mA without</span></div>
+        </div>
+        <div class="caveat">Concept design, not a product. Software renders, not photos. Battery life, cost and sensor height are estimates. No PCB layout yet. A warning aid, not a certified interlock. CAD, audit and BOM produced with AI assistance from my requirements and direction.</div>
+        <div class="ctas"><button class="btn small clipbtn" type="button" data-src="assets/flasher-evolution.png" data-cap="Four stages: hinged box, thick disk, slim disk on paper, v2.1 toleranced and audited.">Design evolution</button><button class="btn small clipbtn" type="button" data-src="assets/flasher-section.png" data-cap="Cross-section with the thickness stack: floor, cells, PCB, reflector, light guide, diffuser, plate.">Section</button><button class="btn small clipbtn" type="button" data-src="assets/flasher-plate-off.png" data-cap="Legend plate lifted off its eight magnets: diffuser, LEDs, PIR, USB-C, test switch, webbed bosses.">Under the plate</button></div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <section class="sec" id="watch">
   <div class="wrap">
     <div class="sec-head">
@@ -495,6 +571,8 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
       <figure class="clip"><div class="grp">Model Builder</div><button class="clipbtn" type="button" data-src="assets/ml-datasets.gif" data-cap="Datasets: crops from production images, split and exported."><img src="assets/ml-datasets.gif" alt="Datasets" loading="lazy"></button><figcaption><b>Datasets</b>Crops from production, split, exported.</figcaption></figure>
       <figure class="clip"><div class="grp">Model Builder</div><button class="clipbtn" type="button" data-src="assets/ml-annotate.gif" data-cap="Annotate: keyboard-first, every reader side by side, least certain first."><img src="assets/ml-annotate.gif" alt="Annotate" loading="lazy"></button><figcaption><b>Annotate</b>Keyboard-first, every reader side by side.</figcaption></figure>
       <figure class="clip"><div class="grp">Model Builder</div><button class="clipbtn" type="button" data-src="assets/ml-train.gif" data-cap="Train on the GPU server or this PC, resumable from checkpoint."><img src="assets/ml-train.gif" alt="Train" loading="lazy"></button><figcaption><b>Train</b>GPU server or local, resumable.</figcaption></figure>
+      <figure class="clip"><div class="grp">Door flasher</div><button class="clipbtn" type="button" data-src="assets/flasher-exploded.gif" data-cap="The disk exploding and closing: base, cells, PCB, optics, shell, magnets, plate."><img src="assets/flasher-exploded.gif" alt="Exploded view animation" loading="lazy"></button><figcaption><b>Exploded</b>Base, cells, PCB, optics, shell, magnets, plate.</figcaption></figure>
+      <figure class="clip"><div class="grp">Door flasher</div><button class="clipbtn" type="button" data-src="assets/flasher-legends.gif" data-cap="The four legends strobing in turn: men, women, chemical, laser."><img src="assets/flasher-legends.gif" alt="Four legends strobing" loading="lazy"></button><figcaption><b>Legends</b>Men, women, chemical hazard, laser in use.</figcaption></figure>
       <figure class="clip"><div class="grp">Model Builder</div><button class="clipbtn" type="button" data-src="assets/ml-evaluate.gif" data-cap="Evaluate through the real job step, then publish into shadow mode."><img src="assets/ml-evaluate.gif" alt="Evaluate" loading="lazy"></button><figcaption><b>Evaluate, publish</b>Through the real job step, then shadow mode.</figcaption></figure>
     </div>
   </div>
@@ -614,6 +692,9 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
   </div>
 </div>
 
+<script src="https://cdn.jsdelivr.net/npm/three@0.128.0/build/three.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/STLLoader.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
 <script>
 // Gelly start-up scene: the detether cell drawn top down, with the station camera's side view.
 // Written by Vishwa Theja Pokala for the Gelly Engine launcher; reused here as the portfolio's opening.
@@ -1764,6 +1845,61 @@ window.makeGellyScene = function (canvasId, reduceMotion) {
   tabs.forEach(function(t){ t.addEventListener("click",function(){ showTab(t); }); });
   var startBtn=$("startGame");
   if(startBtn){ startBtn.addEventListener("click",function(){ frame.src=current.getAttribute("data-src"); cover.hidden=true; frame.focus(); }); }
+
+
+  /* ---------- build: the flasher's STL parts in three.js, exploded by a slider ---------- */
+  (function(){
+    var box=$("viewer"), fb=$("vfallback"), slider=$("explode"), spinBtn=$("spin"); if(!box)return;
+    if(!window.THREE||!THREE.STLLoader||!THREE.OrbitControls){ return; }
+    var PARTS=[
+      {f:"part_screws",c:0x7A838B,o:-1},{f:"part_base",c:0x3A4148,o:0},{f:"part_cells",c:0x2F6B8A,o:1},
+      {f:"part_pcb",c:0x1F6B3A,o:2},{f:"part_leds",c:0xF4CE14,o:2,e:0xF4CE14},{f:"part_pir",c:0xE8E8E8,o:2},
+      {f:"part_reflector",c:0xD8DCE0,o:3},{f:"part_lgp",c:0x9FDDF0,o:4,t:.55},{f:"part_diffuser",c:0xFFFFFF,o:5,t:.5},
+      {f:"part_shell",c:0x8D969E,o:6},{f:"part_shell_mags",c:0xC9CED3,o:6},{f:"part_plate_mags",c:0xC9CED3,o:7},
+      {f:"part_plate_men",c:0x16181B,o:8,plate:"men"},{f:"part_plate_women",c:0x16181B,o:8,plate:"women",hide:true},
+      {f:"part_plate_chem",c:0x16181B,o:8,plate:"chem",hide:true},{f:"part_plate_laser",c:0x16181B,o:8,plate:"laser",hide:true}
+    ];
+    var started=false, renderer, scene3, camera, controls, group, meshes=[], visible=false, explode=0, spin=true, raf=0;
+    function start(){
+      if(started)return; started=true;
+      renderer=new THREE.WebGLRenderer({antialias:true,alpha:true}); renderer.setPixelRatio(Math.min(2,window.devicePixelRatio||1));
+      renderer.domElement.setAttribute("aria-label","Interactive 3D model of the Door Safety Flasher");
+      box.insertBefore(renderer.domElement, box.firstChild);
+      scene3=new THREE.Scene();
+      camera=new THREE.PerspectiveCamera(32,16/10,1,2000); camera.position.set(190,150,210);
+      controls=new THREE.OrbitControls(camera, renderer.domElement); controls.enableDamping=true; controls.autoRotate=true; controls.autoRotateSpeed=1.2; controls.target.set(0,8,0); controls.enablePan=false;
+      scene3.add(new THREE.HemisphereLight(0xDDE8F0,0x202428,.9));
+      var d1=new THREE.DirectionalLight(0xFFFFFF,.8); d1.position.set(120,220,160); scene3.add(d1);
+      var d2=new THREE.DirectionalLight(0x4CC2FF,.25); d2.position.set(-160,60,-120); scene3.add(d2);
+      group=new THREE.Group(); group.rotation.x=-Math.PI/2; scene3.add(group);
+      var ring=new THREE.Mesh(new THREE.RingGeometry(78,120,96), new THREE.MeshBasicMaterial({color:0x4CC2FF,transparent:true,opacity:.05,side:THREE.DoubleSide})); ring.rotation.x=-Math.PI/2; ring.position.y=-2; scene3.add(ring);
+      var loader=new THREE.STLLoader(), left=PARTS.length;
+      PARTS.forEach(function(p){
+        loader.load("assets/flasher/"+p.f+".stl", function(geom){
+          geom.computeVertexNormals();
+          var mat=new THREE.MeshStandardMaterial({color:p.c,metalness:.15,roughness:.65,transparent:!!p.t,opacity:p.t||1,emissive:p.e||0x000000,emissiveIntensity:p.e?.6:0});
+          var m=new THREE.Mesh(geom,mat); m.userData=p; m.visible=!p.hide; group.add(m); meshes.push(m);
+          if(--left===0){ fb.hidden=true; }
+          applyExplode();
+        }, undefined, function(){ if(--left===0 && meshes.length){ fb.hidden=true; } });
+      });
+      resize(); window.addEventListener("resize",resize); loop();
+    }
+    function resize(){ var w=box.clientWidth, h=box.clientHeight; if(!w||!h)return; renderer.setSize(w,h,false); camera.aspect=w/h; camera.updateProjectionMatrix(); }
+    function applyExplode(){ meshes.forEach(function(m){ m.position.z=m.userData.o*explode*14; }); }
+    function loop(){ raf=requestAnimationFrame(loop); if(!visible)return; controls.autoRotate=spin; controls.update(); renderer.render(scene3,camera); }
+    slider.addEventListener("input",function(){ explode=slider.value/100; applyExplode(); });
+    spinBtn.addEventListener("click",function(){ spin=!spin; spinBtn.setAttribute("aria-pressed",spin?"true":"false"); });
+    document.querySelectorAll(".legs [data-plate]").forEach(function(b){
+      b.addEventListener("click",function(){
+        document.querySelectorAll(".legs [data-plate]").forEach(function(o){ o.setAttribute("aria-pressed",o===b?"true":"false"); });
+        meshes.forEach(function(m){ if(m.userData.plate) m.visible=(m.userData.plate===b.getAttribute("data-plate")); });
+      });
+    });
+    if("IntersectionObserver" in window){
+      new IntersectionObserver(function(en){ visible=en[0].isIntersecting; if(visible)start(); },{threshold:.15}).observe(box);
+    } else { visible=true; start(); }
+  })();
 
   /* ---------- product film: the player appears only when the file exists ---------- */
   (function(){
