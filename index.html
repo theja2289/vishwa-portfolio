@@ -366,6 +366,11 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
 @media (max-width:860px){.rgrid{grid-template-columns:1fr}.rhl{grid-template-columns:repeat(3,1fr)}.sheet{padding:28px 22px}}
 @media print{nav.nav,.back,.racts,.tracker,.deckbar,#site,#simple{display:none!important}html,body{background:#fff!important;color:#111!important}#resume{display:block!important}.sheet{border:0;padding:0;max-width:none;margin:0;background:#fff;color:#111;box-shadow:none}.sheet *{color:#111!important;text-shadow:none}.sheet .rt,.sheet h2{color:#0a5a7a!important}.sheet .rh{border-bottom-color:#111}.rhl div,.chips span,.sheet .rh{border-color:#bbb!important;background:#fff!important}.rgrid{grid-template-columns:minmax(0,1fr) 190px;gap:22px}.sheet ul{gap:2px}.sheet p,.sheet ul,.sheet li{font-size:11.5pt}.sheet .rh h1{font-size:24pt}@page{margin:14mm}}
 .back{display:inline-flex;align-items:center;min-height:44px;font-weight:600}
+.floatback{display:none;position:fixed;right:max(16px,env(safe-area-inset-right,0px));bottom:max(16px,env(safe-area-inset-bottom,0px));z-index:26;background:var(--text);color:var(--bg);font-weight:600;font-size:13.5px;border-radius:999px;padding:12px 16px;min-height:44px;align-items:center;box-shadow:0 10px 30px rgba(0,0,0,.5)}
+.floatback:hover{text-decoration:none;background:#fff}
+body.resume .floatback,body.simple .floatback{display:inline-flex}
+body.resume .tracker{display:none}
+.rback{margin-top:22px;text-align:center}
 .simplewrap{max-width:720px;padding-top:18px;padding-bottom:70px}
 .stop{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
 #simple h1{font-size:34px;letter-spacing:-.02em;margin:16px 0 4px}
@@ -410,7 +415,7 @@ body.simple .deckbar{display:none}
     <a class="l" href="#numbers">Numbers</a>
     <a class="l" href="#path">Path</a>
     <a class="l" href="#contact">Contact</a>
-    <a class="res" href="#resume">Resume</a>
+    <a class="res" id="navres" href="#resume">Resume</a>
   </div>
 </nav>
 
@@ -814,6 +819,7 @@ body.simple .deckbar{display:none}
   </div>
 </div>
 
+<a class="floatback" id="floatback" href="#top">← Back to the portfolio</a>
 <div id="resume" hidden>
   <div class="wrap">
     <a class="back" href="#top">← Back to the portfolio</a>
@@ -873,6 +879,7 @@ body.simple .deckbar{display:none}
       </div>
     </div>
     <div class="racts"><a class="btn small primary" href="assets/Vishwa_Theja_Pokala_Resume.pdf" download>Download PDF</a><button class="btn small" type="button" onclick="window.print()">Print</button><a class="btn small" href="#simple">Simple view</a></div>
+    <p class="rback"><a class="back" href="#top">← Back to the portfolio</a></p>
   </div>
 </div>
 
@@ -1917,7 +1924,9 @@ window.makeGellyScene = function (canvasId, reduceMotion) {
   var site=$("site"), resumeView=$("resume"), simpleView=$("simple"), simpleBtn=$("simpleBtn");
   function route(){
     var h=location.hash, isRes=(h==="#resume"), isSimple=(h==="#simple");
-    site.hidden=isRes||isSimple; resumeView.hidden=!isRes; simpleView.hidden=!isSimple; document.body.classList.toggle("simple",isSimple);
+    site.hidden=isRes||isSimple; resumeView.hidden=!isRes; simpleView.hidden=!isSimple; document.body.classList.toggle("simple",isSimple); document.body.classList.toggle("resume",isRes);
+    var nr=$("navres"); if(nr){ nr.textContent=isRes?"← Portfolio":"Resume"; nr.setAttribute("href",isRes?"#top":"#resume"); }
+    var fb=$("floatback"); if(fb){ fb.textContent=isRes?"← Back to the portfolio":"← Full version"; }
     if(simpleBtn){ simpleBtn.textContent=isSimple?"Full version":"Simple view"; simpleBtn.setAttribute("aria-pressed",isSimple?"true":"false"); }
     if(isRes||isSimple||h==="#top"||h===""){ window.scrollTo(0,0); }
     relayout();
