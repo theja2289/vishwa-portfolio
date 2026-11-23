@@ -1,0 +1,1120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Vishwa Theja Pokala: robotics and automation engineer. Precision micro-assembly under vision, a configurable automation framework, learned inspection, and traceability from fab to assembly.">
+<meta name="color-scheme" content="light dark">
+<title>Vishwa Theja Pokala</title>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#FCFCFB; --surface:#FFFFFF; --sunk:#F2F6F6;
+  --ink:#13262E; --ink-2:#3A565F; --muted:#6E868E; --faint:#9DAFB5;
+  --rule:#DCE6E8; --rule-2:#EDF2F3;
+  --teal:#1F6B7A; --teal-2:#2F8A9B; --teal-pale:#DBEBEE;
+  --amber:#B4692A; --amber-pale:#F6EADD;
+  --ref:#BCC8CB;
+  --shadow:0 1px 2px rgba(19,38,46,.05), 0 10px 30px rgba(19,38,46,.05);
+  --shadow-lift:0 2px 6px rgba(19,38,46,.07), 0 18px 44px rgba(19,38,46,.09);
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --paper:#0C1519; --surface:#131F25; --sunk:#182830;
+    --ink:#E8F1F3; --ink-2:#BACBD1; --muted:#8CA3AB; --faint:#6A838C;
+    --rule:#243841; --rule-2:#1C2D35;
+    --teal:#6FC4D4; --teal-2:#8FD5E2; --teal-pale:#1B3A43;
+    --amber:#DFA268; --amber-pale:#2E2317;
+    --ref:#3A505A;
+    --shadow:0 1px 2px rgba(0,0,0,.4), 0 10px 30px rgba(0,0,0,.28);
+    --shadow-lift:0 2px 6px rgba(0,0,0,.45), 0 18px 44px rgba(0,0,0,.4);
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#0C1519; --surface:#131F25; --sunk:#182830;
+  --ink:#E8F1F3; --ink-2:#BACBD1; --muted:#8CA3AB; --faint:#6A838C;
+  --rule:#243841; --rule-2:#1C2D35;
+  --teal:#6FC4D4; --teal-2:#8FD5E2; --teal-pale:#1B3A43;
+  --amber:#DFA268; --amber-pale:#2E2317;
+  --ref:#3A505A;
+  --shadow:0 1px 2px rgba(0,0,0,.4), 0 10px 30px rgba(0,0,0,.28);
+  --shadow-lift:0 2px 6px rgba(0,0,0,.45), 0 18px 44px rgba(0,0,0,.4);
+}
+
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:74px}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{animation:none!important;transition:none!important}}
+body{
+  background:var(--paper); color:var(--ink);
+  font-family:"IBM Plex Sans",system-ui,-apple-system,sans-serif;
+  font-size:16px; line-height:1.6; -webkit-font-smoothing:antialiased;
+}
+.wrap{max-width:1080px;margin:0 auto;padding:0 28px}
+@media (max-width:640px){.wrap{padding:0 18px}}
+
+.mono{font-family:"IBM Plex Mono",ui-monospace,monospace}
+.eyebrow{
+  font-family:"IBM Plex Mono",monospace;font-size:11px;font-weight:600;
+  letter-spacing:.16em;text-transform:uppercase;color:var(--teal);
+}
+a{color:var(--teal);text-decoration-thickness:1px;text-underline-offset:2px}
+a:hover{color:var(--ink)}
+:focus-visible{outline:2px solid var(--teal);outline-offset:3px;border-radius:3px}
+
+/* ---------- nav ---------- */
+nav{
+  position:sticky;top:0;z-index:50;background:color-mix(in srgb,var(--paper) 88%,transparent);
+  backdrop-filter:saturate(1.4) blur(10px);border-bottom:1px solid var(--rule);
+}
+.navin{max-width:1080px;margin:0 auto;padding:0 28px;height:56px;display:flex;align-items:center;gap:22px}
+.navname{font-weight:700;letter-spacing:-.01em;font-size:15px;white-space:nowrap}
+.navlinks{display:flex;gap:4px;margin-left:auto;flex-wrap:wrap}
+.navlinks a{
+  font-size:13.5px;color:var(--muted);text-decoration:none;padding:6px 10px;border-radius:6px;font-weight:500;
+}
+.navlinks a:hover{color:var(--ink);background:var(--sunk)}
+.navlinks a[aria-current="true"]{color:var(--teal);background:var(--teal-pale)}
+#themeBtn{
+  background:none;border:1px solid var(--rule);border-radius:7px;width:32px;height:32px;
+  display:grid;place-items:center;cursor:pointer;color:var(--muted);flex-shrink:0;
+}
+#themeBtn:hover{color:var(--ink);border-color:var(--muted)}
+@media (max-width:840px){.navlinks{display:none}}
+
+/* ---------- hero ---------- */
+header.hero{padding:76px 0 52px;border-bottom:1px solid var(--rule)}
+h1{font-size:clamp(34px,5.4vw,54px);line-height:1.04;letter-spacing:-.028em;font-weight:700;margin:14px 0 0}
+.tagline{
+  font-size:clamp(18px,2.4vw,23px);line-height:1.38;color:var(--teal);
+  font-weight:600;letter-spacing:-.012em;margin-top:16px;max-width:44ch;
+}
+.lede{margin-top:22px;font-size:17px;line-height:1.66;color:var(--ink-2);max-width:62ch}
+.lede + .lede{margin-top:13px}
+.meta{
+  margin-top:28px;display:flex;flex-wrap:wrap;gap:8px 20px;
+  font-family:"IBM Plex Mono",monospace;font-size:12.5px;color:var(--muted);
+}
+.meta a{color:var(--muted)}
+.meta a:hover{color:var(--teal)}
+
+/* ---------- sections ---------- */
+section{padding:62px 0;border-bottom:1px solid var(--rule)}
+section:last-of-type{border-bottom:none}
+h2{font-size:clamp(23px,3vw,30px);line-height:1.18;letter-spacing:-.022em;font-weight:700;margin:10px 0 0}
+.sectlede{margin-top:13px;color:var(--ink-2);max-width:60ch;font-size:16.5px}
+h3{font-size:17px;font-weight:700;letter-spacing:-.012em}
+
+/* ---------- stat tiles ---------- */
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--rule);
+  border:1px solid var(--rule);border-radius:11px;overflow:hidden;margin-top:30px}
+.stat{background:var(--surface);padding:20px 18px}
+.stat .n{font-family:"IBM Plex Mono",monospace;font-size:28px;font-weight:600;color:var(--teal);line-height:1;letter-spacing:-.02em}
+.stat .l{margin-top:9px;font-size:13px;color:var(--muted);line-height:1.42}
+@media (max-width:760px){.stats{grid-template-columns:repeat(2,1fr)}}
+
+/* ---------- fit finder ---------- */
+.finder{margin-top:30px;display:grid;grid-template-columns:minmax(260px,1fr) 1.45fr;gap:26px;align-items:start}
+@media (max-width:860px){.finder{grid-template-columns:1fr}}
+.problist{display:flex;flex-direction:column;gap:7px}
+.prob{
+  text-align:left;font:inherit;font-size:14.5px;font-weight:500;line-height:1.4;
+  background:var(--surface);color:var(--ink-2);border:1px solid var(--rule);
+  border-radius:9px;padding:13px 15px;cursor:pointer;min-height:44px;
+  transition:border-color .14s, background .14s, color .14s;
+  display:flex;gap:11px;align-items:flex-start;
+}
+.prob:hover{border-color:var(--teal);color:var(--ink)}
+.prob .dot{width:7px;height:7px;border-radius:50%;background:var(--ref);margin-top:7px;flex-shrink:0;transition:background .14s}
+.prob[aria-selected="true"]{background:var(--teal-pale);border-color:var(--teal);color:var(--ink);font-weight:600}
+.prob[aria-selected="true"] .dot{background:var(--teal)}
+.answer{
+  background:var(--surface);border:1px solid var(--rule);border-radius:11px;
+  padding:24px 26px;box-shadow:var(--shadow);min-height:260px;
+}
+.answer h3{color:var(--ink);margin-bottom:11px;font-size:19px;letter-spacing:-.016em}
+.answer p{color:var(--ink-2);font-size:15.5px;line-height:1.62}
+.answer p + p{margin-top:11px}
+.proofs{margin-top:18px;padding-top:16px;border-top:1px solid var(--rule-2);display:flex;flex-direction:column;gap:9px}
+.proof{display:flex;gap:11px;align-items:baseline;font-size:14.5px;color:var(--ink-2)}
+.proof .k{
+  font-family:"IBM Plex Mono",monospace;font-size:12.5px;font-weight:600;color:var(--amber);
+  flex-shrink:0;min-width:86px;letter-spacing:.02em;
+}
+.answer .where{margin-top:16px;font-size:13px;color:var(--muted);font-style:italic}
+
+/* ---------- filters + project cards ---------- */
+.chips{display:flex;flex-wrap:wrap;gap:7px;margin-top:26px}
+.chip{
+  font:inherit;font-size:13px;font-weight:600;letter-spacing:.01em;
+  background:var(--surface);color:var(--muted);border:1px solid var(--rule);
+  border-radius:999px;padding:7px 14px;cursor:pointer;min-height:36px;
+}
+.chip:hover{color:var(--ink);border-color:var(--muted)}
+.chip[aria-pressed="true"]{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+
+.cards{margin-top:20px;display:flex;flex-direction:column;gap:10px}
+.card{
+  background:var(--surface);border:1px solid var(--rule);border-radius:11px;
+  box-shadow:var(--shadow);overflow:hidden;
+}
+.card[hidden]{display:none}
+.card > summary{
+  list-style:none;cursor:pointer;padding:18px 22px;display:flex;gap:16px;align-items:flex-start;
+}
+.card > summary::-webkit-details-marker{display:none}
+.card > summary:hover{background:var(--sunk)}
+.card[open]{box-shadow:var(--shadow-lift)}
+.card[open] > summary{border-bottom:1px solid var(--rule-2)}
+.sumtext{flex:1;min-width:0}
+.sumtitle{font-size:17px;font-weight:700;letter-spacing:-.014em;line-height:1.3}
+.sumsub{margin-top:4px;font-size:14.5px;color:var(--muted);line-height:1.45}
+.stage{
+  font-family:"IBM Plex Mono",monospace;font-size:10px;font-weight:600;letter-spacing:.1em;
+  text-transform:uppercase;padding:4px 8px;border-radius:4px;white-space:nowrap;flex-shrink:0;margin-top:2px;
+}
+.stage.prod{background:var(--teal-pale);color:var(--teal)}
+.stage.proto{background:var(--amber-pale);color:var(--amber)}
+.stage.study{background:var(--sunk);color:var(--muted)}
+.caret{flex-shrink:0;color:var(--faint);margin-top:4px;transition:transform .16s}
+.card[open] .caret{transform:rotate(90deg)}
+.body{padding:20px 22px 22px}
+.row{display:grid;grid-template-columns:92px 1fr;gap:14px;margin-bottom:13px;align-items:baseline}
+.row:last-of-type{margin-bottom:0}
+.row .lbl{
+  font-family:"IBM Plex Mono",monospace;font-size:10.5px;font-weight:600;letter-spacing:.11em;
+  text-transform:uppercase;color:var(--faint);padding-top:3px;
+}
+.row .val{color:var(--ink-2);font-size:15.5px;line-height:1.6}
+.row .val strong{color:var(--ink);font-weight:600}
+.stack{margin-top:16px;padding-top:14px;border-top:1px solid var(--rule-2);display:flex;flex-wrap:wrap;gap:6px}
+.tech{
+  font-family:"IBM Plex Mono",monospace;font-size:11.5px;color:var(--muted);
+  background:var(--sunk);border-radius:4px;padding:3px 8px;
+}
+@media (max-width:620px){.row{grid-template-columns:1fr;gap:3px}.row .lbl{padding-top:0}}
+
+/* ---------- before / after bars ---------- */
+.bars{margin-top:28px;display:flex;flex-direction:column;gap:2px}
+.bar{padding:15px 0;border-bottom:1px solid var(--rule-2)}
+.bar:last-child{border-bottom:none}
+.barhead{display:flex;justify-content:space-between;align-items:baseline;gap:14px;margin-bottom:9px}
+.barname{font-size:15px;font-weight:600;color:var(--ink)}
+.barctx{font-size:13px;color:var(--muted);text-align:right}
+.track{display:flex;flex-direction:column;gap:5px}
+.lane{display:flex;align-items:center;gap:11px}
+.lanelab{
+  font-family:"IBM Plex Mono",monospace;font-size:10.5px;font-weight:600;letter-spacing:.08em;
+  text-transform:uppercase;color:var(--faint);width:48px;flex-shrink:0;
+}
+.fill{height:12px;border-radius:0 4px 4px 0;min-width:3px}
+.fill.before{background:var(--ref)}
+.fill.after{background:var(--teal)}
+.lanev{font-family:"IBM Plex Mono",monospace;font-size:13px;font-weight:600;color:var(--ink);white-space:nowrap}
+.scalenote{margin-top:14px;font-size:12.5px;color:var(--muted);font-style:italic}
+
+/* ---------- timeline ---------- */
+.tl{margin-top:30px;border-left:2px solid var(--rule);padding-left:0}
+.tlrow{position:relative;padding:0 0 26px 26px}
+.tlrow:last-child{padding-bottom:0}
+.tlrow::before{
+  content:"";position:absolute;left:-6px;top:7px;width:10px;height:10px;border-radius:50%;
+  background:var(--paper);border:2px solid var(--ref);
+}
+.tlrow.now::before{background:var(--teal);border-color:var(--teal)}
+.tlyr{font-family:"IBM Plex Mono",monospace;font-size:12px;font-weight:600;color:var(--amber);letter-spacing:.04em}
+.tlorg{font-size:16.5px;font-weight:700;margin-top:2px;letter-spacing:-.012em}
+.tlrole{font-size:15px;color:var(--ink-2);margin-top:2px}
+.tlnote{font-size:14px;color:var(--muted);margin-top:5px;max-width:64ch}
+
+/* ---------- toolbox ---------- */
+.tools{margin-top:28px;display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(--rule);
+  border:1px solid var(--rule);border-radius:11px;overflow:hidden}
+@media (max-width:700px){.tools{grid-template-columns:1fr}}
+.tool{background:var(--surface);padding:17px 19px}
+.tool .th{
+  font-family:"IBM Plex Mono",monospace;font-size:10.5px;font-weight:600;letter-spacing:.12em;
+  text-transform:uppercase;color:var(--amber);margin-bottom:7px;
+}
+.tool .tb{font-size:14.5px;color:var(--ink-2);line-height:1.55}
+
+/* ---------- engagement ---------- */
+.ways{margin-top:28px;display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+@media (max-width:800px){.ways{grid-template-columns:1fr}}
+.way{background:var(--surface);border:1px solid var(--rule);border-radius:11px;padding:20px;box-shadow:var(--shadow)}
+.way .wn{font-size:16.5px;font-weight:700;letter-spacing:-.012em}
+.way .wt{font-family:"IBM Plex Mono",monospace;font-size:11.5px;color:var(--amber);margin-top:4px;letter-spacing:.04em}
+.way p{margin-top:10px;font-size:14.5px;color:var(--ink-2);line-height:1.58}
+
+/* ---------- contact ---------- */
+.contact{background:var(--sunk);border:1px solid var(--rule);border-radius:13px;padding:34px 32px;margin-top:28px}
+.cgrid{display:flex;flex-wrap:wrap;gap:12px 36px;margin-top:20px}
+.citem .ck{
+  font-family:"IBM Plex Mono",monospace;font-size:10.5px;font-weight:600;letter-spacing:.12em;
+  text-transform:uppercase;color:var(--faint);
+}
+.citem .cv{font-size:16px;font-weight:600;margin-top:3px}
+.copy{
+  font:inherit;font-size:12px;font-weight:600;background:none;border:1px solid var(--rule);
+  border-radius:5px;padding:3px 9px;margin-left:9px;cursor:pointer;color:var(--muted);vertical-align:2px;
+}
+.copy:hover{color:var(--ink);border-color:var(--muted)}
+footer{padding:34px 0 56px;font-size:13px;color:var(--faint)}
+
+/* ---------- additions: mapping, plan, figure, deep dives, resume ---------- */
+.mapgrid{margin-top:16px;padding-top:14px;border-top:1px solid var(--rule-2);display:grid;grid-template-columns:1fr 1fr;gap:6px 10px;font-size:14px}
+.mapgrid .mh{font-family:"IBM Plex Mono",monospace;font-size:10.5px;font-weight:600;letter-spacing:.11em;text-transform:uppercase;color:var(--faint);padding:0 2px 2px}
+.mapgrid .ml{background:var(--sunk);border-radius:6px;padding:8px 10px;color:var(--ink-2);min-width:0}
+.mapgrid .mr{background:var(--teal-pale);border-radius:6px;padding:8px 10px;color:var(--ink);min-width:0}
+@media (max-width:520px){.mapgrid{grid-template-columns:1fr}.mapgrid .mh.r{display:none}}
+.plan{margin-top:16px;padding-top:14px;border-top:1px solid var(--rule-2)}
+.plan .ph{font-family:"IBM Plex Mono",monospace;font-size:10.5px;font-weight:600;letter-spacing:.11em;text-transform:uppercase;color:var(--faint);margin-bottom:8px}
+.plan ol{margin:0;padding-left:0;list-style:none;display:flex;flex-direction:column;gap:7px;counter-reset:p}
+.plan li{display:grid;grid-template-columns:26px 1fr;gap:10px;font-size:14.5px;color:var(--ink-2);line-height:1.5}
+.plan li::before{counter-increment:p;content:counter(p);font-family:"IBM Plex Mono",monospace;font-size:12px;font-weight:600;color:var(--amber);background:var(--amber-pale);border-radius:5px;width:22px;height:22px;display:inline-grid;place-items:center;margin-top:2px}
+.fig{margin-top:26px;background:var(--surface);border:1px solid var(--rule);border-radius:11px;padding:18px 20px;overflow-x:auto}
+.fig svg{display:block;min-width:720px;width:100%;height:auto}
+.fig figcaption{margin-top:10px;font-size:13px;color:var(--muted)}
+.docs{margin-top:28px;display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+@media (max-width:700px){.docs{grid-template-columns:1fr}}
+.doc{background:var(--surface);border:1px solid var(--rule);border-radius:11px;padding:16px 18px;box-shadow:var(--shadow);min-width:0}
+.doc .dn{font-size:15.5px;font-weight:700;letter-spacing:-.012em}
+.doc .dt{margin-top:4px;font-size:14px;color:var(--ink-2);line-height:1.5}
+.doc a{display:inline-block;margin-top:8px;font-family:"IBM Plex Mono",monospace;font-size:12px}
+.navlinks a.res{color:var(--paper);background:var(--ink)}
+.navlinks a.res:hover{color:var(--paper);background:var(--teal)}
+#resume{padding:40px 0 70px}
+#resume[hidden]{display:none}
+#site[hidden]{display:none}
+.sheet{background:var(--surface);border:1px solid var(--rule);border-radius:13px;padding:40px 44px;box-shadow:var(--shadow);max-width:860px;margin:16px auto 0}
+.sheet .rh{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;align-items:flex-end;border-bottom:2px solid var(--ink);padding-bottom:14px}
+.sheet .rh h1{font-size:30px;margin:0}
+.sheet .rh .rt{color:var(--teal);font-weight:600;margin-top:4px}
+.sheet .rh .rc{font-family:"IBM Plex Mono",monospace;font-size:12px;color:var(--muted);text-align:right;line-height:1.7}
+.sheet h2{font-family:"IBM Plex Mono",monospace;font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--amber);margin:26px 0 10px;font-weight:600}
+.sheet p{font-size:14.5px;color:var(--ink-2)}
+.sheet .job{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-top:14px;align-items:baseline}
+.sheet .job b{font-size:16px;letter-spacing:-.01em}
+.sheet .job span{font-family:"IBM Plex Mono",monospace;font-size:12.5px;color:var(--muted)}
+.sheet .sub{font-size:14px;color:var(--muted);margin-top:2px}
+.sheet ul{margin:6px 0 0;padding-left:18px;font-size:14.5px;color:var(--ink-2);display:flex;flex-direction:column;gap:4px;line-height:1.5}
+.sheet ul strong{color:var(--ink);font-weight:600}
+.sheet .skl{font-size:14.5px;display:grid;grid-template-columns:150px 1fr;gap:5px 14px;color:var(--ink-2)}
+.sheet .skl b{color:var(--muted);font-weight:500;font-family:"IBM Plex Mono",monospace;font-size:12.5px}
+.back{display:inline-flex;align-items:center;min-height:44px;font-weight:600;text-decoration:none}
+.tip{font-size:13px;color:var(--muted);margin-top:14px;text-align:center}
+@media (max-width:700px){.sheet{padding:24px 18px}.sheet .skl{grid-template-columns:1fr}.sheet .rh .rc{text-align:left}}
+
+/* ---------- in motion gallery ---------- */
+.gh{margin-top:30px;font-family:"IBM Plex Mono",monospace;font-size:11px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--amber)}
+.gal{margin-top:12px;display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+@media (max-width:900px){.gal{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:560px){.gal{grid-template-columns:1fr}}
+.clip{background:var(--surface);border:1px solid var(--rule);border-radius:11px;overflow:hidden;box-shadow:var(--shadow);min-width:0;display:flex;flex-direction:column}
+.clipbtn{display:block;width:100%;border:0;padding:0;background:var(--sunk);cursor:zoom-in;aspect-ratio:16/10;max-width:100%}
+.clipbtn img{display:block;width:100%;height:100%;object-fit:cover;object-position:top left}
+.clip figcaption{padding:11px 14px 13px;font-size:13.5px;color:var(--ink-2);line-height:1.45}
+.clip figcaption b{display:block;color:var(--ink);font-weight:600;margin-bottom:2px}
+dialog#lb{border:0;padding:0;background:transparent;max-width:min(96vw,1400px);width:auto}
+dialog#lb::backdrop{background:rgba(5,12,15,.86)}
+#lb .lbin{background:var(--surface);border-radius:12px;overflow:hidden;box-shadow:var(--shadow-lift)}
+#lb img{display:block;max-width:min(96vw,1400px);max-height:78vh;width:auto;height:auto}
+#lb .lbbar{display:flex;justify-content:space-between;align-items:center;gap:14px;padding:12px 16px;font-size:14px;color:var(--ink-2)}
+#lb .lbclose{font:inherit;font-size:13px;font-weight:600;background:var(--sunk);border:1px solid var(--rule);border-radius:6px;padding:6px 12px;cursor:pointer;color:var(--ink);min-height:36px}
+</style>
+</head>
+<body>
+
+
+<nav>
+  <div class="navin">
+    <a class="navname" id="top" href="#top" style="color:inherit;text-decoration:none">Vishwa Theja Pokala</a>
+    <div class="navlinks">
+      <a href="#fit">Where I help</a>
+      <a href="#work">Work</a>
+      <a href="#motion">In motion</a>
+      <a href="#numbers">Numbers</a>
+      <a href="#path">Path</a>
+      <a href="#toolbox">Toolbox</a>
+      <a href="#contact">Contact</a>
+      <a href="#resume" class="res">Resume</a>
+    </div>
+    <button id="themeBtn" aria-label="Switch between light and dark" title="Switch between light and dark">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+        <path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/>
+      </svg>
+    </button>
+  </div>
+</nav>
+<div id="site">
+
+<header class="hero">
+  <div class="wrap">
+    <span class="eyebrow">Robotics and automation engineering</span>
+    <h1>I make precise physical work happen without a person doing it.</h1>
+    <p class="tagline">Pick it up, see it, place it to a micron, prove it happened. Then do it ten thousand times.</p>
+    <p class="lede">Fifteen years in engineering, ten of them building production robotics for semiconductor manufacturing. At FormFactor I own the perception, motion and decision layers of cells that handle microscopic parts in real time, plus the framework that lets a new cell be configured rather than written. I lead the five engineers behind it.</p>
+    <p class="lede">The work transfers wherever something small has to be handled accurately and the result has to be trusted: instrument automation, imaging and inspection pipelines, sample handling, and the data provenance underneath all of it.</p>
+    <div class="meta">
+      <span>Castro Valley, California</span>
+      <span>·</span>
+      <a href="mailto:theja2289@gmail.com">theja2289@gmail.com</a>
+      <span>·</span>
+      <a href="https://linkedin.com/in/vishwatheja">linkedin.com/in/vishwatheja</a>
+      <span>·</span>
+      <a href="https://github.com/theja2289">github.com/theja2289</a>
+    </div>
+  </div>
+</header>
+
+<section id="summary">
+  <div class="wrap">
+    <span class="eyebrow">The short version</span>
+    <h2>What the record looks like</h2>
+    <div class="stats">
+      <div class="stat"><div class="n">±1 µm</div><div class="l">placement accuracy held across a production fleet</div></div>
+      <div class="stat"><div class="n">100+</div><div class="l">production cells running on one configurable framework</div></div>
+      <div class="stat"><div class="n">3 mo</div><div class="l">to stand up a new cell, down from roughly three years</div></div>
+      <div class="stat"><div class="n">1,700</div><div class="l">automated tests behind every release into a live factory</div></div>
+    </div>
+  </div>
+</section>
+
+<section id="fit">
+  <div class="wrap">
+    <span class="eyebrow">Where I help</span>
+    <h2>Start with the problem, not the resume</h2>
+    <p class="sectlede">Pick whichever of these sounds like your situation. Each one maps to work I have actually shipped, with the numbers attached.</p>
+    <div class="finder">
+      <div class="problist" role="tablist" aria-label="Common problems"></div>
+      <div class="answer" id="answer" role="tabpanel" tabindex="0"></div>
+    </div>
+  </div>
+</section>
+
+<section id="work">
+  <div class="wrap">
+    <span class="eyebrow">Work</span>
+    <h2>Projects, with the stage they actually reached</h2>
+    <p class="sectlede">Some of this runs in production every day. Some is prototype hardware on a bench. Some is a design study that has not been built. Each card says which, because that distinction matters more than the headline.</p>
+    <div class="chips" role="group" aria-label="Filter projects by area">
+      <button class="chip" data-f="all" aria-pressed="true">All</button>
+      <button class="chip" data-f="robotics" aria-pressed="false">Robotics and motion</button>
+      <button class="chip" data-f="imaging" aria-pressed="false">Imaging and ML</button>
+      <button class="chip" data-f="platform" aria-pressed="false">Platform and infrastructure</button>
+      <button class="chip" data-f="instrument" aria-pressed="false">Instrumentation</button>
+    </div>
+    <div class="cards" id="cards">
+
+      <details class="card" data-tags="robotics imaging platform">
+        <summary>
+          <span class="sumtext">
+            <span class="sumtitle">Gelly: autonomous micro-assembly under vision</span>
+            <span class="sumsub">Picks microscopic spring-probe gangs from wafer trays, aligns them on a glass slide under micron vision, breaks the tethers, loads the finished slides.</span>
+          </span>
+          <span class="stage prod">In production</span>
+          <svg class="caret" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M9 18l6-6-6-6"/></svg>
+        </summary>
+        <div class="body">
+          <div class="row"><span class="lbl">Problem</span><span class="val">Parts measured in microns, handled by people under a microscope, at a rate and consistency that could not scale. Every unit of yield loss was invisible until much later.</span></div>
+          <div class="row"><span class="lbl">Approach</span><span class="val">A closed loop across vision, ACS motion and behaviour trees, with the decision layer owning when to retry, when to compensate and when to stop. Error compensation holds placement across a whole fleet of machines rather than one golden unit.</span></div>
+          <div class="row"><span class="lbl">Result</span><span class="val"><strong>±1 µm placement held across the fleet.</strong> Station cycle time from 15 s to under 5 s. In-line verification from 300 ms to 50 ms.</span></div>
+          <div class="stack">
+            <span class="tech">C# / .NET</span><span class="tech">ACS motion</span><span class="tech">Meca500</span>
+            <span class="tech">Cognex VisionPro</span><span class="tech">behaviour trees</span><span class="tech">WPF</span>
+          </div>
+        </div>
+      </details>
+
+      <details class="card" data-tags="robotics platform">
+        <summary>
+          <span class="sumtext">
+            <span class="sumtitle">One framework, a hundred cells</span>
+            <span class="sumsub">A universal automation framework where a new cell is configured and simulated rather than written from scratch.</span>
+          </span>
+          <span class="stage prod">In production</span>
+          <svg class="caret" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M9 18l6-6-6-6"/></svg>
+        </summary>
+        <div class="body">
+          <div class="row"><span class="lbl">Problem</span><span class="val">Every new automation cell was a bespoke build. Nothing carried over, so each one cost years and the knowledge lived in whoever wrote it.</span></div>
+          <div class="row"><span class="lbl">Approach</span><span class="val">Built the framework on RoboDK and behaviour trees, covering simulation, environment, CI/CD, fleet management and observability. Around 130 reusable skills and 160+ behaviour trees, with dry-run preview and resource footprints that block conflicting parallel motion. An in-browser editor lets an engineer compose behaviour instead of writing code.</span></div>
+          <div class="row"><span class="lbl">Result</span><span class="val"><strong>Cell bring-up from roughly three years to three months</strong>, about three engineers a year of effort avoided. UR3, UR5, Meca500, Epson SCARA and custom platforms all run on it.</span></div>
+          <div class="stack">
+            <span class="tech">RoboDK</span><span class="tech">behaviour trees</span><span class="tech">ZeroMQ</span>
+            <span class="tech">GitLab CI/CD</span><span class="tech">UR / Meca500 / SCARA</span>
+          </div>
+        </div>
+      </details>
+
+      <details class="card" data-tags="imaging platform">
+        <summary>
+          <span class="sumtext">
+            <span class="sumtitle">GellyML: replacing a commercial vision stack with a learned one</span>
+            <span class="sumsub">Swapped Cognex VisionPro for an in-house pipeline, rolled out in shadow mode alongside production before anyone switched over.</span>
+          </span>
+          <span class="stage prod">In production</span>
+          <svg class="caret" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M9 18l6-6-6-6"/></svg>
+        </summary>
+        <div class="body">
+          <div class="row"><span class="lbl">Problem</span><span class="val">A hand-tuned commercial vision stack, licensed per station, brittle against anything it had not seen, and impossible to version or review like code.</span></div>
+          <div class="row"><span class="lbl">Approach</span><span class="val">Built GellyML in Python, OpenCV and PyTorch: a browser vision editor, versioned text-based jobs with publish and rollback, YOLOv8 detection and PatchCore anomaly detection. Ran it in shadow mode against production for long enough to compare it honestly before cutting over.</span></div>
+          <div class="row"><span class="lbl">Result</span><span class="val"><strong>Inspection now catches defect classes that previously only an operator caught.</strong> Vision jobs are reviewable, diffable and reversible.</span></div>
+          <div class="stack">
+            <span class="tech">PyTorch</span><span class="tech">OpenCV</span><span class="tech">YOLOv8</span>
+            <span class="tech">PatchCore</span><span class="tech">ONNX Runtime</span><span class="tech">Python</span>
+          </div>
+        </div>
+      </details>
+
+      <details class="card" data-tags="platform instrument">
+        <summary>
+          <span class="sumtext">
+            <span class="sumtitle">Enhanced Traceability, fab to assembly</span>
+            <span class="sumsub">Part identity that survives the step which normally destroys it, carried all the way to final assembly.</span>
+          </span>
+          <span class="stage prod">In production</span>
+          <svg class="caret" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M9 18l6-6-6-6"/></svg>
+        </summary>
+        <div class="body">
+          <div class="row"><span class="lbl">Problem</span><span class="val">Identity died at singulation. One wafer becomes many parts, and from that point the box label was the only record of where anything came from. Downstream, people retyped numbers into a system by hand.</span></div>
+          <div class="row"><span class="lbl">Approach</span><span class="val">Designed and delivered the whole spine. Lot ID laser-scribed on the wafer back side at incoming, a centre mark placed before singulation so every piece carries its parent, direct marking on gang bars, probe heads and guide plates, and tablet QR scanning at each station writing to MES in real time. Also wrote the rule for what gets marked at all: only items whose interchange carries a quality or process risk, so laser time is not spent on fasteners.</span></div>
+          <div class="row"><span class="lbl">Result</span><span class="val"><strong>Identity survives singulation and manual entry is gone from process stations.</strong> First author, FormFactor Technology Summit 2025.</span></div>
+          <div class="stack">
+            <span class="tech">laser marking</span><span class="tech">MES integration</span><span class="tech">QR / direct part marking</span>
+            <span class="tech">robotic transfer</span><span class="tech">data model design</span>
+          </div>
+        </div>
+      </details>
+
+      <details class="card" data-tags="platform">
+        <summary>
+          <span class="sumtext">
+            <span class="sumtitle">Software that does not take the line down</span>
+            <span class="sumsub">A monolithic desktop application re-architected into a headless engine with isolated workers, shipped into an air-gapped factory on a weekly cadence.</span>
+          </span>
+          <span class="stage prod">In production</span>
+          <svg class="caret" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M9 18l6-6-6-6"/></svg>
+        </summary>
+        <div class="body">
+          <div class="row"><span class="lbl">Problem</span><span class="val">One WPF desktop application held motion, vision and the state machine in a single process. Any fault anywhere stopped the tool, and releasing anything into a running factory was a risk nobody wanted to take often.</span></div>
+          <div class="row"><span class="lbl">Approach</span><span class="val">Re-architected to a headless .NET 9 engine with separate motion and vision worker processes and ZeroMQ messaging between them, with the process boundaries and the state model defined up front. Behind it: around 1,700 automated tests, an 83-check engine self-test, Playwright browser checks, and GitLab CI/CD with build, validate, test, per-tool config preview and manual-gated production deploys.</span></div>
+          <div class="row"><span class="lbl">Result</span><span class="val"><strong>Five production releases in ten weeks into an air-gapped factory.</strong> A crash in one worker no longer stops the tool. Around 450k lines on the platform branch.</span></div>
+          <div class="stack">
+            <span class="tech">.NET 9</span><span class="tech">ZeroMQ</span><span class="tech">multi-process design</span>
+            <span class="tech">GitLab CI/CD</span><span class="tech">Playwright</span><span class="tech">xUnit / pytest</span>
+          </div>
+        </div>
+      </details>
+
+      <details class="card" data-tags="imaging instrument">
+        <summary>
+          <span class="sumtext">
+            <span class="sumtitle">MotionVitals AI: clinical movement assessment on the device</span>
+            <span class="sumsub">Pose estimation moved off the cloud and onto an NPU, built in 24 hours. First place, Compute Track, ExecuTorch × Qualcomm 2026.</span>
+          </span>
+          <span class="stage prod">Shipped and judged</span>
+          <svg class="caret" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M9 18l6-6-6-6"/></svg>
+        </summary>
+        <div class="body">
+          <div class="row"><span class="lbl">Problem</span><span class="val">Movement assessment that depends on a round trip to a server is not usable at the point of care, and it puts patient video somewhere it should not be.</span></div>
+          <div class="row"><span class="lbl">Approach</span><span class="val">As system architect and lead engineer on a team of five, lowered RTMPose onto the Qualcomm Hexagon NPU through ExecuTorch and wrote the native C++ runtime streaming tensors behind it, proving native ARM64 ahead-of-time export on Windows on ARM.</span></div>
+          <div class="row"><span class="lbl">Result</span><span class="val"><strong>Pose inference from 89 ms to 1.6 ms, a 55× speedup, running live at 30 fps on device.</strong> 223 tests and CodeQL in CI, in 24 hours. First place in the Compute Track.</span></div>
+          <div class="stack">
+            <span class="tech">ExecuTorch</span><span class="tech">Qualcomm Hexagon NPU</span><span class="tech">C++</span>
+            <span class="tech">RTMPose</span><span class="tech">Windows on ARM</span>
+          </div>
+        </div>
+      </details>
+
+      <details class="card" data-tags="robotics imaging">
+        <summary>
+          <span class="sumtext">
+            <span class="sumtitle">Force-controlled insertion with no direct feedback</span>
+            <span class="sumsub">A ROS 2 policy inserting fibre-optic connectors on a UR5, built with a global team of five. 36th of 1,600 teams, Intrinsic AI for Industry Challenge 2026.</span>
+          </span>
+          <span class="stage proto">Prototype</span>
+          <svg class="caret" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M9 18l6-6-6-6"/></svg>
+        </summary>
+        <div class="body">
+          <div class="row"><span class="lbl">Problem</span><span class="val">Insert SC and SFP connectors autonomously when the port gives no direct feedback about whether you are aligned, and the tolerance is smaller than the uncertainty in where the port is.</span></div>
+          <div class="row"><span class="lbl">Approach</span><span class="val">Led the team and set the architecture, splitting the work across vision, fiducial, geometric-estimation and learned-policy tracks so they could be compared rather than argued about. Designed the layered recovery: compliant approach, force bias, spiral search.</span></div>
+          <div class="row"><span class="lbl">Result</span><span class="val"><strong>Policy runs end to end on a UR5 under force/torque control, on both SC and SFP ports.</strong> 36th of 1,600 teams, the top 2.3%.</span></div>
+          <div class="stack">
+            <span class="tech">ROS 2</span><span class="tech">MoveIt</span><span class="tech">UR5</span>
+            <span class="tech">force / torque control</span><span class="tech">compliant insertion</span><span class="tech">AWS</span>
+          </div>
+        </div>
+      </details>
+
+      <details class="card" data-tags="instrument robotics">
+        <summary>
+          <span class="sumtext">
+            <span class="sumtitle">Piezo fatigue detethering workcell</span>
+            <span class="sumsub">A characterization rig that separates parts by driving them to fatigue, rather than cutting them.</span>
+          </span>
+          <span class="stage proto">Prototype</span>
+          <svg class="caret" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M9 18l6-6-6-6"/></svg>
+        </summary>
+        <div class="body">
+          <div class="row"><span class="lbl">Problem</span><span class="val">Tethers holding microscopic parts to a gang bar have to be broken without damaging anything nearby, and the gang bar sags when probes are missing, which changes the mechanics every time.</span></div>
+          <div class="row"><span class="lbl">Approach</span><span class="val">Designing the workcell around a Meca500 arm, a Thorlabs NanoMax piezo stage and telecentric vision, with an electromagnetic blade to hold the bar flat: a soft iron bar with about 50 turns of 30 AWG wire, MOSFET switched, around 50 mA at 12 V. Corrected the gang bar mass to 12 mg, which put the inertial force at 5 kHz and 10 µm travel at roughly 1.2 mN and set the hold current.</span></div>
+          <div class="row"><span class="lbl">Result</span><span class="val">Two-tier BOM scoped, from a bench proof around $17k to a full cell around $90k. Currently a bench effort, not a production system.</span></div>
+          <div class="stack">
+            <span class="tech">piezo stages</span><span class="tech">Thorlabs NanoMax</span><span class="tech">telecentric vision</span>
+            <span class="tech">electromagnetics</span><span class="tech">MEMS handling</span><span class="tech">fixture design</span>
+          </div>
+        </div>
+      </details>
+
+      <details class="card" data-tags="imaging instrument">
+        <summary>
+          <span class="sumtext">
+            <span class="sumtitle">Large-area submicron imaging architecture</span>
+            <span class="sumsub">Getting submicron detail over a large field without paying for the optics that would normally be required.</span>
+          </span>
+          <span class="stage study">Design study</span>
+          <svg class="caret" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M9 18l6-6-6-6"/></svg>
+        </summary>
+        <div class="body">
+          <div class="row"><span class="lbl">Problem</span><span class="val">Resolution and field of view trade against each other. Covering a large area at submicron resolution either means a very expensive objective and a long tiling scan, or giving up one of the two.</span></div>
+          <div class="row"><span class="lbl">Approach</span><span class="val">Architected a hybrid: a CIS sensor capturing the large field, with a 4× super-resolution model recovering detail, so the optical budget buys field of view and the model buys resolution. Alongside it, evaluated the camera path end to end, comparing Teledyne FLIR Blackfly S and Basler dart and ace 2 against the incumbent endoscope, and specified custom Gorilla Glass slides with sharp 90° edges, including which manufacturing order the ion exchange has to come in.</span></div>
+          <div class="row"><span class="lbl">Result</span><span class="val">An architecture and a costed component path. Not built, and I would want to prove the super-resolution step against ground truth before anyone relies on it for metrology.</span></div>
+          <div class="stack">
+            <span class="tech">CIS sensors</span><span class="tech">super-resolution</span><span class="tech">FLIR / Basler</span>
+            <span class="tech">optical design</span><span class="tech">substrate sourcing</span>
+          </div>
+        </div>
+      </details>
+
+      <details class="card" data-tags="platform instrument">
+        <summary>
+          <span class="sumtext">
+            <span class="sumtitle">A network instruments can live on</span>
+            <span class="sumsub">Segmented OT network and browser-based remote access for automation tools that cannot be exposed to a corporate LAN.</span>
+          </span>
+          <span class="stage prod">In production</span>
+          <svg class="caret" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M9 18l6-6-6-6"/></svg>
+        </summary>
+        <div class="body">
+          <div class="row"><span class="lbl">Problem</span><span class="val">Instruments and controllers run software that cannot be patched on anyone else's schedule, and they still need to be reachable for support, data collection and deployment.</span></div>
+          <div class="row"><span class="lbl">Approach</span><span class="val">Designed a four-VLAN architecture separating operational technology, build, DMZ and corporate traffic, and put Apache Guacamole in front of it as a browser-based access gateway, so support happens through one audited door instead of a VPN into the tool network. Run two self-hosted GitLab instances and the end-to-end CI/CD behind it, serving around 60 engineers.</span></div>
+          <div class="row"><span class="lbl">Result</span><span class="val">Tools reachable without being exposed. Also completed a Git LFS migration that cut repository size by <strong>99.6%</strong>.</span></div>
+          <div class="stack">
+            <span class="tech">VLAN segmentation</span><span class="tech">Apache Guacamole</span><span class="tech">self-hosted GitLab</span>
+            <span class="tech">Git LFS</span><span class="tech">air-gapped deployment</span>
+          </div>
+        </div>
+      </details>
+
+      <details class="card" data-tags="instrument platform">
+        <summary>
+          <span class="sumtext">
+            <span class="sumtitle">SmartBox: instrumented storage for fragile parts</span>
+            <span class="sumsub">Storage that knows what is inside it, what condition it is in, and reports without being asked.</span>
+          </span>
+          <span class="stage study">Design study</span>
+          <svg class="caret" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M9 18l6-6-6-6"/></svg>
+        </summary>
+        <div class="body">
+          <div class="row"><span class="lbl">Problem</span><span class="val">Fragile, expensive assemblies sit in storage between process steps with no record of handling, environment or damage, so a problem only appears when something fails much later.</span></div>
+          <div class="row"><span class="lbl">Approach</span><span class="val">Distributed micro-sensors in the enclosure, self-calibrating 3D inspection, and secure telemetry out. Worked up as a 28-claim provisional patent draft with a full bill of materials, an ROI model and an internal pitch.</span></div>
+          <div class="row"><span class="lbl">Result</span><span class="val">A complete concept with the economics worked out. The provisional is drafted and not filed.</span></div>
+          <div class="stack">
+            <span class="tech">sensor fusion</span><span class="tech">3D inspection</span><span class="tech">telemetry</span>
+            <span class="tech">BOM and ROI modelling</span>
+          </div>
+        </div>
+      </details>
+
+      <details class="card" data-tags="robotics">
+        <summary>
+          <span class="sumtext">
+            <span class="sumtitle">Mobile robot navigation at Fetch Robotics</span>
+            <span class="sumsub">Navigation and localization for autonomous mobile robots in warehouses, on ROS.</span>
+          </span>
+          <span class="stage prod">Earlier work</span>
+          <svg class="caret" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M9 18l6-6-6-6"/></svg>
+        </summary>
+        <div class="body">
+          <div class="row"><span class="lbl">Context</span><span class="val">Before the semiconductor work, mobile robotics: navigation and localization on Fetch AMRs, and firmware on 3D printers at AIO Robotics. Earlier still, system software on mobile platforms at ST-Ericsson.</span></div>
+          <div class="row"><span class="lbl">Why it still matters</span><span class="val">Localization is the same problem as alignment with a worse sensor budget. It is where the habit of treating uncertainty as a first-class quantity came from, rather than something to tune away.</span></div>
+          <div class="stack">
+            <span class="tech">ROS</span><span class="tech">SLAM / localization</span><span class="tech">embedded firmware</span><span class="tech">C++</span>
+          </div>
+        </div>
+      </details>
+
+    </div>
+
+    <figure class="fig">
+      <svg viewBox="0 0 960 236" role="img" aria-label="Identity loop: mark the item, read it at each station, record the event, let the machine act on a verified identity, and watch read rates and anomalies across the fleet of tools">
+        <defs><marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="currentColor"/></marker></defs>
+        <g font-family="IBM Plex Sans, system-ui, sans-serif" font-size="14" fill="currentColor" color="currentColor">
+          <text x="20" y="28" font-family="IBM Plex Mono, monospace" font-size="11" font-weight="600" letter-spacing="2" fill="var(--teal)">THE IDENTITY LOOP BEHIND THE TRACEABILITY WORK</text>
+          <rect x="20" y="56" width="160" height="90" rx="10" fill="var(--amber-pale)" stroke="var(--amber)"/>
+          <text x="100" y="88" text-anchor="middle" font-weight="600">1 · Mark</text>
+          <text x="100" y="110" text-anchor="middle" font-size="12.5">permanent ID on the item</text>
+          <text x="100" y="128" text-anchor="middle" font-size="12.5" fill="var(--muted)">laser mark · barcode · tag</text>
+          <line x1="180" y1="101" x2="212" y2="101" stroke="currentColor" stroke-width="1.5" marker-end="url(#ah)"/>
+          <rect x="214" y="56" width="160" height="90" rx="10" fill="var(--sunk)" stroke="var(--rule)"/>
+          <text x="294" y="88" text-anchor="middle" font-weight="600">2 · Read</text>
+          <text x="294" y="110" text-anchor="middle" font-size="12.5">at every station</text>
+          <text x="294" y="128" text-anchor="middle" font-size="12.5" fill="var(--muted)">scanner · camera · reader</text>
+          <line x1="374" y1="101" x2="406" y2="101" stroke="currentColor" stroke-width="1.5" marker-end="url(#ah)"/>
+          <rect x="408" y="56" width="160" height="90" rx="10" fill="var(--sunk)" stroke="var(--rule)"/>
+          <text x="488" y="88" text-anchor="middle" font-weight="600">3 · Record</text>
+          <text x="488" y="110" text-anchor="middle" font-size="12.5">who · when · where</text>
+          <text x="488" y="128" text-anchor="middle" font-size="12.5" fill="var(--muted)">MES · LIMS · ERP</text>
+          <line x1="568" y1="101" x2="600" y2="101" stroke="currentColor" stroke-width="1.5" marker-end="url(#ah)"/>
+          <rect x="602" y="56" width="160" height="90" rx="10" fill="var(--teal-pale)" stroke="var(--teal)"/>
+          <text x="682" y="88" text-anchor="middle" font-weight="600">4 · Act</text>
+          <text x="682" y="110" text-anchor="middle" font-size="12.5">machine verifies ID, then moves</text>
+          <text x="682" y="128" text-anchor="middle" font-size="12.5" fill="var(--muted)">pick · place · weigh · sort</text>
+          <line x1="762" y1="101" x2="794" y2="101" stroke="currentColor" stroke-width="1.5" marker-end="url(#ah)"/>
+          <rect x="796" y="56" width="144" height="90" rx="10" fill="var(--sunk)" stroke="var(--rule)"/>
+          <text x="868" y="88" text-anchor="middle" font-weight="600">5 · Watch</text>
+          <text x="868" y="110" text-anchor="middle" font-size="12.5">read rate, misses,</text>
+          <text x="868" y="128" text-anchor="middle" font-size="12.5">anomalies, fleet health</text>
+          <path d="M868,146 L868,184 L100,184 L100,148" fill="none" stroke="var(--muted)" stroke-width="1.2" stroke-dasharray="4 4" marker-end="url(#ah)"/>
+          <text x="484" y="206" text-anchor="middle" font-size="12.5" fill="var(--muted)">missed reads and duplicate IDs feed back into where and how items are marked</text>
+        </g>
+      </svg>
+      <figcaption>The same five steps apply to a wafer, a sub-assembly or a sample vial: the ID lives on the thing, every touch is a read, and the machine never acts on an unverified identity.</figcaption>
+    </figure>
+  </div>
+</section>
+
+<section id="motion">
+  <div class="wrap">
+    <span class="eyebrow">In motion</span>
+    <h2>The Gelly Engine, as an engineer sees it</h2>
+    <p class="sectlede">Short screen recordings from the development tool, taken read-only from a desk browser. Everything here is a web page served by the engine that also drives the hardware. Click a clip to watch it larger.</p>
+
+    <div class="gh">The engine and its pages</div>
+    <div class="gal">
+      <figure class="clip"><button class="clipbtn" type="button" data-src="assets/engine-home.gif" data-cap="Home: live camera, run status, input and output trays with gang IDs, and the axis strip along the bottom."><img src="assets/engine-home.gif" alt="Engine home page with live camera, status table and tray maps" loading="lazy"></button><figcaption><b>Home</b>Live camera, run status, input and output trays with their gang IDs, axis positions along the bottom.</figcaption></figure>
+      <figure class="clip"><button class="clipbtn" type="button" data-src="assets/engine-tree-editor.gif" data-cap="Tree Editor: the behaviour trees that run the cell, with validation, run, step-over and step-into on the live machine."><img src="assets/engine-tree-editor.gif" alt="Behaviour tree editor with a tree graph and validation panel" loading="lazy"></button><figcaption><b>Tree Editor</b>The behaviour trees that run the cell, with validation, run, step and breakpoints on the live machine.</figcaption></figure>
+      <figure class="clip"><button class="clipbtn" type="button" data-src="assets/engine-script-skill.gif" data-cap="Script skills: a new skill written in the browser with typed parameters, ranges, units and a hardware footprint."><img src="assets/engine-script-skill.gif" alt="Script skill editor" loading="lazy"></button><figcaption><b>Script skills</b>A new skill written in the browser, with typed parameters, units and a hardware footprint that blocks conflicting motion.</figcaption></figure>
+      <figure class="clip"><button class="clipbtn" type="button" data-src="assets/engine-vision-job.gif" data-cap="Vision jobs: a job built and run from the browser, with results shown in the page."><img src="assets/engine-vision-job.gif" alt="Vision job page" loading="lazy"></button><figcaption><b>Vision jobs</b>Jobs built, run and reviewed from the browser against the tool's cameras.</figcaption></figure>
+      <figure class="clip"><button class="clipbtn" type="button" data-src="assets/engine-machine-setup.gif" data-cap="Machine Setup: axes, IO, tool points, cameras and vision jobs arranged into per-task layouts, with a stop button that is never more than one click away."><img src="assets/engine-machine-setup.gif" alt="Machine setup page" loading="lazy"></button><figcaption><b>Machine Setup</b>Axes, IO, tool points and cameras arranged into layouts per person or task. Stop is always one click away.</figcaption></figure>
+      <figure class="clip"><button class="clipbtn" type="button" data-src="assets/engine-system-setup.gif" data-cap="System Setup: commissioning a tool from profile to first cycle without the legacy VB tool."><img src="assets/engine-system-setup.gif" alt="System setup page" loading="lazy"></button><figcaption><b>System Setup</b>Commissioning a tool from profile to first cycle. The third production cell was brought up this way.</figcaption></figure>
+    </div>
+
+    <div class="gh">Vision Editor</div>
+    <div class="gal">
+      <figure class="clip"><button class="clipbtn" type="button" data-src="assets/vision-add-tool.gif" data-cap="Adding a tool from the palette."><img src="assets/vision-add-tool.gif" alt="Adding a tool in the vision editor" loading="lazy"></button><figcaption><b>Add a tool</b>Tools come from a palette and land on the canvas with their terminals exposed.</figcaption></figure>
+      <figure class="clip"><button class="clipbtn" type="button" data-src="assets/vision-wire.gif" data-cap="Wiring tools together into a job."><img src="assets/vision-wire.gif" alt="Wiring tool outputs to inputs" loading="lazy"></button><figcaption><b>Wire</b>Outputs wired to inputs make the job; the same graph is a text file that diffs and reviews.</figcaption></figure>
+      <figure class="clip"><button class="clipbtn" type="button" data-src="assets/vision-caliper.gif" data-cap="A caliper tool measuring an edge pair."><img src="assets/vision-caliper.gif" alt="Caliper tool measuring edges" loading="lazy"></button><figcaption><b>Caliper</b>An edge-pair measurement placed and tuned on a live image.</figcaption></figure>
+      <figure class="clip"><button class="clipbtn" type="button" data-src="assets/vision-versions.gif" data-cap="Every job is versioned: publish, compare and roll back."><img src="assets/vision-versions.gif" alt="Version history of a vision job" loading="lazy"></button><figcaption><b>Versions</b>Every job is versioned: publish, compare and roll back from the page.</figcaption></figure>
+    </div>
+
+    <div class="gh">Model Builder</div>
+    <div class="gal">
+      <figure class="clip"><button class="clipbtn" type="button" data-src="assets/ml-datasets.gif" data-cap="Datasets: crops pulled from production images, split, exported to COCO, YOLO or ImageFolder."><img src="assets/ml-datasets.gif" alt="Dataset page of the model builder" loading="lazy"></button><figcaption><b>Datasets</b>Crops pulled from production images, split, and exported to COCO, YOLO or ImageFolder.</figcaption></figure>
+      <figure class="clip"><button class="clipbtn" type="button" data-src="assets/ml-annotate.gif" data-cap="Annotate: keyboard-first review with every reader's answer side by side, least certain first."><img src="assets/ml-annotate.gif" alt="Annotation page with image list, crop and reader answers" loading="lazy"></button><figcaption><b>Annotate</b>Keyboard-first review, every reader's answer side by side, least certain images first.</figcaption></figure>
+      <figure class="clip"><button class="clipbtn" type="button" data-src="assets/ml-train.gif" data-cap="Train: on the GPU server or this PC, chosen each run, resumable from checkpoint."><img src="assets/ml-train.gif" alt="Training page" loading="lazy"></button><figcaption><b>Train</b>On the GPU server or the local PC, chosen each run, resumable from a checkpoint.</figcaption></figure>
+      <figure class="clip"><button class="clipbtn" type="button" data-src="assets/ml-evaluate.gif" data-cap="Evaluate through the real job step, then publish into shadow mode."><img src="assets/ml-evaluate.gif" alt="Evaluation page" loading="lazy"></button><figcaption><b>Evaluate and publish</b>Scored through the real job step, misses shown with pictures, then published into shadow mode.</figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<dialog id="lb" aria-label="Clip viewer"><div class="lbin"><img id="lbimg" src="" alt=""><div class="lbbar"><span id="lbcap"></span><button class="lbclose" type="button" id="lbclose">Close</button></div></div></dialog>
+
+<section id="numbers">
+  <div class="wrap">
+    <span class="eyebrow">Numbers</span>
+    <h2>Before and after</h2>
+    <p class="sectlede">Each row is one measured change on a system that was already running. Bars are scaled within their own row, so each one shows its own proportion rather than comparing across rows.</p>
+    <div class="bars" id="bars"></div>
+    <p class="scalenote">Sources are my own production systems at FormFactor and the MotionVitals build. Happy to walk through how any of them was measured.</p>
+  </div>
+</section>
+
+<section id="path">
+  <div class="wrap">
+    <span class="eyebrow">Path</span>
+    <h2>How I got here</h2>
+    <div class="tl">
+      <div class="tlrow now">
+        <div class="tlyr">2016 — present</div>
+        <div class="tlorg">FormFactor, Livermore CA</div>
+        <div class="tlrole">Principal Robotics Software Engineer and Technical Lead</div>
+        <div class="tlnote">Automation cells for probe card manufacturing. Own the platform, lead a team of five, run the CI/CD and GitLab infrastructure serving around 60 engineers. Member of the company AI group. Contributed to the site's ISO 9001:2015 certification and took the laser cell through Laser Safety Officer certification.</div>
+      </div>
+      <div class="tlrow">
+        <div class="tlyr">2016</div>
+        <div class="tlorg">University of Southern California</div>
+        <div class="tlrole">MS Computer Science, Intelligent Robotics</div>
+      </div>
+      <div class="tlrow">
+        <div class="tlyr">2015 — 2016</div>
+        <div class="tlorg">AIO Robotics</div>
+        <div class="tlrole">Technical Development, 3D printer firmware</div>
+      </div>
+      <div class="tlrow">
+        <div class="tlyr">2015</div>
+        <div class="tlorg">Fetch Robotics</div>
+        <div class="tlrole">Robotics Engineer, AMR navigation and localization</div>
+      </div>
+      <div class="tlrow">
+        <div class="tlyr">2011 — 2012</div>
+        <div class="tlorg">ST-Ericsson</div>
+        <div class="tlrole">System Software Engineer, mobile platform</div>
+      </div>
+      <div class="tlrow">
+        <div class="tlyr">2011</div>
+        <div class="tlorg">NIT Kurukshetra</div>
+        <div class="tlrole">B.Tech Computer Engineering, Gold Medalist</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="toolbox">
+  <div class="wrap">
+    <span class="eyebrow">Toolbox</span>
+    <h2>What I work with</h2>
+    <div class="tools">
+      <div class="tool"><div class="th">Robots and motion</div><div class="tb">UR3 and UR5, Meca500, Epson SCARA, Fetch AMRs, ACS motion controllers, RoboDK, ROS 2, MoveIt, force and torque control, compliant insertion, piezo stages</div></div>
+      <div class="tool"><div class="th">Vision and imaging</div><div class="tb">Cognex VisionPro, OpenCV, Teledyne FLIR, Basler, telecentric optics, hand-eye calibration, YOLOv8, PatchCore, super-resolution</div></div>
+      <div class="tool"><div class="th">Machine learning</div><div class="tb">PyTorch, ONNX Runtime, ExecuTorch, Qualcomm Hexagon NPU, anomaly detection, on-device inference, shadow-mode rollout and evaluation</div></div>
+      <div class="tool"><div class="th">Software</div><div class="tb">C# and .NET 9 and 4.8, Python, C++, TypeScript, WPF and WinForms, ZeroMQ, multi-process and event-driven architecture, behaviour trees</div></div>
+      <div class="tool"><div class="th">Delivery</div><div class="tb">GitLab CI/CD, self-hosted GitLab, Git LFS, xUnit, pytest, Playwright, CodeQL, air-gapped release, FAT and SAT, FMEA, ISO 9001:2015</div></div>
+      <div class="tool"><div class="th">Working with people</div><div class="tb">Technical lead for a team of five, Scrum, design reviews, requirements definition, supplier qualification, mentoring technicians into automation roles</div></div>
+    </div>
+  </div>
+</section>
+
+<section id="deep">
+  <div class="wrap">
+    <span class="eyebrow">Deep dives</span>
+    <h2>Longer write-ups, shared on request</h2>
+    <p class="sectlede">Detailed engineering documents behind the cards above. They are private by default; ask and I will open the ones relevant to your team.</p>
+    <div class="docs">
+      <div class="doc"><div class="dn">Enhanced Traceability poster</div><div class="dt">48 × 36 in conference poster: methodology, analysis, the nine solution areas and the swappable-item marking rule.</div><a href="https://claude.ai/artifact/147YFp1MKbBjn1k3v1AKko">request access</a></div>
+      <div class="doc"><div class="dn">Inside the Gelly Engine</div><div class="dt">How a Start becomes axis moves, what Pause and STOP really do, and how skills, trees and vision jobs are built and maintained.</div><a href="https://claude.ai/artifact/DXcgm21QgUHxmu5LHgdwPS">request access</a></div>
+      <div class="doc"><div class="dn">Engine architecture</div><div class="dt">Process layout, worker protocol, supervisor restart policy and the independent stop channel.</div><a href="https://claude.ai/artifact/JXAFCqQj6Z5sLVZBfE4rYZ">request access</a></div>
+      <div class="doc"><div class="dn">Retiring a commercial vision stack</div><div class="dt">Job-by-job migration plan with shadow validation against production before cut-over.</div><a href="https://claude.ai/artifact/WzgAjyoKZz6zdAu72fFUZK">request access</a></div>
+    </div>
+  </div>
+</section>
+
+<section id="how">
+  <div class="wrap">
+    <span class="eyebrow">Working together</span>
+    <h2>Three ways this usually starts</h2>
+    <div class="ways">
+      <div class="way">
+        <div class="wn">Walk the process</div>
+        <div class="wt">2 to 3 weeks</div>
+        <p>I come in, follow the workflow end to end, and instrument where the time and the errors actually go. You get a written account of what is worth automating, what is not, and what it would cost. Often the answer is smaller than people expect.</p>
+      </div>
+      <div class="way">
+        <div class="wn">Build the thing</div>
+        <div class="wt">scoped per project</div>
+        <p>Design and deliver the cell, the pipeline or the data spine, with the tests, the documentation and the handover so your own people can run it without me. I would rather leave something maintainable than stay indispensable.</p>
+      </div>
+      <div class="way">
+        <div class="wn">Embedded lead</div>
+        <div class="wt">ongoing, part time</div>
+        <p>Technical ownership of an automation effort you are already running: architecture, reviews, hiring input and unblocking, alongside whoever is doing the day-to-day build.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="wrap">
+    <span class="eyebrow">Contact</span>
+    <h2>Tell me what is slow and I will tell you honestly whether I can help</h2>
+    <div class="contact">
+      <p style="color:var(--ink-2);max-width:58ch">The most useful first conversation is usually twenty minutes looking at the actual process, not the resume. If it turns out this is not my problem to solve, I will say so and point you at who it is.</p>
+      <div class="cgrid">
+        <div class="citem">
+          <div class="ck">Email</div>
+          <div class="cv"><a href="mailto:theja2289@gmail.com">theja2289@gmail.com</a><button class="copy" data-copy="theja2289@gmail.com">Copy</button></div>
+        </div>
+        <div class="citem">
+          <div class="ck">Phone</div>
+          <div class="cv">(213) 448-0804<button class="copy" data-copy="2134480804">Copy</button></div>
+        </div>
+        <div class="citem">
+          <div class="ck">LinkedIn</div>
+          <div class="cv"><a href="https://linkedin.com/in/vishwatheja">in/vishwatheja</a></div>
+        </div>
+        <div class="citem">
+          <div class="ck">GitHub</div>
+          <div class="cv"><a href="https://github.com/theja2289">theja2289</a></div>
+        </div>
+        <div class="citem">
+          <div class="ck">Based in</div>
+          <div class="cv">Castro Valley, California</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">Vishwa Theja Pokala. Every number on this page comes from a system I worked on and can walk you through.</div>
+</footer>
+</div>
+
+<div id="resume" hidden>
+  <div class="wrap">
+    <a class="back" href="#top">← Back to the portfolio</a>
+    <div class="sheet">
+      <div class="rh">
+        <div>
+          <h1>Vishwa Theja Pokala</h1>
+          <div class="rt">Principal Robotics Software Engineer and Technical Lead</div>
+        </div>
+        <div class="rc">theja2289@gmail.com · (213) 448-0804<br>linkedin.com/in/vishwatheja · github.com/theja2289<br>Castro Valley, California</div>
+      </div>
+
+      <h2>Summary</h2>
+      <p>Fifteen years in engineering, ten building production robotics for semiconductor manufacturing. I own the perception, motion and decision layers of automation cells that handle microscopic parts, the configurable framework a new cell is built on, and the delivery pipeline that ships it into a live factory. The work transfers to any process where something small must be handled accurately, identified reliably and proven afterwards.</p>
+
+      <h2>Experience</h2>
+      <div class="job"><b>FormFactor · Livermore, CA</b><span>2016 – present</span></div>
+      <div class="sub">Principal Robotics Software Engineer and Technical Lead · lead a team of five · member of the company AI group</div>
+      <ul>
+        <li><strong>Autonomous micro-assembly under vision:</strong> closed loop across vision, ACS motion and behaviour trees; ±1 µm placement held across the fleet, station cycle time 15 s to under 5 s, in-line verification 300 ms to 50 ms.</li>
+        <li><strong>Universal automation framework:</strong> RoboDK and behaviour trees, ~130 reusable skills, 160+ trees, dry-run simulation, CI/CD, fleet management; cell bring-up from roughly three years to three months, 100+ production systems on one platform.</li>
+        <li><strong>Enhanced Traceability, fab to assembly:</strong> laser-scribed lot IDs that survive singulation, direct marking of downstream assemblies, tablet QR scanning into MES in real time, and the rule for what gets marked. First author, Technology Summit 2025.</li>
+        <li><strong>GellyML:</strong> replaced a per-station commercial vision stack with an in-house PyTorch and OpenCV pipeline (YOLOv8, PatchCore), versioned text jobs with rollback, rolled out in shadow mode against production.</li>
+        <li><strong>Platform re-architecture:</strong> WPF monolith to a headless .NET 9 engine with isolated motion and vision workers over ZeroMQ; ~1,700 automated tests, 83-check self-test; five production releases in ten weeks into an air-gapped factory.</li>
+        <li><strong>Infrastructure:</strong> four-VLAN OT network with browser-based access gateway; two self-hosted GitLab instances and CI/CD serving ~60 engineers; Git LFS migration cut repository size 99.6%.</li>
+        <li>Contributed to the site's ISO 9001:2015 certification; took the laser cell through Laser Safety Officer certification; mentor technicians into automation roles.</li>
+      </ul>
+
+      <div class="job"><b>Fetch Robotics · San Jose, CA · Robotics Engineer</b><span>2015</span></div>
+      <ul><li>Navigation and localization for autonomous mobile robots in warehouses, on ROS.</li></ul>
+      <div class="job"><b>AIO Robotics · Los Angeles, CA · Technical Development</b><span>2015 – 2016</span></div>
+      <ul><li>Firmware and Wi-Fi connectivity for an app-integrated 3D printer; CES Innovation Awards 2016 honoree.</li></ul>
+      <div class="job"><b>ST-Ericsson · System Software Engineer</b><span>2011 – 2012</span></div>
+      <ul><li>System software on mobile platforms.</li></ul>
+
+      <h2>Selected results outside the day job</h2>
+      <ul>
+        <li><strong>MotionVitals AI, 2026:</strong> system architect and lead on a team of five; RTMPose lowered onto the Qualcomm Hexagon NPU via ExecuTorch with a native C++ runtime; 89 ms to 1.6 ms, live at 30 fps. First place, Compute Track, ExecuTorch × Qualcomm.</li>
+        <li><strong>Intrinsic AI for Industry Challenge, 2026:</strong> led a global team of five; ROS 2 force-controlled fibre-connector insertion on a UR5; 36th of 1,600 teams.</li>
+      </ul>
+
+      <h2>Skills</h2>
+      <div class="skl">
+        <b>Robots &amp; motion</b><span>UR3/UR5, Meca500, Epson SCARA, Fetch AMRs, ACS controllers, RoboDK, ROS 2, MoveIt, force/torque control, piezo stages</span>
+        <b>Vision &amp; imaging</b><span>Cognex VisionPro, OpenCV, FLIR, Basler, telecentric optics, hand-eye calibration, YOLOv8, PatchCore, super-resolution</span>
+        <b>Machine learning</b><span>PyTorch, ONNX Runtime, ExecuTorch, Hexagon NPU, anomaly detection, on-device inference, shadow-mode evaluation</span>
+        <b>Identification</b><span>Laser direct part marking, QR and barcode, MES and LIMS integration, traceability data-model design</span>
+        <b>Software</b><span>C# / .NET 9 and 4.8, Python, C++, TypeScript, WPF, ZeroMQ, multi-process and event-driven design, behaviour trees</span>
+        <b>Delivery</b><span>GitLab CI/CD, self-hosted GitLab, Git LFS, xUnit, pytest, Playwright, CodeQL, air-gapped release, FAT/SAT, FMEA, ISO 9001:2015</span>
+      </div>
+
+      <h2>Education</h2>
+      <div class="job"><b>MS Computer Science, Intelligent Robotics · University of Southern California</b><span>2016</span></div>
+      <div class="job"><b>B.Tech Computer Engineering · NIT Kurukshetra · Gold Medalist</b><span>2011</span></div>
+    </div>
+    <p class="tip">To save as PDF, use your browser's print command.</p>
+  </div>
+</div>
+
+<script>
+(function(){
+  "use strict";
+
+  /* ---------- theme ---------- */
+  var root=document.documentElement, btn=document.getElementById("themeBtn");
+  try{ var t=localStorage.getItem("vtp-theme"); if(t) root.setAttribute("data-theme",t); }catch(e){}
+  btn.addEventListener("click",function(){
+    var cur=root.getAttribute("data-theme");
+    if(!cur){ cur = matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light"; }
+    var next = cur==="dark" ? "light" : "dark";
+    root.setAttribute("data-theme",next);
+    try{ localStorage.setItem("vtp-theme",next); }catch(e){}
+  });
+
+  /* ---------- fit finder ---------- */
+  var PROBLEMS=[
+    {
+      q:"People are doing precise, repetitive handling by hand.",
+      h:"This is the core of what I build.",
+      p:["Gelly picks microscopic spring-probe gangs out of wafer trays, aligns them on a glass slide under micron vision, breaks the tethers and loads the finished slides. It runs in production today. The hard part was never the robot. It was the closed loop: deciding when the vision is confident enough to commit, when to compensate, and when to stop and ask a human.",
+         "The same shape fits sample prep, plating, pipetting into non-standard vessels, loading and unloading an instrument, or anything where a person is currently the only thing accurate enough to do the job."],
+      proofs:[["±1 µm","placement accuracy held across a whole fleet, not one golden machine"],
+              ["15s → 5s","station cycle time"],
+              ["300 → 50 ms","in-line verification"]],
+      where:"See Gelly and the universal framework under Work."
+    },
+    {
+      q:"Our imaging or inspection is hand-tuned and brittle.",
+      h:"I replaced a commercial vision stack with a learned one, carefully.",
+      p:["We ran on Cognex VisionPro, licensed per station, tuned by hand, and fragile against anything it had not seen. I built GellyML in Python, OpenCV and PyTorch to replace it: a browser vision editor, versioned text-based jobs with publish and rollback, YOLOv8 detection and PatchCore anomaly detection.",
+         "The part I would insist on repeating is the rollout. It ran in shadow mode alongside production long enough to compare the two honestly before anyone switched over. For a lab, that is the difference between a model you can cite and a model you hope is right."],
+      proofs:[["New classes","inspection catches defects previously found only by operators"],
+              ["Reversible","vision jobs are text, so they diff, review and roll back"],
+              ["Also","architected a CIS plus 4× super-resolution path for large-area submicron imaging"]],
+      where:"See GellyML and the imaging architecture under Work."
+    },
+    {
+      q:"Every rig is a one-off. Nothing transfers between experiments.",
+      h:"This is the problem I spent the most years on.",
+      p:["Each new automation cell used to be a bespoke build that cost roughly three years, and the knowledge lived in whoever wrote it. I built a universal framework on RoboDK and behaviour trees: around 130 reusable skills, 160+ behaviour trees, dry-run simulation, CI/CD, fleet management and observability, with an in-browser editor so an engineer composes behaviour rather than writing code.",
+         "A new cell is now configured and simulated instead of written. UR3, UR5, Meca500, Epson SCARA and custom platforms all run on the same thing."],
+      proofs:[["3 yr → 3 mo","time to stand up a new cell"],
+              ["100+","production systems on one configurable platform"],
+              ["~3 eng/yr","of effort avoided per year"]],
+      where:"See One framework, a hundred cells under Work."
+    },
+    {
+      q:"We cannot reliably trace which sample went through which rig.",
+      h:"I built the traceability spine for a line where identity physically disappears.",
+      p:["At singulation one wafer becomes many parts, and from that moment the box label is the only record of origin. I designed and delivered the whole chain: lot ID laser-scribed on the wafer back side at incoming, a centre mark placed before singulation so every piece carries its parent, direct marking on the downstream assemblies, and tablet QR scanning at each station writing into MES in real time.",
+         "I also wrote the rule for what gets marked at all, so the programme stayed affordable: only items whose interchange carries a quality or process risk."],
+      proofs:[["Survives","part identity persists through the step that destroys it"],
+              ["Zero retype","manual data entry gone from process stations"],
+              ["Presented","first author, FormFactor Technology Summit 2025"]],
+      where:"See Enhanced Traceability under Work."
+    },
+    {
+      q:"The analysis needs to run on the instrument, not in the cloud.",
+      h:"I have taken a model from a server to an NPU and kept it real-time.",
+      p:["For MotionVitals AI I lowered RTMPose onto the Qualcomm Hexagon NPU through ExecuTorch and wrote the native C++ runtime streaming tensors behind it. Inference went from 89 ms to 1.6 ms, live at 30 fps on the device, which took it from a demo to something usable at the point of care. We built it in 24 hours and it won first place in the Compute Track.",
+         "In the day job the same discipline shows up as ONNX Runtime and PyTorch models running in-line on production hardware, where a slow frame is a stopped machine."],
+      proofs:[["89 → 1.6 ms","pose inference, a 55× speedup"],
+              ["30 fps","live, on device, no network"],
+              ["1st place","Compute Track, ExecuTorch × Qualcomm 2026"]],
+      where:"See MotionVitals AI under Work."
+    },
+    {
+      q:"The software breaks in the middle of a run.",
+      h:"I have made exactly this failure mode go away.",
+      p:["We had one desktop application holding motion, vision and the state machine in a single process, so any fault anywhere stopped the tool. I re-architected it into a headless .NET 9 engine with separate motion and vision worker processes, defining the process boundaries and the state model up front.",
+         "Underneath it: around 1,700 automated tests, an 83-check engine self-test, browser checks, and CI/CD with manual-gated production deploys. That is what made it safe to release into a factory that cannot stop."],
+      proofs:[["Isolated","a crash in one worker no longer stops the tool"],
+              ["1,700","automated tests behind every release"],
+              ["5 in 10 wks","production releases into an air-gapped site"]],
+      where:"See Software that does not take the line down under Work."
+    }
+  ];
+
+  var list=document.querySelector(".problist"), panel=document.getElementById("answer");
+  PROBLEMS.forEach(function(item,i){
+    var b=document.createElement("button");
+    b.className="prob"; b.type="button"; b.setAttribute("role","tab");
+    b.setAttribute("aria-selected", i===0?"true":"false");
+    b.id="prob-"+i;
+    b.innerHTML='<span class="dot"></span><span>'+item.q+'</span>';
+    b.addEventListener("click",function(){ select(i); });
+    list.appendChild(b);
+  });
+
+  function esc(s){ return String(s).replace(/[&<>]/g,function(c){ return {"&":"&amp;","<":"&lt;",">":"&gt;"}[c]; }); }
+
+  function select(i){
+    var items=list.querySelectorAll(".prob");
+    for(var k=0;k<items.length;k++){ items[k].setAttribute("aria-selected", k===i?"true":"false"); }
+    var d=PROBLEMS[i], html='<h3>'+esc(d.h)+'</h3>';
+    d.p.forEach(function(par){ html+='<p>'+esc(par)+'</p>'; });
+    html+='<div class="proofs">';
+    d.proofs.forEach(function(pr){
+      html+='<div class="proof"><span class="k">'+esc(pr[0])+'</span><span>'+esc(pr[1])+'</span></div>';
+    });
+    html+='</div>';
+    if(d.map){ html+='<div class="mapgrid"><span class="mh">What I built</span><span class="mh r">Your equivalent</span>'; d.map.forEach(function(m){ html+='<span class="ml">'+esc(m[0])+'</span><span class="mr">'+esc(m[1])+'</span>'; }); html+='</div>'; }
+    if(d.plan){ html+='<div class="plan"><div class="ph">First 30 days on your floor</div><ol>'; d.plan.forEach(function(st){ html+='<li>'+esc(st)+'</li>'; }); html+='</ol></div>'; }
+    html+='<div class="where">'+esc(d.where)+'</div>';
+    panel.innerHTML=html;
+    panel.setAttribute("aria-labelledby","prob-"+i);
+  }
+  select(0);
+
+  /* ---------- project filters ---------- */
+  var chips=document.querySelectorAll(".chip"), cards=document.querySelectorAll("#cards .card");
+  chips.forEach(function(c){
+    c.addEventListener("click",function(){
+      chips.forEach(function(o){ o.setAttribute("aria-pressed", o===c ? "true":"false"); });
+      var f=c.getAttribute("data-f");
+      cards.forEach(function(card){
+        var show = f==="all" || (card.getAttribute("data-tags")||"").indexOf(f)>-1;
+        card.hidden = !show;
+        if(!show) card.open=false;
+      });
+    });
+  });
+
+  /* ---------- before / after bars ---------- */
+  var ROWS=[
+    {name:"Time to stand up a new automation cell", ctx:"universal framework", b:36, a:3, bl:"~3 years", al:"3 months"},
+    {name:"Station cycle time", ctx:"Gelly production fleet", b:15, a:4.8, bl:"15 s", al:"under 5 s"},
+    {name:"In-line verification", ctx:"Gelly vision loop", b:300, a:50, bl:"300 ms", al:"50 ms"},
+    {name:"Pose inference latency", ctx:"MotionVitals, on NPU", b:89, a:1.6, bl:"89 ms", al:"1.6 ms"},
+    {name:"Time for an engineer to reach full quality", ctx:"team practice and mentoring", b:4.6, a:1.8, bl:"4.6 years", al:"1.8 years"},
+    {name:"Repository size", ctx:"Git LFS migration", b:100, a:0.4, bl:"baseline", al:"99.6% smaller"}
+  ];
+  var bars=document.getElementById("bars");
+  ROWS.forEach(function(r){
+    var pctA=Math.max(1.2,(r.a/r.b)*100);
+    var el=document.createElement("div");
+    el.className="bar";
+    el.innerHTML=
+      '<div class="barhead"><span class="barname">'+esc(r.name)+'</span><span class="barctx">'+esc(r.ctx)+'</span></div>'+
+      '<div class="track">'+
+        '<div class="lane"><span class="lanelab">Before</span><span class="fill before" style="width:72%"></span><span class="lanev">'+esc(r.bl)+'</span></div>'+
+        '<div class="lane"><span class="lanelab">After</span><span class="fill after" style="width:'+(pctA*0.72)+'%"></span><span class="lanev">'+esc(r.al)+'</span></div>'+
+      '</div>';
+    bars.appendChild(el);
+  });
+
+  /* ---------- scrollspy ---------- */
+  var links=Array.prototype.slice.call(document.querySelectorAll(".navlinks a:not(.res)"));
+  var secs=links.map(function(l){ return document.querySelector(l.getAttribute("href")); }).filter(Boolean);
+  if("IntersectionObserver" in window && secs.length){
+    var io=new IntersectionObserver(function(entries){
+      entries.forEach(function(en){
+        if(!en.isIntersecting) return;
+        links.forEach(function(l){
+          l.setAttribute("aria-current", l.getAttribute("href")==="#"+en.target.id ? "true":"false");
+        });
+      });
+    },{rootMargin:"-56px 0px -62% 0px",threshold:0});
+    secs.forEach(function(s){ io.observe(s); });
+  }
+
+  /* ---------- copy buttons ---------- */
+  document.querySelectorAll(".copy").forEach(function(b){
+    b.addEventListener("click",function(){
+      var v=b.getAttribute("data-copy"), old=b.textContent;
+      if(navigator.clipboard && navigator.clipboard.writeText){
+        navigator.clipboard.writeText(v).then(function(){
+          b.textContent="Copied"; setTimeout(function(){ b.textContent=old; },1400);
+        }).catch(function(){ b.textContent="Select it"; setTimeout(function(){ b.textContent=old; },1400); });
+      } else { b.textContent="Select it"; setTimeout(function(){ b.textContent=old; },1400); }
+    });
+  });
+
+  /* ---------- resume view ---------- */
+  var site=document.getElementById("site"), resumeView=document.getElementById("resume");
+  function route(){
+    var isRes=(location.hash==="#resume");
+    site.hidden=isRes; resumeView.hidden=!isRes;
+    if(isRes){ window.scrollTo(0,0); }
+    else if(location.hash==="#top"){ window.scrollTo(0,0); }
+  }
+  window.addEventListener("hashchange",route); route();
+
+  /* ---------- clip viewer ---------- */
+  var lb=document.getElementById("lb"), lbimg=document.getElementById("lbimg"), lbcap=document.getElementById("lbcap");
+  document.querySelectorAll(".clipbtn").forEach(function(b){
+    b.addEventListener("click",function(){
+      lbimg.src=b.getAttribute("data-src"); lbimg.alt=b.querySelector("img").alt; lbcap.textContent=b.getAttribute("data-cap");
+      if(lb.showModal){ lb.showModal(); } else { lb.setAttribute("open",""); }
+    });
+  });
+  document.getElementById("lbclose").addEventListener("click",function(){ lb.close ? lb.close() : lb.removeAttribute("open"); });
+  lb.addEventListener("click",function(e){ if(e.target===lb){ lb.close ? lb.close() : lb.removeAttribute("open"); } });
+  lb.addEventListener("close",function(){ lbimg.src=""; });
+})();
+</script>
+
+</body>
+</html>
